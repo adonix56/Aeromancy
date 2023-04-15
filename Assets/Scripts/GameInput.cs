@@ -29,7 +29,7 @@ public class GameInput : MonoBehaviour
     }
 
     public Vector2 GetNormalizedMovement() {
-        Vector2 raw = inputSystemActions.Player.Movement.ReadValue<Vector2>().normalized;
+        Vector2 raw = inputSystemActions.Player.Movement.ReadValue<Vector2>();
         Vector2 forward = new Vector2(Camera.main.transform.forward.x, Camera.main.transform.forward.z);
         Vector2 right = new Vector2(Camera.main.transform.right.x, Camera.main.transform.right.z);
 

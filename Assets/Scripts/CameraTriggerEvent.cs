@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class TriggerEvent : MonoBehaviour
+public class CameraTriggerEvent : MonoBehaviour
 {
     private const string PLAYER_TAG = "Player";
 
@@ -11,7 +11,7 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag(PLAYER_TAG)) {
-            TriggerController.Instance.TriggerEvent(changeToCamera);
+            CameraTriggerController.Instance.TriggerEvent(changeToCamera);
         }
     }
 }

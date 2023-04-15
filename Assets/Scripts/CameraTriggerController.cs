@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class TriggerController : MonoBehaviour
+public class CameraTriggerController : MonoBehaviour
 {
-    public static TriggerController Instance { get; private set; }
+    public static CameraTriggerController Instance { get; private set; }
 
     private CinemachineVirtualCamera currentCamera;
 

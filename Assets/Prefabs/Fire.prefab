@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7769638313601444805}
   - component: {fileID: 7769638313601444806}
   - component: {fileID: 7769638313601444803}
+  - component: {fileID: 5394591245441770790}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -4826,3 +4827,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0.5
+--- !u!136 &5394591245441770790
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7769638313601444807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.18
+  m_Height: 0.98
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.38, z: 0}

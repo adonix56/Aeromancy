@@ -5,24 +5,28 @@ using Cinemachine;
 
 public class TriggerController : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera[] virtualCameras;
+    public static TriggerController Instance { get; private set; }
 
     private CinemachineVirtualCamera currentCamera;
 
-    private void Start() {
-    }
-
-    public enum TriggerEvents { 
-        Follow, SideCamera1
-    }
-
-    public void TriggerEvent(TriggerController.TriggerEvents triggerEvent) { 
-        switch (triggerEvent) {
-            case TriggerEvents.Follow:
-
-                break;
-            case TriggerEvents.SideCamera1:
-                break;
+    private void Awake() {
+        if (Instance != null) {
+            Debug.LogError("More than one Trigger Controller created.");
         }
+        Instance = this;
+    }
+
+    private void Start() {
+        currentCamera = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+    }
+
+    public void TriggerEvent(CinemachineVirtualCamera camera) {
+        camera.Priority = 10;
+        currentCamera.Priority = 0;
+        currentCamera = camera;
+    }
+
+    public CinemachineVirtualCamera getCurrentCamera() {
+        return currentCamera;
     }
 }

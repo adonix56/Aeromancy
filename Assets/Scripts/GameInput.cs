@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameInput : MonoBehaviour
 {
@@ -28,6 +29,13 @@ public class GameInput : MonoBehaviour
     }
 
     public Vector2 GetNormalizedMovement() {
-        return inputSystemActions.Player.Movement.ReadValue<Vector2>().normalized;
+        Vector2 raw = inputSystemActions.Player.Movement.ReadValue<Vector2>().normalized;
+        Vector2 forward = new Vector2(Camera.main.transform.forward.x, Camera.main.transform.forward.z);
+        Vector2 right = new Vector2(Camera.main.transform.right.x, Camera.main.transform.right.z);
+
+        forward.Normalize();
+        right.Normalize();
+
+        return forward * raw.y + right * raw.x;
     }
 }

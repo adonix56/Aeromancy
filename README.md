@@ -14,7 +14,7 @@ __Contributors__
 - __[ADONiX](https://github.com/adonix56)__ - Game Developer
 - __[Ema22](https://github.com/)__ - Game Designer
 - __[duffy](https://github.com/)__ - 3D Artist
-- __[bobrossydude](https://github.com/)__ - Game Developer / 3D Artist
+- __[bobrossydude](https://github.com/vracton)__ - Game Developer / 3D Artist
 - __[llermy](https://github.com/)__ - Game Developer
 
 ---

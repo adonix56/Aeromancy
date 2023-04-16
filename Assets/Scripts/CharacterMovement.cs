@@ -62,11 +62,9 @@ public class CharacterMovement : MonoBehaviour
         if (!isGrounded) {
             if (direction == Vector2.zero) {
                 if (lastMoveDirection == Vector2.zero) {
-                    Debug.Log("No Direction or Last Move Direction");
                     direction.x = transform.forward.x;
                     direction.y = transform.forward.z;
                 } else {
-                    Debug.Log("No Direction");
                     direction = lastMoveDirection.normalized;
                 }
             }

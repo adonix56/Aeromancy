@@ -13,7 +13,6 @@ public class AirDash : BaseSkill
         //TODO: implement aeroCost and cooldown
         gameInput = GameInput.Instance;
         characterMovement = CharacterManager.Instance.GetCharacterMovement();
-        Debug.Log($"Activating AirDash {gameInput.GetNormalizedMovement()}");
         Vector2 direction = gameInput.GetNormalizedMovement();
         characterMovement.HandleImpulse(direction, dashStrength);
     }

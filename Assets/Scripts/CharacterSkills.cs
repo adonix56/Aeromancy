@@ -17,7 +17,9 @@ public class CharacterSkills : MonoBehaviour
     }
 
     private void GameInput_OnSkill1Action(object sender, System.EventArgs e) {
-        Instantiate(skill1.prefab, transform).GetComponent<BaseSkill>().Activate();
+        //TODO: Setup Skill Args to determine to activate skill on character or world space:
+        //      i.e. AirDash in world space, shooting skill on character
+        Instantiate(skill1.prefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
     }
 
     private void GameInput_OnSkill2Action(object sender, System.EventArgs e) {

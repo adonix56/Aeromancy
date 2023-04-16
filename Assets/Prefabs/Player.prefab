@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2318765745579626703}
+  - component: {fileID: 8916936945151262311}
   - component: {fileID: 2318765745579626702}
   - component: {fileID: 2318765745579626701}
-  - component: {fileID: -8203308311829077545}
+  - component: {fileID: 1842488410428886138}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -35,6 +36,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8916936945151262311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318765745579626700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293ec734a5772ff4bbb28472d6064ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &2318765745579626702
 CharacterController:
   m_ObjectHideFlags: 0
@@ -69,11 +82,10 @@ MonoBehaviour:
   playerSpeed: 7
   jumpSpeed: 7
   rotateSpeed: 7
-  gameInput: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &-8203308311829077545
+--- !u!114 &1842488410428886138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,9 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2318765745579626700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c43f6281ce1ca4ba947a391975e394, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d773c64aa5c4a54b966413ee01389eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skill1: {fileID: 0}
+  skill2: {fileID: 0}
 --- !u!1 &2318765745938305351
 GameObject:
   m_ObjectHideFlags: 0

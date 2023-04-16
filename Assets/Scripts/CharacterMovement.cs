@@ -57,4 +57,21 @@ public class CharacterMovement : MonoBehaviour
         playerVerticalSpeed.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime; // Gravity
         controller.Move(playerVerticalSpeed * Time.deltaTime);
     }
+
+    public void HandleImpulse(Vector2 direction, float strength) {
+        if (!isGrounded) {
+            if (direction == Vector2.zero) {
+                if (lastMoveDirection == Vector2.zero) {
+                    Debug.Log("No Direction or Last Move Direction");
+                    direction.x = transform.forward.x;
+                    direction.y = transform.forward.z;
+                } else {
+                    Debug.Log("No Direction");
+                    direction = lastMoveDirection.normalized;
+                }
+            }
+            direction *= -1f;
+            lastMoveDirection = direction * strength;
+        }
+    }
 }

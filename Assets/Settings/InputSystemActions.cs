@@ -44,6 +44,24 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill_1"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d56dd10-5686-4f17-bef2-c1ac7256c227"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill_2"",
+                    ""type"": ""Button"",
+                    ""id"": ""eed0971b-1e59-464f-baee-169fa7457d50"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -189,6 +207,50 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7d3f465-0fb0-4361-bc05-88a48d1c8022"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c517556a-9a65-4527-ab01-fd5d07efb2b0"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1af99fb1-a297-4b9a-b55a-8191ab92f429"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill_2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c7350ae-a2da-4463-a799-02b686480c13"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill_2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -199,6 +261,8 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Skill_1 = m_Player.FindAction("Skill_1", throwIfNotFound: true);
+        m_Player_Skill_2 = m_Player.FindAction("Skill_2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,12 +326,16 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Skill_1;
+    private readonly InputAction m_Player_Skill_2;
     public struct PlayerActions
     {
         private @InputSystemActions m_Wrapper;
         public PlayerActions(@InputSystemActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Skill_1 => m_Wrapper.m_Player_Skill_1;
+        public InputAction @Skill_2 => m_Wrapper.m_Player_Skill_2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +351,12 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Skill_1.started += instance.OnSkill_1;
+            @Skill_1.performed += instance.OnSkill_1;
+            @Skill_1.canceled += instance.OnSkill_1;
+            @Skill_2.started += instance.OnSkill_2;
+            @Skill_2.performed += instance.OnSkill_2;
+            @Skill_2.canceled += instance.OnSkill_2;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -293,6 +367,12 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Skill_1.started -= instance.OnSkill_1;
+            @Skill_1.performed -= instance.OnSkill_1;
+            @Skill_1.canceled -= instance.OnSkill_1;
+            @Skill_2.started -= instance.OnSkill_2;
+            @Skill_2.performed -= instance.OnSkill_2;
+            @Skill_2.canceled -= instance.OnSkill_2;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -314,5 +394,7 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSkill_1(InputAction.CallbackContext context);
+        void OnSkill_2(InputAction.CallbackContext context);
     }
 }

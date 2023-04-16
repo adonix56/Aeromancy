@@ -8,12 +8,15 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float playerSpeed = 7f;
     [SerializeField] private float jumpSpeed = 7f;
     [SerializeField] private float rotateSpeed = 7f;
+    [SerializeField] private float slopeLimit = 30f;
     [SerializeField] private LayerMask layerMask;
 
     private GameInput gameInput;
     private Vector2 lastMoveDirection;
     private Vector3 playerVerticalSpeed;
     private bool isGrounded = false;
+    private bool isOnSteepSlope = false;
+    private RaycastHit lastHit;
     private float groundRayDistance = 0.1f;
     private float gravityMultiplier = 3f;
     private bool jumpPressed = false;
@@ -27,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
-        if (isGrounded) {
+        if (isGrounded && !OnSteepSlope()) {
             jumpPressed = true;
         }
     }
@@ -36,6 +39,8 @@ public class CharacterMovement : MonoBehaviour
         CheckDeath();
         HandleMovement();
         HandleJump();
+        HandleSlope();
+        UpdateGroundCheck();
     }
 
     private void HandleMovement() {
@@ -50,16 +55,22 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void HandleJump() {
-        Ray ray = new Ray(transform.position + (Vector3.up * groundRayDistance), Vector3.down);
-        isGrounded = jumpPressed ? false : Physics.Raycast(ray, groundRayDistance, layerMask);
-
-        if (isGrounded) playerVerticalSpeed.y = 0;
+        if (isGrounded && playerVerticalSpeed.y < 0) playerVerticalSpeed.y = -2f;
         if (jumpPressed) {
             playerVerticalSpeed.y += Mathf.Sqrt(jumpSpeed * -Physics.gravity.y);
             jumpPressed = false;
         }
         playerVerticalSpeed.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime; // Gravity
         controller.Move(playerVerticalSpeed * Time.deltaTime);
+    }
+
+    public void HandleSlope()
+    {
+        if (OnSteepSlope())
+        {
+            Vector3 slopeDirection = Vector3.up - lastHit.normal * Vector3.Dot(Vector3.up, lastHit.normal);
+            controller.Move(slopeDirection * (-playerSpeed) * Time.deltaTime);
+        }
     }
 
     public void HandleImpulse(Vector2 direction, float strength) {
@@ -77,6 +88,15 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    public void UpdateGroundCheck()
+    {
+        float groundcheckRadius = 0.5f;
+        bool raycast = Physics.SphereCast(
+            transform.position + Vector3.up * (groundcheckRadius + groundRayDistance),
+            groundcheckRadius, Vector3.down, out lastHit, groundRayDistance + 0.01f, layerMask);
+        isGrounded = jumpPressed ? false : raycast;
+    }
+
     private void CheckDeath() {
         if (controller.transform.position.y <= fallLimit) {
             controller.enabled = false;
@@ -84,5 +104,14 @@ public class CharacterMovement : MonoBehaviour
             controller.enabled = true;
             transform.Rotate(0, 0, 0);
         }
+    }
+
+    private bool OnSteepSlope()
+    {
+        if (!isGrounded) return false;
+
+        float slopeAngle = Vector3.Angle(lastHit.normal, Vector3.up);
+        if (slopeAngle > slopeLimit) return true;
+        return false;
     }
 }

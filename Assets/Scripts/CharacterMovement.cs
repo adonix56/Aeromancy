@@ -17,10 +17,13 @@ public class CharacterMovement : MonoBehaviour
     private float groundRayDistance = 0.1f;
     private float gravityMultiplier = 3f;
     private bool jumpPressed = false;
+    private Vector3 checkPointPos;
+    private int fallLimit = -20;
 
     private void Start() {
         gameInput = GameInput.Instance;
         gameInput.OnJumpAction += GameInput_OnJumpAction;
+        checkPointPos = GameObject.Find("Spawn").transform.position;
     }
 
     private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
@@ -30,6 +33,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void Update() {
+        CheckDeath();
         HandleMovement();
         HandleJump();
     }
@@ -72,6 +76,15 @@ public class CharacterMovement : MonoBehaviour
             }
             direction *= -1f;
             lastMoveDirection = direction * strength;
+        }
+    }
+
+    private void CheckDeath() {
+        if (controller.transform.position.y <= fallLimit) {
+            controller.enabled = false;
+            controller.transform.position = checkPointPos;
+            controller.enabled = true;
+            transform.Rotate(0, 0, 0);
         }
     }
 }

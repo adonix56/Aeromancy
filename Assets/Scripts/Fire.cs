@@ -5,7 +5,18 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     public float life = 1.0f;
+
+    [HideInInspector]
+    public Blowable blowable;
     private bool isBlowing;
+
+    private void Awake()
+    {
+        blowable = GetComponent<Blowable>();
+        blowable.OnBlowEnter += OnBlowEnter;
+        blowable.OnBlowExit += OnBlowExit;
+        blowable.OnBlowedOut += OnBlowedOut;
+    }
 
     // Update is called once per frame
     void Update()
@@ -16,16 +27,15 @@ public class Fire : MonoBehaviour
         }
         if(life < 0)
         {
-            Extinguish();
+            blowable.BlowOut();
         }
     }
 
-    public void Blow(Vector3 direction, float strength)
+    public void OnBlowEnter(Vector3 direction)
     {
         ParticleSystem ps = GetComponent<ParticleSystem>();
         if (direction != Vector3.zero)
         {
-            direction = direction.normalized * strength;
             var lifetimeVel = ps.velocityOverLifetime;
             lifetimeVel.xMultiplier = direction.x;
             lifetimeVel.zMultiplier = direction.z;
@@ -33,7 +43,7 @@ public class Fire : MonoBehaviour
         isBlowing = true;
     }
 
-    public void StopBlow()
+    public void OnBlowExit()
     {
         ParticleSystem ps = GetComponent<ParticleSystem>();
         var lifetimeVel = ps.velocityOverLifetime;
@@ -42,8 +52,9 @@ public class Fire : MonoBehaviour
         isBlowing = false;
     }
 
-    public void Extinguish()
+    public void OnBlowedOut(Blowable blowable)
     {
         GetComponent<ParticleSystem>().Stop();
+        Destroy(gameObject, 1.5f);
     }
 }

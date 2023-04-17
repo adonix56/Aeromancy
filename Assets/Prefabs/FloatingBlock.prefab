@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 905996759205226202}
   - component: {fileID: 905996759205226203}
   - component: {fileID: 905996759205226207}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}

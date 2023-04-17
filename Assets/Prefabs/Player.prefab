@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2318765745579626702}
   - component: {fileID: 2318765745579626701}
   - component: {fileID: 1842488410428886138}
+  - component: {fileID: -8174291517691639060}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -104,6 +105,22 @@ MonoBehaviour:
   airSkill:
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+--- !u!54 &-8174291517691639060
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318765745579626700}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2318765745938305351
 GameObject:
   m_ObjectHideFlags: 0

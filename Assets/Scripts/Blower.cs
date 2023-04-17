@@ -31,8 +31,9 @@ public class Blower : BaseSkill
         Blowable blowableObject = other.GetComponent<Blowable>();
         if (blowableObject && blowCollider.bounds.Intersects(other.bounds))
         {
-            blowables.Add(blowableObject.GetInstanceID(), blowableObject);
+            //blowables.Add(blowableObject.GetInstanceID(), blowableObject);
             Vector3 directionToFire = blowableObject.transform.position - transform.position;
+            directionToFire = new Vector3(directionToFire.x, 0, directionToFire.z);
             blowableObject.TriggerBlowEnter(directionToFire.normalized * blowStrength);
         }
     }
@@ -41,7 +42,7 @@ public class Blower : BaseSkill
         Blowable blowableObject = other.GetComponent<Blowable>();
         if (blowableObject)
         {
-            blowables.Remove(blowableObject.GetInstanceID());
+            //blowables.Remove(blowableObject.GetInstanceID());
             blowableObject.TriggerBlowExit();
         }
     }
@@ -63,7 +64,7 @@ public class Blower : BaseSkill
     }
 
     public override void Deactivate() {
-        foreach (Blowable blowable in blowables.Values) {
+        foreach (Blowable blowable in GameObject.FindObjectsOfType<Blowable>()) {
             blowable.TriggerBlowExit();
         }
         Destroy(gameObject);

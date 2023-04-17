@@ -28,7 +28,10 @@ public class Blowable : MonoBehaviour
     }
     public void BlowOut()
     {
-        OnBlowedOut(this);
+        if(OnBlowedOut != null)
+        {
+            OnBlowedOut(this);
+        }
         //Destroy(gameObject);
     }
 }

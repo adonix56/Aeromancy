@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] private CharacterController controller;
     [SerializeField] private float playerSpeed = 7f;
     [SerializeField] private float jumpSpeed = 7f;
     [SerializeField] private float rotateSpeed = 7f;
@@ -12,6 +11,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
 
     private GameInput gameInput;
+    private CharacterController controller;
+    private CharacterAnimation characterAnimation;
     private Vector2 lastMoveDirection;
     private Vector3 playerVerticalSpeed;
     private bool isGrounded = false;
@@ -27,6 +28,8 @@ public class CharacterMovement : MonoBehaviour
         gameInput = GameInput.Instance;
         gameInput.OnJumpAction += GameInput_OnJumpAction;
         checkPointPos = GameObject.Find("Spawn").transform.position;
+        controller = CharacterManager.Instance.GetCharacterController();
+        characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
     }
 
     private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
@@ -37,10 +40,15 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update() {
         CheckDeath();
+        HandleAnimation();
         HandleMovement();
         HandleJump();
         HandleSlope();
         UpdateGroundCheck();
+    }
+
+    private void HandleAnimation() {
+        characterAnimation.Move(lastMoveDirection.magnitude);
     }
 
     private void HandleMovement() {
@@ -83,6 +91,7 @@ public class CharacterMovement : MonoBehaviour
                     direction = lastMoveDirection.normalized;
                 }
             }
+            transform.forward = new Vector3(direction.x, 0, direction.y).normalized;
             direction *= -1f;
             lastMoveDirection = direction * strength;
         }

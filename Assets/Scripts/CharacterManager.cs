@@ -9,6 +9,7 @@ public class CharacterManager : MonoBehaviour
     private CharacterController characterController;
     private CharacterMovement characterMovement;
     private CharacterSkills characterSkills;
+    private CharacterAnimation characterAnimation;
     private Rigidbody characterRigidbody;
 
     private void Awake() {
@@ -20,6 +21,7 @@ public class CharacterManager : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         characterMovement = GetComponent<CharacterMovement>();
         characterSkills = GetComponent<CharacterSkills>();
+        characterAnimation = GetComponent<CharacterAnimation>();
         characterRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -29,5 +31,6 @@ public class CharacterManager : MonoBehaviour
     public CharacterController GetCharacterController() { return characterController; }
     public CharacterMovement GetCharacterMovement() { return characterMovement; }
     public CharacterSkills GetCharacterSkills() { return characterSkills; }
+    public CharacterAnimation GetCharacterAnimation() { return characterAnimation; }
     public Rigidbody GetCharacterRigidbody() { return characterRigidbody; }
 }

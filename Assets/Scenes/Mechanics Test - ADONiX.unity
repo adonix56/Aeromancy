@@ -2511,6 +2511,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 601358384661779499, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 866741052601807939, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_Name
+      value: mixamorig1:LeftUpLeg
+      objectReference: {fileID: 0}
+    - target: {fileID: 999736045355187310, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_Name
+      value: mixamorig1:LeftLeg
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362350277445054149, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1842488410428886138, guid: 60cab394eb5a1054db7e67e759274448,
         type: 3}
       propertyPath: skill.Array.data[0]
@@ -2523,6 +2543,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d304d14ff10104946a06e008eeab22b5,
         type: 2}
+    - target: {fileID: 2308366281851099525, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2318765745579626700, guid: 60cab394eb5a1054db7e67e759274448,
         type: 3}
       propertyPath: m_Name
@@ -2582,6 +2607,76 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318765747400395607, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920389774720688228, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_Name
+      value: mixamorig1:Hips
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619522411022832341, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_Name
+      value: mixamorig1:Spine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6193443703235433707, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6532909898373714537, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_Name
+      value: mixamorig1:Spine1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825302641934470737, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825302641934470737, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825302641934470737, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825302641934470737, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825302641934470737, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825302641934470737, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825302641934470737, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232057091374207782, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_Name
+      value: mixamorig1:RightLeg
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262004537725487845, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: m_Name
+      value: mixamorig1:RightUpLeg
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60cab394eb5a1054db7e67e759274448, type: 3}

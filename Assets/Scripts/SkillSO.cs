@@ -6,5 +6,12 @@ using UnityEngine;
 public class SkillSO : ScriptableObject
 {
     public string skillName;
-    public GameObject prefab;
+    public GameObject skillPrefab;
+    public bool holdingSkill;
+    public bool skillSpawnOnParent;
+    /*
+    public string airSkillName;
+    public GameObject airSkillPrefab;
+    public bool holdingAirSkill;
+    public bool airSkillSpawnOnParent;*/
 }

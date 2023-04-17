@@ -80,8 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 2318765745579626702}
   playerSpeed: 7
-  jumpSpeed: 7
+  jumpSpeed: 15
   rotateSpeed: 7
+  slopeLimit: 45
   layerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -97,8 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d773c64aa5c4a54b966413ee01389eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill1: {fileID: 0}
-  skill2: {fileID: 0}
+  skill:
+  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+  airSkill:
+  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
 --- !u!1 &2318765745938305351
 GameObject:
   m_ObjectHideFlags: 0

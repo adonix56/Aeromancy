@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458a7148f23eb0949ac6cc2e1c1da80c, type: 3}
-  m_Name: Air Dash
+  m_Name: No Skill
   m_EditorClassIdentifier: 
-  skillName: Air Dash
-  skillPrefab: {fileID: 3827251753693585826, guid: 89b78a018b2fe7846a539f5283859d39,
-    type: 3}
+  skillName: No Skill
+  skillPrefab: {fileID: 0}
   holdingSkill: 0
   skillSpawnOnParent: 0

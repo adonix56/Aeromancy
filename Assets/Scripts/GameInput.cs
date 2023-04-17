@@ -9,8 +9,8 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance { get; private set; }
 
     public event EventHandler OnJumpAction;
+    public event EventHandler OnSkill0Action;
     public event EventHandler OnSkill1Action;
-    public event EventHandler OnSkill2Action;
 
     private InputSystemActions inputSystemActions;
     // Start is called before the first frame update
@@ -25,20 +25,22 @@ public class GameInput : MonoBehaviour
         inputSystemActions.Player.Enable();
 
         inputSystemActions.Player.Jump.performed += Jump_Performed;
+        //For Non-Holding Skills
+        inputSystemActions.Player.Skill_0.started += Skill_0_Performed;
         inputSystemActions.Player.Skill_1.performed += Skill_1_Performed;
-        inputSystemActions.Player.Skill_2.performed += Skill_2_Performed;
     }
 
     private void Jump_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context) {
         OnJumpAction?.Invoke(this, EventArgs.Empty);
     }
 
-    private void Skill_1_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context) {
-        OnSkill1Action?.Invoke(this, EventArgs.Empty);
+    //For Non-Holding Skills
+    private void Skill_0_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context) {
+        OnSkill0Action?.Invoke(this, EventArgs.Empty);
     }
 
-    private void Skill_2_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context) {
-        OnSkill2Action?.Invoke(this, EventArgs.Empty);
+    private void Skill_1_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context) {
+        OnSkill1Action?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetNormalizedMovement() {
@@ -50,5 +52,12 @@ public class GameInput : MonoBehaviour
         right.Normalize();
 
         return forward * raw.y + right * raw.x;
+    }
+
+    //For Holding Skills
+    public bool isSkillPressed(int index) { // index 0 = skill 0, index 1 = skill 1
+        if (index == 0)
+            return inputSystemActions.Player.Skill_0.ReadValue<float>() == 1f;
+        return inputSystemActions.Player.Skill_1.ReadValue<float>() == 1f;
     }
 }

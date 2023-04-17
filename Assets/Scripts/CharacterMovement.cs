@@ -23,6 +23,7 @@ public class CharacterMovement : MonoBehaviour
     private bool jumpPressed = false;
     private Vector3 checkPointPos;
     private int fallLimit = -20;
+    private float currentPlayerSpeed;
 
     private void Start() {
         gameInput = GameInput.Instance;
@@ -30,6 +31,7 @@ public class CharacterMovement : MonoBehaviour
         checkPointPos = GameObject.Find("Spawn").transform.position;
         controller = CharacterManager.Instance.GetCharacterController();
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
+        currentPlayerSpeed = playerSpeed;
     }
 
     private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
@@ -54,7 +56,7 @@ public class CharacterMovement : MonoBehaviour
     private void HandleMovement() {
         Vector2 moveDirection = lastMoveDirection;
         if (isGrounded) {
-            moveDirection = gameInput.GetNormalizedMovement() * playerSpeed; // Forward/Back/Left/Right
+            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
             lastMoveDirection = moveDirection;
         }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
@@ -122,5 +124,13 @@ public class CharacterMovement : MonoBehaviour
         float slopeAngle = Vector3.Angle(lastHit.normal, Vector3.up);
         if (slopeAngle > slopeLimit) return true;
         return false;
+    }
+
+    public void SetPlayerSpeed(float speed) {
+        currentPlayerSpeed = speed;
+    }
+
+    public void ResetPlayerSpeed() {
+        currentPlayerSpeed = playerSpeed;
     }
 }

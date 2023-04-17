@@ -8,8 +8,16 @@ public class Blower : BaseSkill
     public Collider blowCollider;
     public Dictionary<int, Blowable> blowables;
 
+    [SerializeField] private float blowSpeed;
+
+    private CharacterAnimation characterAnimation;
+    private CharacterMovement characterMovement;
+
     private void Awake() {
         blowables = new Dictionary<int, Blowable>();
+    }
+
+    private void Start() {
     }
 
     // Update is called once per frame
@@ -60,9 +68,15 @@ public class Blower : BaseSkill
     }*/
 
     public override void Activate() {
+        characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
+        characterMovement = CharacterManager.Instance.GetCharacterMovement();
+        characterAnimation.SetBlow(true);
+        characterMovement.SetPlayerSpeed(blowSpeed);
     }
 
     public override void Deactivate() {
+        characterAnimation.SetBlow(false);
+        characterMovement.ResetPlayerSpeed();
         foreach (Blowable blowable in blowables.Values) {
             blowable.TriggerBlowExit();
         }

@@ -10,6 +10,7 @@ public class CharacterManager : MonoBehaviour
     private CharacterMovement characterMovement;
     private CharacterSkills characterSkills;
     private CharacterAnimation characterAnimation;
+    private CharacterSpawn characterSpawn;
     private Rigidbody characterRigidbody;
 
     private void Awake() {
@@ -22,6 +23,7 @@ public class CharacterManager : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         characterSkills = GetComponent<CharacterSkills>();
         characterAnimation = GetComponent<CharacterAnimation>();
+        characterSpawn = GetComponent<CharacterSpawn>();
         characterRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -32,5 +34,6 @@ public class CharacterManager : MonoBehaviour
     public CharacterMovement GetCharacterMovement() { return characterMovement; }
     public CharacterSkills GetCharacterSkills() { return characterSkills; }
     public CharacterAnimation GetCharacterAnimation() { return characterAnimation; }
+    public CharacterSpawn GetCharacterSpawn() { return characterSpawn; }
     public Rigidbody GetCharacterRigidbody() { return characterRigidbody; }
 }

@@ -16,19 +16,16 @@ public class CharacterMovement : MonoBehaviour
     private Vector2 lastMoveDirection;
     private Vector3 playerVerticalSpeed;
     private bool isGrounded = false;
-    private bool isOnSteepSlope = false;
     private RaycastHit lastHit;
     private float groundRayDistance = 0.1f;
     private float gravityMultiplier = 3f;
     private bool jumpPressed = false;
-    private Vector3 checkPointPos;
-    private int fallLimit = -20;
     private float currentPlayerSpeed;
+    private bool isPlayable = false;
 
     private void Start() {
         gameInput = GameInput.Instance;
         gameInput.OnJumpAction += GameInput_OnJumpAction;
-        checkPointPos = GameObject.Find("Spawn").transform.position;
         controller = CharacterManager.Instance.GetCharacterController();
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
         currentPlayerSpeed = playerSpeed;
@@ -41,7 +38,6 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void Update() {
-        CheckDeath();
         HandleAnimation();
         HandleMovement();
         HandleJump();
@@ -50,7 +46,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void HandleAnimation() {
-        characterAnimation.Move(lastMoveDirection.magnitude);
+        characterAnimation.Move(lastMoveDirection.magnitude / currentPlayerSpeed);
     }
 
     private void HandleMovement() {
@@ -106,15 +102,6 @@ public class CharacterMovement : MonoBehaviour
             transform.position + Vector3.up * (groundcheckRadius + groundRayDistance),
             groundcheckRadius, Vector3.down, out lastHit, groundRayDistance + 0.01f, layerMask);
         isGrounded = jumpPressed ? false : raycast;
-    }
-
-    private void CheckDeath() {
-        if (controller.transform.position.y <= fallLimit) {
-            controller.enabled = false;
-            controller.transform.position = checkPointPos;
-            controller.enabled = true;
-            transform.Rotate(0, 0, 0);
-        }
     }
 
     private bool OnSteepSlope()

@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float rotateSpeed = 7f;
     [SerializeField] private float slopeLimit = 30f;
     [SerializeField] private LayerMask layerMask;
+    public EnergyHandler energyHandler;
 
     private GameInput gameInput;
     private Vector2 lastMoveDirection;
@@ -47,6 +48,11 @@ public class CharacterMovement : MonoBehaviour
         Vector2 moveDirection = lastMoveDirection;
         if (isGrounded) {
             moveDirection = gameInput.GetNormalizedMovement() * playerSpeed; // Forward/Back/Left/Right
+            if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0){
+                //walking
+            } else {
+                energyHandler.GiveEnergy(0.2f);
+            }
             lastMoveDirection = moveDirection;
         }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
@@ -59,6 +65,7 @@ public class CharacterMovement : MonoBehaviour
         if (jumpPressed) {
             playerVerticalSpeed.y += Mathf.Sqrt(jumpSpeed * -Physics.gravity.y);
             jumpPressed = false;
+            energyHandler.UseEnergy(10);
         }
         playerVerticalSpeed.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime; // Gravity
         controller.Move(playerVerticalSpeed * Time.deltaTime);
@@ -102,6 +109,7 @@ public class CharacterMovement : MonoBehaviour
             controller.enabled = false;
             controller.transform.position = checkPointPos;
             controller.enabled = true;
+            energyHandler.GiveEnergy(100);
             transform.Rotate(0, 0, 0);
         }
     }

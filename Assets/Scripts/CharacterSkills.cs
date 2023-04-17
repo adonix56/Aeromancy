@@ -75,7 +75,10 @@ public class CharacterSkills : MonoBehaviour
     private void GameInput_OnSkill0Action(object sender, System.EventArgs e) {
         //TODO: Setup Skill Args to determine to activate skill on character or world space:
         //      i.e. AirDash in world space, shooting skill on character
-        if (!characterController.isGrounded && !skill[0].holdingSkill) {
+        if (!characterController.isGrounded && !airSkill[0].holdingSkill) {
+            Instantiate(airSkill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
+        }
+        if (characterController.isGrounded && !skill[0].holdingSkill) {
             Instantiate(skill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
         }
     }

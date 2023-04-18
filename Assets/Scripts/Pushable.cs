@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Blowable))]
+[RequireComponent(typeof(Blowable), typeof(Rigidbody))]
 public class Pushable : MonoBehaviour
 {
     private Blowable blowable;
@@ -17,6 +17,9 @@ public class Pushable : MonoBehaviour
     {
         blowable = GetComponent<Blowable>();
         rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ
+            | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
         blowable.OnBlowEnter += OnBlowEnter;
         blowable.OnBlowExit += OnBlowExit;
     }

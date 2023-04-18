@@ -52,7 +52,7 @@ public class Fire : MonoBehaviour
         isBlowing = false;
     }
 
-    public void OnBlowedOut(Blowable blowable)
+    public void OnBlowedOut(Blowable blowable, bool isAbsorbed)
     {
         GetComponent<ParticleSystem>().Stop();
         Destroy(gameObject, 1.5f);

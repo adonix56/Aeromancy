@@ -5,10 +5,10 @@ using UnityEngine;
 public class NoSkill : BaseSkill
 {
     public override void Activate() {
-        
+        Deactivate();
     }
 
     public override void Deactivate() {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

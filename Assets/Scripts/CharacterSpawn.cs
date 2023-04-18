@@ -18,7 +18,6 @@ public class CharacterSpawn : MonoBehaviour
     }
 
     private void CheckDeath() {
-        Debug.Log(controller.transform.position);
         if (controller.transform.position.y <= fallLimit) {
             controller.enabled = false;
             controller.transform.position = spawnManager.CurrentSpawnLocation();

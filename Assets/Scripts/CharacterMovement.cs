@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] private float playerSpeed = 7f;
+    [SerializeField] private float walkSpeed = 7f;
+    [SerializeField] private float sprintSpeed = 12f;
     [SerializeField] private float jumpSpeed = 7f;
     [SerializeField] private float rotateSpeed = 7f;
     [SerializeField] private float slopeLimit = 30f;
     [SerializeField] private LayerMask layerMask;
+    public EnergyHandler energyHandler;
 
     private GameInput gameInput;
     private CharacterController controller;
@@ -27,7 +29,7 @@ public class CharacterMovement : MonoBehaviour
         gameInput.OnJumpAction += GameInput_OnJumpAction;
         controller = CharacterManager.Instance.GetCharacterController();
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
-        currentPlayerSpeed = playerSpeed;
+        currentPlayerSpeed = walkSpeed;
     }
 
     private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
@@ -43,6 +45,12 @@ public class CharacterMovement : MonoBehaviour
             HandleJump();
             HandleSlope();
             UpdateGroundCheck();
+
+            if (Input.GetKey("left shift")) {
+                currentPlayerSpeed = sprintSpeed;
+            } else {
+                currentPlayerSpeed = walkSpeed;
+            }
         }
     }
 
@@ -56,6 +64,14 @@ public class CharacterMovement : MonoBehaviour
             moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
             lastMoveDirection = moveDirection;
         }
+        if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
+            //walking
+            if (currentPlayerSpeed == sprintSpeed) {
+                energyHandler.UseEnergy(0.15f);
+            }
+        } else {
+            energyHandler.GiveEnergy(0.15f);
+        }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);
         transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
@@ -66,6 +82,7 @@ public class CharacterMovement : MonoBehaviour
         if (jumpPressed) {
             playerVerticalSpeed.y += Mathf.Sqrt(jumpSpeed * -Physics.gravity.y);
             jumpPressed = false;
+            energyHandler.UseEnergy(7f);
         }
         playerVerticalSpeed.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime; // Gravity
         controller.Move(playerVerticalSpeed * Time.deltaTime);
@@ -76,7 +93,7 @@ public class CharacterMovement : MonoBehaviour
         if (OnSteepSlope())
         {
             Vector3 slopeDirection = Vector3.up - lastHit.normal * Vector3.Dot(Vector3.up, lastHit.normal);
-            controller.Move(slopeDirection * (-playerSpeed) * Time.deltaTime);
+            controller.Move(slopeDirection * (-walkSpeed) * Time.deltaTime);
         }
     }
 
@@ -119,6 +136,6 @@ public class CharacterMovement : MonoBehaviour
     }
 
     public void ResetPlayerSpeed() {
-        currentPlayerSpeed = playerSpeed;
+        currentPlayerSpeed = walkSpeed;
     }
 }

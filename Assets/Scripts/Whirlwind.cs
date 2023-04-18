@@ -10,12 +10,30 @@ public class Whirlwind : MonoBehaviour
     public Vector3 direction;
     public VisualEffect whirlwindEffect;
 
+    public bool isBurning = false;
+    [ColorUsage(true, true)]
+    public Color burnedCoreColor;
+    [ColorUsage(true, true)]
+    public Color burnedLayer1Color;
+    [ColorUsage(true, true)]
+    public Color burnedLayer2Color;
+    [ColorUsage(true, true)]
+    public Color burnedParticlesColor;
+
+    private Burnable burnable;
     private float timer;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        burnable = GetComponent<Burnable>();
         whirlwindEffect.SetFloat("Duration", duration);
+
+        if(burnable)
+        {
+            burnable.OnBurnEnter += OnBurnEnter;
+            //burnable.OnBurnExit += OnBurnExit;
+        }
     }
 
     // Update is called once per frame
@@ -28,5 +46,25 @@ public class Whirlwind : MonoBehaviour
         }
 
         transform.position += movementSpeed * direction * Time.deltaTime;
+    }
+
+    private void OnBurnEnter()
+    {
+        isBurning = true;
+        LeanTween.value(0, 1, 0.3f).setEaseInQuad().setOnUpdate((float value) => {
+            if(whirlwindEffect)
+            {
+                whirlwindEffect.SetVector4("WhirlwindCoreColor", Vector4.Lerp(whirlwindEffect.GetVector4("WhirlwindCoreColor"), burnedCoreColor, value));
+                whirlwindEffect.SetVector4("Layer1Color", Vector4.Lerp(whirlwindEffect.GetVector4("Layer1Color"), burnedLayer1Color, value));
+                whirlwindEffect.SetVector4("Layer2Color", Vector4.Lerp(whirlwindEffect.GetVector4("Layer2Color"), burnedLayer2Color, value));
+                whirlwindEffect.SetVector4("OuterParticleColor", Vector4.Lerp(whirlwindEffect.GetVector4("OuterParticleColor"), burnedParticlesColor, value));
+            }
+        });
+        
+    }
+
+    private void OnBurnExit()
+    {
+
     }
 }

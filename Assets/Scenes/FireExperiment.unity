@@ -3078,7 +3078,7 @@ PrefabInstance:
     - target: {fileID: 2887293453824090424, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.648
+      value: -5.13
       objectReference: {fileID: 0}
     - target: {fileID: 2887293453824090424, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
         type: 3}
@@ -3129,6 +3129,56 @@ PrefabInstance:
         type: 3}
       propertyPath: movementSpeed
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedCoreColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedCoreColor.g
+      value: 0.5714673
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedCoreColor.r
+      value: 5.278032
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedLayer1Color.g
+      value: 12.039347
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedLayer1Color.r
+      value: 21.361254
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedLayer2Color.b
+      value: 0.41960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedLayer2Color.g
+      value: 0.41960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedLayer2Color.r
+      value: 0.41960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedParticlesColor.g
+      value: 0.3075573
+      objectReference: {fileID: 0}
+    - target: {fileID: 4819278949827892763, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
+        type: 3}
+      propertyPath: burnedParticlesColor.r
+      value: 5.3403134
       objectReference: {fileID: 0}
     - target: {fileID: 8031968186621807276, guid: 9bd52a071cc5b6e4983d50aea453d1b5,
         type: 3}

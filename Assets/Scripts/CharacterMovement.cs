@@ -56,7 +56,11 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void HandleAnimation() {
-        characterAnimation.Move(lastMoveDirection.magnitude / currentPlayerSpeed);
+        if (canSprint) {
+            characterAnimation.Move(lastMoveDirection.magnitude / walkSpeed);
+        } else {
+            characterAnimation.Move(lastMoveDirection.magnitude / currentPlayerSpeed);
+        }
     }
 
     private void HandleMovement() {

@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blowStrength: 0.7
   blowCollider: {fileID: 6130891580923351489}
-  blowSpeed: 4
+  blowSpeed: 2.5
 --- !u!199 &5671295547703924785
 ParticleSystemRenderer:
   serializedVersion: 6

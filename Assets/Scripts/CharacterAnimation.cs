@@ -10,7 +10,7 @@ public class CharacterAnimation : MonoBehaviour
     [SerializeField] private Animator animator;
 
     public void Move(float move) {
-        animator.SetFloat(MOVING, move);
+        animator.SetFloat(MOVING, move*2);
     }
 
     public void SetBlow(bool blow) {

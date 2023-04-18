@@ -6,6 +6,7 @@ public class CharacterSkills : MonoBehaviour
 {
     [SerializeField] private SkillSO[] skill;
     [SerializeField] private SkillSO[] airSkill;
+    public EnergyHandler energyHandler;
 
     private CharacterController characterController;
     private GameInput gameInput;
@@ -37,6 +38,7 @@ public class CharacterSkills : MonoBehaviour
     private void CheckSkill(int index) { 
         if (gameInput.isSkillPressed(index)) {
             if (characterController.isGrounded) {
+                energyHandler.UseEnergy(skill[index].energyCost);
                 // Deactivate Holding Air Skill if applicable
                 if (airSkillHeld[index] != null) DeactivateAirSkill(index);
                 // Activate Holding Ground Skill
@@ -46,11 +48,11 @@ public class CharacterSkills : MonoBehaviour
                     skillHeld[index].Activate();
                 }
             } else {
+                energyHandler.UseEnergy(airSkill[index].energyCost);
                 // Deactivate Holding Ground Skill if applicable
                 if (skillHeld[index] != null) DeactivateSkill(index);
                 // Activate Holding Air Skill
-                if (airSkill[index].holdingSkill && airSkillHeld[index] == null) {
-                }
+                if (airSkill[index].holdingSkill && airSkillHeld[index] == null) {}
             }
             
         } else {
@@ -79,9 +81,11 @@ public class CharacterSkills : MonoBehaviour
             //TODO: Setup Skill Args to determine to activate skill on character or world space:
             //      i.e. AirDash in world space, shooting skill on character
             if (!characterController.isGrounded && !airSkill[0].holdingSkill) {
+                energyHandler.UseEnergy(airSkill[0].energyCost);
                 Instantiate(airSkill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
             }
             if (characterController.isGrounded && !skill[0].holdingSkill) {
+                energyHandler.UseEnergy(skill[0].energyCost);
                 Instantiate(skill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
             }
         }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] private CharacterController controller;
-    [SerializeField] private float playerSpeed = 7f;
+    [SerializeField] private float walkSpeed = 7f;
+    [SerializeField] private float sprintSpeed = 12f;
     [SerializeField] private float jumpSpeed = 7f;
     [SerializeField] private float rotateSpeed = 7f;
     [SerializeField] private float slopeLimit = 30f;
@@ -13,21 +13,24 @@ public class CharacterMovement : MonoBehaviour
     public EnergyHandler energyHandler;
 
     private GameInput gameInput;
+    private CharacterController controller;
+    private CharacterAnimation characterAnimation;
     private Vector2 lastMoveDirection;
     private Vector3 playerVerticalSpeed;
     private bool isGrounded = false;
-    private bool isOnSteepSlope = false;
+    private bool canSprint = true;
     private RaycastHit lastHit;
     private float groundRayDistance = 0.1f;
     private float gravityMultiplier = 3f;
     private bool jumpPressed = false;
-    private Vector3 checkPointPos;
-    private int fallLimit = -20;
+    private float currentPlayerSpeed;
 
     private void Start() {
         gameInput = GameInput.Instance;
         gameInput.OnJumpAction += GameInput_OnJumpAction;
-        checkPointPos = GameObject.Find("Spawn").transform.position;
+        controller = CharacterManager.Instance.GetCharacterController();
+        characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
+        currentPlayerSpeed = walkSpeed;
     }
 
     private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
@@ -37,23 +40,42 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void Update() {
-        CheckDeath();
-        HandleMovement();
-        HandleJump();
-        HandleSlope();
-        UpdateGroundCheck();
+        if (CharacterManager.Instance.IsPlayable()) {
+            HandleAnimation();
+            HandleMovement();
+            HandleJump();
+            HandleSlope();
+            UpdateGroundCheck();
+
+            if (canSprint && Input.GetKey("left shift")) {
+                currentPlayerSpeed = sprintSpeed;
+            } else if (canSprint) {
+                currentPlayerSpeed = walkSpeed;
+            }
+        }
+    }
+
+    private void HandleAnimation() {
+        if (canSprint) {
+            characterAnimation.Move(lastMoveDirection.magnitude / walkSpeed);
+        } else {
+            characterAnimation.Move(lastMoveDirection.magnitude / currentPlayerSpeed);
+        }
     }
 
     private void HandleMovement() {
         Vector2 moveDirection = lastMoveDirection;
         if (isGrounded) {
-            moveDirection = gameInput.GetNormalizedMovement() * playerSpeed; // Forward/Back/Left/Right
-            if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0){
-                //walking
-            } else {
-                energyHandler.GiveEnergy(0.2f);
-            }
+            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
             lastMoveDirection = moveDirection;
+        }
+        if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
+            //walking
+            if (currentPlayerSpeed == sprintSpeed) {
+                energyHandler.UseEnergy(0.15f);
+            }
+        } else {
+            energyHandler.GiveEnergy(0.15f);
         }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);
@@ -65,7 +87,7 @@ public class CharacterMovement : MonoBehaviour
         if (jumpPressed) {
             playerVerticalSpeed.y += Mathf.Sqrt(jumpSpeed * -Physics.gravity.y);
             jumpPressed = false;
-            energyHandler.UseEnergy(10);
+            energyHandler.UseEnergy(7f);
         }
         playerVerticalSpeed.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime; // Gravity
         controller.Move(playerVerticalSpeed * Time.deltaTime);
@@ -76,7 +98,7 @@ public class CharacterMovement : MonoBehaviour
         if (OnSteepSlope())
         {
             Vector3 slopeDirection = Vector3.up - lastHit.normal * Vector3.Dot(Vector3.up, lastHit.normal);
-            controller.Move(slopeDirection * (-playerSpeed) * Time.deltaTime);
+            controller.Move(slopeDirection * (-walkSpeed) * Time.deltaTime);
         }
     }
 
@@ -90,6 +112,7 @@ public class CharacterMovement : MonoBehaviour
                     direction = lastMoveDirection.normalized;
                 }
             }
+            transform.forward = new Vector3(direction.x, 0, direction.y).normalized;
             direction *= -1f;
             lastMoveDirection = direction * strength;
         }
@@ -104,16 +127,6 @@ public class CharacterMovement : MonoBehaviour
         isGrounded = jumpPressed ? false : raycast;
     }
 
-    private void CheckDeath() {
-        if (controller.transform.position.y <= fallLimit) {
-            controller.enabled = false;
-            controller.transform.position = checkPointPos;
-            controller.enabled = true;
-            energyHandler.GiveEnergy(100);
-            transform.Rotate(0, 0, 0);
-        }
-    }
-
     private bool OnSteepSlope()
     {
         if (!isGrounded) return false;
@@ -121,5 +134,15 @@ public class CharacterMovement : MonoBehaviour
         float slopeAngle = Vector3.Angle(lastHit.normal, Vector3.up);
         if (slopeAngle > slopeLimit) return true;
         return false;
+    }
+
+    public void SetPlayerSpeed(float speed, bool lockSprint) {
+        canSprint = !lockSprint;
+        currentPlayerSpeed = speed;
+    }
+
+    public void ResetPlayerSpeed() {
+        currentPlayerSpeed = walkSpeed;
+        canSprint = true;
     }
 }

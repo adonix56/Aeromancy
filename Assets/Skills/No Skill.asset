@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: No Skill
   m_EditorClassIdentifier: 
   skillName: No Skill
-  skillPrefab: {fileID: 0}
+  skillPrefab: {fileID: 3735883156200954822, guid: 5da582191d6ad43469de9a61ecdbc962,
+    type: 3}
   holdingSkill: 0
   skillSpawnOnParent: 0

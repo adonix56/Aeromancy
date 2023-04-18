@@ -9,7 +9,10 @@ public class CharacterManager : MonoBehaviour
     private CharacterController characterController;
     private CharacterMovement characterMovement;
     private CharacterSkills characterSkills;
+    private CharacterAnimation characterAnimation;
+    private CharacterSpawn characterSpawn;
     private Rigidbody characterRigidbody;
+    private bool isPlayable = true;
 
     private void Awake() {
         if (Instance != null) {
@@ -20,14 +23,19 @@ public class CharacterManager : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         characterMovement = GetComponent<CharacterMovement>();
         characterSkills = GetComponent<CharacterSkills>();
+        characterAnimation = GetComponent<CharacterAnimation>();
+        characterSpawn = GetComponent<CharacterSpawn>();
         characterRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Start() {
-    }
+    public bool IsPlayable() { return isPlayable; }
+
+    public void SetPlayable(bool playable) { isPlayable = playable; }
 
     public CharacterController GetCharacterController() { return characterController; }
     public CharacterMovement GetCharacterMovement() { return characterMovement; }
     public CharacterSkills GetCharacterSkills() { return characterSkills; }
+    public CharacterAnimation GetCharacterAnimation() { return characterAnimation; }
+    public CharacterSpawn GetCharacterSpawn() { return characterSpawn; }
     public Rigidbody GetCharacterRigidbody() { return characterRigidbody; }
 }

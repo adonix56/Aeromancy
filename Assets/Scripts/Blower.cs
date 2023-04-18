@@ -8,8 +8,16 @@ public class Blower : BaseSkill
     public Collider blowCollider;
     public Dictionary<int, Blowable> blowables;
 
+    [SerializeField] private float blowSpeed;
+
+    private CharacterAnimation characterAnimation;
+    private CharacterMovement characterMovement;
+
     private void Awake() {
         blowables = new Dictionary<int, Blowable>();
+    }
+
+    private void Start() {
     }
 
     // Update is called once per frame
@@ -31,9 +39,8 @@ public class Blower : BaseSkill
         Blowable blowableObject = other.GetComponent<Blowable>();
         if (blowableObject && blowCollider.bounds.Intersects(other.bounds))
         {
-            //blowables.Add(blowableObject.GetInstanceID(), blowableObject);
+            blowables.Add(blowableObject.GetInstanceID(), blowableObject);
             Vector3 directionToFire = blowableObject.transform.position - transform.position;
-            directionToFire = new Vector3(directionToFire.x, 0, directionToFire.z);
             blowableObject.TriggerBlowEnter(directionToFire.normalized * blowStrength);
         }
     }
@@ -42,7 +49,7 @@ public class Blower : BaseSkill
         Blowable blowableObject = other.GetComponent<Blowable>();
         if (blowableObject)
         {
-            //blowables.Remove(blowableObject.GetInstanceID());
+            blowables.Remove(blowableObject.GetInstanceID());
             blowableObject.TriggerBlowExit();
         }
     }
@@ -61,10 +68,16 @@ public class Blower : BaseSkill
     }*/
 
     public override void Activate() {
+        characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
+        characterMovement = CharacterManager.Instance.GetCharacterMovement();
+        characterAnimation.SetBlow(true);
+        characterMovement.SetPlayerSpeed(blowSpeed, true);
     }
 
     public override void Deactivate() {
-        foreach (Blowable blowable in GameObject.FindObjectsOfType<Blowable>()) {
+        characterAnimation.SetBlow(false);
+        characterMovement.ResetPlayerSpeed();
+        foreach (Blowable blowable in blowables.Values) {
             blowable.TriggerBlowExit();
         }
         Destroy(gameObject);

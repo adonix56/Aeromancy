@@ -71,7 +71,7 @@ public class Blower : BaseSkill
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
         characterMovement = CharacterManager.Instance.GetCharacterMovement();
         characterAnimation.SetBlow(true);
-        characterMovement.SetPlayerSpeed(blowSpeed);
+        characterMovement.SetPlayerSpeed(blowSpeed, true);
     }
 
     public override void Deactivate() {

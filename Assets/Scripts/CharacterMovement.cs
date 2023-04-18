@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     private Vector2 lastMoveDirection;
     private Vector3 playerVerticalSpeed;
     private bool isGrounded = false;
+    private bool canSprint = true;
     private RaycastHit lastHit;
     private float groundRayDistance = 0.1f;
     private float gravityMultiplier = 3f;
@@ -46,9 +47,9 @@ public class CharacterMovement : MonoBehaviour
             HandleSlope();
             UpdateGroundCheck();
 
-            if (Input.GetKey("left shift")) {
+            if (canSprint && Input.GetKey("left shift")) {
                 currentPlayerSpeed = sprintSpeed;
-            } else {
+            } else if (canSprint) {
                 currentPlayerSpeed = walkSpeed;
             }
         }
@@ -131,11 +132,13 @@ public class CharacterMovement : MonoBehaviour
         return false;
     }
 
-    public void SetPlayerSpeed(float speed) {
+    public void SetPlayerSpeed(float speed, bool lockSprint) {
+        canSprint = !lockSprint;
         currentPlayerSpeed = speed;
     }
 
     public void ResetPlayerSpeed() {
         currentPlayerSpeed = walkSpeed;
+        canSprint = true;
     }
 }

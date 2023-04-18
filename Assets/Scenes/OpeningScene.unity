@@ -1117,6 +1117,8 @@ MonoBehaviour:
   fadeBlack: {fileID: 604355290}
   outsideCamera: {fileID: 1652862173}
   characterAnimator: {fileID: 1564798416}
+  cutsceneWizard: {fileID: 0}
+  playerWizard: {fileID: 0}
 --- !u!1001 &1061344265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2956,12 +2958,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1564798415 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6193443703235433707, guid: 60cab394eb5a1054db7e67e759274448,
-    type: 3}
-  m_PrefabInstance: {fileID: 1531664104}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1564798416 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 601358384661779499, guid: 60cab394eb5a1054db7e67e759274448,
@@ -4408,8 +4404,6 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 2623857302260430298, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
     value: {fileID: 2081933839}
-  - key: {fileID: 7573707413874331202, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
-    value: {fileID: 1047232627}
   - key: {fileID: 2042018710049614928, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
     value: {fileID: 1698553982}
   - key: {fileID: -1176272055042017968, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
@@ -4422,14 +4416,14 @@ PlayableDirector:
     value: {fileID: 1139761850}
   - key: {fileID: -36607024979558451, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
     value: {fileID: 1307470586}
-  - key: {fileID: -6930649119347272648, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
-    value: {fileID: 1564798415}
   - key: {fileID: 964688876813301878, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
     value: {fileID: 792521967}
   - key: {fileID: -211431814351641846, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
     value: {fileID: 345140977}
   - key: {fileID: -6078531541665672798, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
     value: {fileID: 1540240708}
+  - key: {fileID: -7637193020391386372, guid: 5d7ac6cafdc6772449a27dd6b0f8fc4d, type: 2}
+    value: {fileID: 1047232627}
   m_ExposedReferences:
     m_References:
     - 68baa2ce22e243f4fad90ae13a56c73a: {fileID: 792521967}

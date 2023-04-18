@@ -12,6 +12,7 @@ public class CharacterManager : MonoBehaviour
     private CharacterAnimation characterAnimation;
     private CharacterSpawn characterSpawn;
     private Rigidbody characterRigidbody;
+    private bool isPlayable = true;
 
     private void Awake() {
         if (Instance != null) {
@@ -27,8 +28,9 @@ public class CharacterManager : MonoBehaviour
         characterRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Start() {
-    }
+    public bool IsPlayable() { return isPlayable; }
+
+    public void SetPlayable(bool playable) { isPlayable = playable; }
 
     public CharacterController GetCharacterController() { return characterController; }
     public CharacterMovement GetCharacterMovement() { return characterMovement; }

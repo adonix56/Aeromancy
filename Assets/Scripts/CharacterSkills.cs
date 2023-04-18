@@ -27,9 +27,11 @@ public class CharacterSkills : MonoBehaviour
     }
 
     private void Update() {
-        //For Holding Skills
-        CheckSkill(0); // Checking Skill 0
-        CheckSkill(1); // Checking Skill 1
+        if (CharacterManager.Instance.IsPlayable()) {
+            //For Holding Skills
+            CheckSkill(0); // Checking Skill 0
+            CheckSkill(1); // Checking Skill 1
+        }
     }
 
     private void CheckSkill(int index) { 
@@ -73,17 +75,21 @@ public class CharacterSkills : MonoBehaviour
 
     //For Non-Holding Skills
     private void GameInput_OnSkill0Action(object sender, System.EventArgs e) {
-        //TODO: Setup Skill Args to determine to activate skill on character or world space:
-        //      i.e. AirDash in world space, shooting skill on character
-        if (!characterController.isGrounded && !airSkill[0].holdingSkill) {
-            Instantiate(airSkill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
-        }
-        if (characterController.isGrounded && !skill[0].holdingSkill) {
-            Instantiate(skill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
+        if (CharacterManager.Instance.IsPlayable()) {
+            //TODO: Setup Skill Args to determine to activate skill on character or world space:
+            //      i.e. AirDash in world space, shooting skill on character
+            if (!characterController.isGrounded && !airSkill[0].holdingSkill) {
+                Instantiate(airSkill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
+            }
+            if (characterController.isGrounded && !skill[0].holdingSkill) {
+                Instantiate(skill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
+            }
         }
     }
 
     private void GameInput_OnSkill1Action(object sender, System.EventArgs e) {
-        skill[1].skillPrefab.GetComponent<BaseSkill>().Activate();
+        if (CharacterManager.Instance.IsPlayable()) {
+            skill[1].skillPrefab.GetComponent<BaseSkill>().Activate();
+        }
     }
 }

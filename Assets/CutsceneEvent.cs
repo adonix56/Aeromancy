@@ -14,24 +14,28 @@ public class CutsceneEvent : MonoBehaviour
     [SerializeField] private Image fadeBlack;
     [SerializeField] private CinemachineVirtualCamera outsideCamera;
     [SerializeField] private Animator characterAnimator;
+    [SerializeField] private GameObject cutsceneWizard;
+    [SerializeField] private GameObject playerWizard;
 
     private void OnEnable() {
         if (eventCounter == 0) {
-            Debug.Log("event1");
+            // Event 1
+            CharacterManager.Instance.SetPlayable(false);
             characterAnimator.SetTrigger(WAITING);
         } else if (eventCounter == 1) {
-            Debug.Log("event3");
-            characterAnimator.SetTrigger(WAITING);
-        }
+            // Event 3
+            meditationParticle.Stop(true);
+        } 
     }
 
     private void OnDisable() {
         if (eventCounter == 0) {
-            Debug.Log("event2");
+            // Event 2 - Non-event
+            characterAnimator.SetTrigger(WAITING);
         } else if (eventCounter == 1) {
-            Debug.Log("event4");
-            meditationParticle.Stop(true);
-        }
+            // Event 4
+            CharacterManager.Instance.SetPlayable(true);
+        } 
         eventCounter++;
     }
 }

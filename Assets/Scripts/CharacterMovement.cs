@@ -21,7 +21,6 @@ public class CharacterMovement : MonoBehaviour
     private float gravityMultiplier = 3f;
     private bool jumpPressed = false;
     private float currentPlayerSpeed;
-    private bool isPlayable = false;
 
     private void Start() {
         gameInput = GameInput.Instance;
@@ -38,11 +37,13 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void Update() {
-        HandleAnimation();
-        HandleMovement();
-        HandleJump();
-        HandleSlope();
-        UpdateGroundCheck();
+        if (CharacterManager.Instance.IsPlayable()) {
+            HandleAnimation();
+            HandleMovement();
+            HandleJump();
+            HandleSlope();
+            UpdateGroundCheck();
+        }
     }
 
     private void HandleAnimation() {

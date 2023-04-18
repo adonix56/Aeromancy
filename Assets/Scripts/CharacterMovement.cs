@@ -5,7 +5,8 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
-    [SerializeField] private float playerSpeed = 7f;
+    [SerializeField] private float walkSpeed = 7f;
+    [SerializeField] private float sprintSpeed = 12f;
     [SerializeField] private float jumpSpeed = 7f;
     [SerializeField] private float rotateSpeed = 7f;
     [SerializeField] private float slopeLimit = 30f;
@@ -23,11 +24,13 @@ public class CharacterMovement : MonoBehaviour
     private bool jumpPressed = false;
     private Vector3 checkPointPos;
     private int fallLimit = -20;
+    private float playerSpeed;
 
     private void Start() {
         gameInput = GameInput.Instance;
         gameInput.OnJumpAction += GameInput_OnJumpAction;
         checkPointPos = GameObject.Find("Spawn").transform.position;
+        playerSpeed = walkSpeed;
     }
 
     private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
@@ -42,19 +45,28 @@ public class CharacterMovement : MonoBehaviour
         HandleJump();
         HandleSlope();
         UpdateGroundCheck();
+
+        if (Input.GetKey("left shift")) {
+            playerSpeed = sprintSpeed;
+        } else {
+            playerSpeed = walkSpeed;
+        }
     }
 
     private void HandleMovement() {
         Vector2 moveDirection = lastMoveDirection;
         if (isGrounded) {
             moveDirection = gameInput.GetNormalizedMovement() * playerSpeed; // Forward/Back/Left/Right
-            if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0){
-                //walking
-            } else {
-                energyHandler.GiveEnergy(0.2f);
-            }
             lastMoveDirection = moveDirection;
         }
+        if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0){
+                //walking
+                if (playerSpeed == sprintSpeed) {
+                    energyHandler.UseEnergy(0.15f);
+                }
+            } else {
+                energyHandler.GiveEnergy(0.15f);
+            }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);
         transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
@@ -65,7 +77,7 @@ public class CharacterMovement : MonoBehaviour
         if (jumpPressed) {
             playerVerticalSpeed.y += Mathf.Sqrt(jumpSpeed * -Physics.gravity.y);
             jumpPressed = false;
-            energyHandler.UseEnergy(10);
+            energyHandler.UseEnergy(7);
         }
         playerVerticalSpeed.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime; // Gravity
         controller.Move(playerVerticalSpeed * Time.deltaTime);

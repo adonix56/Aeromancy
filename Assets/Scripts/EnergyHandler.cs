@@ -12,6 +12,8 @@ public class EnergyHandler : MonoBehaviour
     public GameObject bg;
     
     private float pendingAdded = 0;
+    private float pendingRemoved = 0;
+    private float realAmt = 100.0f;
 
 	private void Start() {
 		slider.value = 100.0f;
@@ -19,8 +21,17 @@ public class EnergyHandler : MonoBehaviour
 	}
 
     public bool UseEnergy(float amt) {
-        if (slider.value - amt >= 0.0f){
-            UpdateSlider(slider.value - amt);
+        if (realAmt - amt >= 0.0f){
+            realAmt -= amt;
+            pendingRemoved += amt;
+            float qeueuedForRemove = (int)Mathf.Floor(pendingRemoved);
+            if (qeueuedForRemove > 0) {
+                pendingRemoved -= qeueuedForRemove;
+                if (realAmt - qeueuedForRemove < 0) {
+                    qeueuedForRemove = realAmt;
+                }
+                UpdateSlider(slider.value - qeueuedForRemove);
+            }
             return true;
         } else {
             NoEnergyAnim();
@@ -43,6 +54,7 @@ public class EnergyHandler : MonoBehaviour
 
 	private void UpdateSlider(float newVal) {
 		slider.value = newVal;
+        realAmt = slider.value;
 		percentage.text = slider.value.ToString()+"% Breath";
 	}
 

@@ -65,7 +65,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleMovement() {
         Vector2 moveDirection = lastMoveDirection;
-        if (isGrounded) {
+        if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
+            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
+            lastMoveDirection = moveDirection;
+        } else if (isGrounded) {
             moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
             lastMoveDirection = moveDirection;
         }

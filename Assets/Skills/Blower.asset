@@ -17,4 +17,4 @@ MonoBehaviour:
     type: 3}
   holdingSkill: 1
   skillSpawnOnParent: 1
-  energyCost: 3
+  energyCost: 0.25

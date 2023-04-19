@@ -93,7 +93,14 @@ public class CharacterSkills : MonoBehaviour
 
     private void GameInput_OnSkill1Action(object sender, System.EventArgs e) {
         if (CharacterManager.Instance.IsPlayable()) {
-            skill[1].skillPrefab.GetComponent<BaseSkill>().Activate();
+            if (!characterController.isGrounded && !airSkill[1].holdingSkill) {
+                energyHandler.UseEnergy(airSkill[1].energyCost);
+                Instantiate(airSkill[1].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
+            }
+            if (characterController.isGrounded && !skill[1].holdingSkill) {
+                energyHandler.UseEnergy(skill[1].energyCost);
+                Instantiate(skill[1].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
+            }
         }
     }
 }

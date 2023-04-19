@@ -175,10 +175,10 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   whirlwindEffect: {fileID: 8192456214492086976}
   isBurning: 0
-  burnedCoreColor: {r: 0, g: 0, b: 0, a: 0}
-  burnedLayer1Color: {r: 0, g: 0, b: 0, a: 0}
-  burnedLayer2Color: {r: 0, g: 0, b: 0, a: 0}
-  burnedParticlesColor: {r: 0, g: 0, b: 0, a: 0}
+  burnedCoreColor: {r: 5.278032, g: 0.5714673, b: 0, a: 1}
+  burnedLayer1Color: {r: 21.361254, g: 12.039347, b: 0, a: 0}
+  burnedLayer2Color: {r: 0.41960785, g: 0.41960785, b: 0.41960785, a: 0}
+  burnedParticlesColor: {r: 5.3403134, g: 0.3075573, b: 0, a: 0}
 --- !u!65 &6635079588348639334
 BoxCollider:
   m_ObjectHideFlags: 0

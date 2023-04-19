@@ -82,7 +82,7 @@ public class CharacterMovement : MonoBehaviour
                 energyHandler.UseEnergy(0.15f);
             }
         } else {
-            energyHandler.GiveEnergy(0.15f);
+            energyHandler.GiveEnergy(0.15f); 
         }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);

@@ -9,4 +9,6 @@ public class SkillSO : ScriptableObject
     public GameObject skillPrefab;
     public bool holdingSkill;
     public bool skillSpawnOnParent;
+    public float energyCost;
+    
 }

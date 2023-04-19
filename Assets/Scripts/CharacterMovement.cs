@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour
     private float gravityMultiplier = 3f;
     private bool jumpPressed = false;
     private float currentPlayerSpeed;
+    private float animatorSmooth = 0;
 
     private void Start() {
         gameInput = GameInput.Instance;
@@ -56,16 +57,22 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void HandleAnimation() {
+        float floatTarget;
         if (canSprint) {
-            characterAnimation.Move(lastMoveDirection.magnitude / walkSpeed);
+            floatTarget = lastMoveDirection.magnitude / walkSpeed;
         } else {
-            characterAnimation.Move(lastMoveDirection.magnitude / currentPlayerSpeed);
+            floatTarget = lastMoveDirection.magnitude / currentPlayerSpeed;
         }
+        animatorSmooth = Mathf.SmoothStep(animatorSmooth, floatTarget, Time.deltaTime * 20f);
+        characterAnimation.Move(animatorSmooth);
     }
 
     private void HandleMovement() {
         Vector2 moveDirection = lastMoveDirection;
-        if (isGrounded) {
+        if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
+            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
+            lastMoveDirection = moveDirection;
+        } else if (isGrounded) {
             moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
             lastMoveDirection = moveDirection;
         }
@@ -79,7 +86,8 @@ public class CharacterMovement : MonoBehaviour
         }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);
-        transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
+        if (playerMovement != Vector3.zero)
+            transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
     }
 
     private void HandleJump() {

@@ -15,7 +15,6 @@ public class CharacterMovement : MonoBehaviour
     private GameInput gameInput;
     private CharacterController controller;
     private CharacterAnimation characterAnimation;
-    private Transform followTargetTransform;
     private Vector2 lastMoveDirection;
     private Vector3 playerVerticalSpeed;
     private bool isGrounded = false;
@@ -26,131 +25,75 @@ public class CharacterMovement : MonoBehaviour
     private bool jumpPressed = false;
     private float currentPlayerSpeed;
     private float animatorSmooth = 0;
+    private bool canTurn = true;
 
-    private Vector2 turn;
-    private bool testRotationDone = false;
-
-    private void Start()
-    {
+    private void Start() {
         gameInput = GameInput.Instance;
         gameInput.OnJumpAction += GameInput_OnJumpAction;
         controller = CharacterManager.Instance.GetCharacterController();
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
         currentPlayerSpeed = walkSpeed;
-        followTargetTransform = GetComponentInChildren<RotateWithMouse>().transform;
     }
 
-    private void GameInput_OnJumpAction(object sender, System.EventArgs e)
-    {
-        if (isGrounded && !OnSteepSlope())
-        {
+    private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
+        if (isGrounded && !OnSteepSlope()) {
             jumpPressed = true;
         }
     }
 
-    private void Update()
-    {
-        if (CharacterManager.Instance.IsPlayable())
-        {
-            UpdateGroundCheck();
+    private void Update() {
+        if (CharacterManager.Instance.IsPlayable()) {
             HandleAnimation();
-            HandleRotation();
             HandleMovement();
             HandleJump();
             HandleSlope();
+            UpdateGroundCheck();
 
-            if (canSprint && Input.GetKey("left shift"))
-            {
+            if (canSprint && Input.GetKey("left shift")) {
                 currentPlayerSpeed = sprintSpeed;
-            }
-            else if (canSprint)
-            {
+            } else if (canSprint) {
                 currentPlayerSpeed = walkSpeed;
             }
         }
     }
 
-    private void HandleAnimation()
-    {
+    private void HandleAnimation() {
         float floatTarget;
-        if (canSprint)
-        {
+        if (canSprint) {
             floatTarget = lastMoveDirection.magnitude / walkSpeed;
-        }
-        else
-        {
+        } else {
             floatTarget = lastMoveDirection.magnitude / currentPlayerSpeed;
         }
         animatorSmooth = Mathf.SmoothStep(animatorSmooth, floatTarget, Time.deltaTime * 20f);
         characterAnimation.Move(animatorSmooth);
     }
 
-    private void HandleRotation()
-    {
-        if (!isGrounded) return;
-
-        Vector2 moveDirection = gameInput.GetRawMovement();
-        if (moveDirection.magnitude > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, followTargetTransform.transform.rotation.eulerAngles.y, 0);
-            followTargetTransform.localEulerAngles = new Vector3(followTargetTransform.transform.localEulerAngles.x, 0, 0);
+    private void HandleMovement() {
+        Vector2 moveDirection = lastMoveDirection;
+        if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
+            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
+            lastMoveDirection = moveDirection;
+        } else if (isGrounded) {
+            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
+            lastMoveDirection = moveDirection;
         }
-    }
-
-    private void HandleMovement()
-    {
-        Vector2 moveInput = gameInput.GetRawMovement();
-        Vector3 moveDirection = (transform.forward * moveInput.y * currentPlayerSpeed) + (transform.right * moveInput.x * currentPlayerSpeed);
-
-        if (!isGrounded)
-        {
-            // Cannot change direction if you are in air
-            moveDirection.x = lastMoveDirection.x;
-            moveDirection.z = lastMoveDirection.y;
-        }
-        else if (moveInput.magnitude > 0)
-        {
-            if (currentPlayerSpeed == sprintSpeed)
-            {
+        if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
+            //walking
+            if (currentPlayerSpeed == sprintSpeed) {
                 energyHandler.UseEnergy(0.15f);
             }
+        } else {
+            energyHandler.GiveEnergy(0.15f); 
         }
-        else
-        {
-            energyHandler.GiveEnergy(0.15f);
-        }
-        controller.Move(moveDirection / 3f * Time.deltaTime * currentPlayerSpeed); // it seems too fast without dividing by 3f
-
-        lastMoveDirection.x = moveDirection.x;
-        lastMoveDirection.y = moveDirection.z;
-
-
-        //if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
-        //    moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
-        //    lastMoveDirection = moveDirection;
-        //} else if (isGrounded) {
-        //    moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
-        //    lastMoveDirection = moveDirection;
-        //}
-        //if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
-        //    //walking
-        //    if (currentPlayerSpeed == sprintSpeed) {
-        //        energyHandler.UseEnergy(0.15f);
-        //    }
-        //} else {
-        //    energyHandler.GiveEnergy(0.15f);
-        //}
-        //Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
-        //controller.Move(playerMovement * Time.deltaTime);
-        //if (playerMovement != Vector3.zero)
-        //    transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
+        Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
+        controller.Move(playerMovement * Time.deltaTime);
+        if (canTurn && playerMovement != Vector3.zero)
+            transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
     }
 
-    private void HandleJump()
-    {
+    private void HandleJump() {
         if (isGrounded && playerVerticalSpeed.y < 0) playerVerticalSpeed.y = -2f;
-        if (jumpPressed)
-        {
+        if (jumpPressed) {
             playerVerticalSpeed.y += Mathf.Sqrt(jumpSpeed * -Physics.gravity.y);
             jumpPressed = false;
             energyHandler.UseEnergy(7f);
@@ -168,19 +111,13 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    public void HandleImpulse(Vector2 direction, float strength)
-    {
-        if (!isGrounded)
-        {
-            if (direction == Vector2.zero)
-            {
-                if (lastMoveDirection == Vector2.zero)
-                {
+    public void HandleImpulse(Vector2 direction, float strength) {
+        if (!isGrounded) {
+            if (direction == Vector2.zero) {
+                if (lastMoveDirection == Vector2.zero) {
                     direction.x = transform.forward.x;
                     direction.y = transform.forward.z;
-                }
-                else
-                {
+                } else {
                     direction = lastMoveDirection.normalized;
                 }
             }
@@ -208,14 +145,16 @@ public class CharacterMovement : MonoBehaviour
         return false;
     }
 
-    public void SetPlayerSpeed(float speed, bool lockSprint)
-    {
+    public void SetPlayerSpeed(float speed, bool lockSprint) {
         canSprint = !lockSprint;
         currentPlayerSpeed = speed;
     }
 
-    public void ResetPlayerSpeed()
-    {
+    public void SetTurning(bool turn) {
+        canTurn = turn;
+    }
+
+    public void ResetPlayerSpeed() {
         currentPlayerSpeed = walkSpeed;
         canSprint = true;
     }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class Whirlwind : MonoBehaviour
+public class Whirlwind : BaseSkill
 {
     public float duration = 1.0f;
     public float movementSpeed = 1.0f;
-    public Vector3 direction;
     public VisualEffect whirlwindEffect;
 
     public bool isBurning = false;
@@ -22,6 +21,7 @@ public class Whirlwind : MonoBehaviour
 
     private Burnable burnable;
     private float timer;
+    private Vector3 direction;
 
     // Start is called before the first frame update
     void Awake()
@@ -61,6 +61,16 @@ public class Whirlwind : MonoBehaviour
             }
         });
         
+    }
+
+    public override void Activate() {
+        //Spawn slightly forward
+        direction = CharacterManager.Instance.gameObject.transform.forward * 1f;
+        Vector3 move = direction * 1.5f;
+        transform.Translate(move);
+    }
+
+    public override void Deactivate() {
     }
 
     private void OnBurnExit()

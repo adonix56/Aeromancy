@@ -16,10 +16,12 @@ public class CutsceneEvent : MonoBehaviour
     [SerializeField] private Animator characterAnimator;
     [SerializeField] private GameObject cutsceneWizard;
     [SerializeField] private GameObject playerWizard;
+    [SerializeField] private DialogController dialogController;
 
     private void OnEnable() {
         if (eventCounter == 0) {
             // Event 1
+            GameManager.Instance.gameUI.SetActive(false);
             CharacterManager.Instance.SetPlayable(false);
             characterAnimator.SetTrigger(WAITING);
         } else if (eventCounter == 1) {
@@ -34,7 +36,11 @@ public class CutsceneEvent : MonoBehaviour
             characterAnimator.SetTrigger(WAITING);
         } else if (eventCounter == 1) {
             // Event 4
+            GameManager.Instance.gameUI.SetActive(true);
             CharacterManager.Instance.SetPlayable(true);
+
+            string[] texts = new string[] { "Something is off... Breathing feels... Powerful!"};
+            dialogController.OpenBaseDialogPanel(texts, true);
         } 
         eventCounter++;
     }

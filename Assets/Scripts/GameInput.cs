@@ -60,4 +60,16 @@ public class GameInput : MonoBehaviour
             return inputSystemActions.Player.Skill_0.ReadValue<float>() == 1f;
         return inputSystemActions.Player.Skill_1.ReadValue<float>() == 1f;
     }
+
+    public Vector2 GetAxis()
+    {
+        return inputSystemActions.Player.Look.ReadValue<Vector2>();
+    }
+
+    public Vector2 GetRawMovement()
+    {
+        Vector2 rawMovement = inputSystemActions.Player.Movement.ReadValue<Vector2>();
+        rawMovement.y = Mathf.Max(rawMovement.y, 0); // Forbid going backwards
+        return rawMovement;
+    }
 }

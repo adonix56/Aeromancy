@@ -9,16 +9,22 @@ public class DialogPanel : MonoBehaviour
     public float openTime = 0.5f;
     public float characterWriteTime = 0.01f;
     public string[] texts;
+    public bool blockInput = false;
 
     private TextMeshProUGUI textComponent;
     private int currentLine;
     private bool typing = false;
+
+    public delegate void CloseEvent();
+    public event CloseEvent OnCloseEvent;
 
     // Start is called before the first frame update
     void Start()
     {
         textComponent = GetComponentInChildren<TextMeshProUGUI>();
         Open();
+        if (blockInput)
+            CharacterManager.Instance.SetPlayable(false);
     }
 
     void Open()
@@ -34,8 +40,13 @@ public class DialogPanel : MonoBehaviour
 
     void Close()
     {
+        CharacterManager.Instance.SetPlayable(true);
         transform.LeanScale(Vector3.zero, openTime).setEaseInBounce().setOnComplete(() => {
             Destroy(gameObject);
+            if(OnCloseEvent != null)
+            {
+                OnCloseEvent();
+            }
         });
     }
 

@@ -45,7 +45,7 @@ PrefabInstance:
     - target: {fileID: 723043979729496896, guid: bad206e03e276294c988992f16067c2a,
         type: 3}
       propertyPath: m_Name
-      value: SmallUpRightPanel
+      value: MediumUpRightPanel
       objectReference: {fileID: 0}
     - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
         type: 3}

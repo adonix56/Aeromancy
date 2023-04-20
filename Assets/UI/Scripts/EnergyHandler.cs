@@ -8,8 +8,7 @@ using System;
 public class EnergyHandler : MonoBehaviour
 {
 	public Slider slider;
-	public TMP_Text percentage;
-    public GameObject bg;
+	//public TMP_Text percentage;
     
     private float pendingAdded = 0;
     private float pendingRemoved = 0;
@@ -17,7 +16,7 @@ public class EnergyHandler : MonoBehaviour
 
 	private void Start() {
 		slider.value = 100.0f;
-        percentage.text = slider.value.ToString()+"% Breath";
+        //percentage.text = slider.value.ToString()+"% Breath";
 	}
 
     public bool UseEnergy(float amt) {
@@ -55,7 +54,7 @@ public class EnergyHandler : MonoBehaviour
 	private void UpdateSlider(float newVal) {
 		slider.value = newVal;
         realAmt = slider.value;
-		percentage.text = slider.value.ToString()+"% Breath";
+		//percentage.text = slider.value.ToString()+"% Breath";
 	}
 
     private void NoEnergyAnim() {

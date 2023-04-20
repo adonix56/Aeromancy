@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 922449519004856857}
   - component: {fileID: 6331213283322683316}
   - component: {fileID: 575535330009735784}
+  - component: {fileID: 5298854343333184279}
+  - component: {fileID: 2095179815059801165}
   m_Layer: 0
   m_Name: PP_Mushroom_Fantasy_Orange_09.001
   m_TagString: Untagged
@@ -97,6 +99,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lodDistance: 25
+--- !u!95 &5298854343333184279
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676775182811658378}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8eac0888fa140734f91d454fecf4edf3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2095179815059801165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676775182811658378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e9be31682db4d48823003cec20fcc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bouncable: 1
 --- !u!1 &4220688601690596330
 GameObject:
   m_ObjectHideFlags: 0

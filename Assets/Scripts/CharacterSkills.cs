@@ -103,4 +103,9 @@ public class CharacterSkills : MonoBehaviour
             }
         }
     }
+
+    public void AddSkill(int index, SkillSO newSkill)
+    {
+        skill[index] = newSkill;
+    }
 }

@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 140}
+  m_SizeDelta: {x: 500, y: 120}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3800610464061690229
 CanvasRenderer:
@@ -115,7 +115,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -140, y: 0}
-  m_SizeDelta: {x: 500, y: 140}
+  m_SizeDelta: {x: 500, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4562862752880073338
 MonoBehaviour:
@@ -636,5 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseDialogPanel: {fileID: 723043979729496896, guid: bad206e03e276294c988992f16067c2a,
     type: 3}
-  smallUpRightPanel: {fileID: 8842662314326636145, guid: 97646ecb02e893e488837041ad066dc5,
+  mediumUpRightPanel: {fileID: 8842662314326636145, guid: 97646ecb02e893e488837041ad066dc5,
+    type: 3}
+  thinUpRightPanel: {fileID: 6403455383602325410, guid: bc72412380ceb2e4aabf08fec9d5e647,
     type: 3}

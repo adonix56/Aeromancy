@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
+public class MyEvent : UnityEvent { }
 public class DialogTrigger : MonoBehaviour
 {
     private const string PLAYER_TAG = "Player";
@@ -15,14 +17,15 @@ public class DialogTrigger : MonoBehaviour
     public PanelType panelType;
     public string[] texts;
     public bool panelBlocksInput;
-    public bool destroyOnTrigger;
+    public bool destroyOnTrigger = true;
     [SerializeField] private DialogController dialogController;
+    public UnityEvent OnClose;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(PLAYER_TAG))
         {
-            DialogPanel newPanel;
+            DialogPanel newPanel = null;
             switch(panelType)
             {
                 case PanelType.BigDialogPanel:
@@ -34,6 +37,10 @@ public class DialogTrigger : MonoBehaviour
                 case PanelType.ThinUpRightPanel:
                     newPanel = dialogController.OpenThinUpRightPanel(texts, panelBlocksInput);
                     break;
+            }
+            if (OnClose != null && newPanel != null)
+            {
+                newPanel.OnCloseEvent += OnClose.Invoke;
             }
             Destroy(gameObject);
         }

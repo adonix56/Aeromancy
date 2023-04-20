@@ -39,11 +39,13 @@ public class Blower : BaseSkill
         characterMovement = CharacterManager.Instance.GetCharacterMovement();
         characterAnimation.SetBlow(true);
         characterMovement.SetPlayerSpeed(blowSpeed, true);
+        characterMovement.SetTurning(false);
     }
 
     public override void Deactivate() {
         characterAnimation.SetBlow(false);
         characterMovement.ResetPlayerSpeed();
+        characterMovement.SetTurning(true);
         foreach (Blowable blowable in GameObject.FindObjectsOfType<Blowable>()) {
             blowable.TriggerBlowExit();
         }

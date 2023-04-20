@@ -25,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     private bool jumpPressed = false;
     private float currentPlayerSpeed;
     private float animatorSmooth = 0;
+    private bool canTurn = true;
 
     private void Start() {
         gameInput = GameInput.Instance;
@@ -86,7 +87,7 @@ public class CharacterMovement : MonoBehaviour
         }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);
-        if (playerMovement != Vector3.zero)
+        if (canTurn && playerMovement != Vector3.zero)
             transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
     }
 
@@ -147,6 +148,10 @@ public class CharacterMovement : MonoBehaviour
     public void SetPlayerSpeed(float speed, bool lockSprint) {
         canSprint = !lockSprint;
         currentPlayerSpeed = speed;
+    }
+
+    public void SetTurning(bool turn) {
+        canTurn = turn;
     }
 
     public void ResetPlayerSpeed() {

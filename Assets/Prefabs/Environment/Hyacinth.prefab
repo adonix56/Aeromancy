@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1206695305189134040}
   - component: {fileID: 1695004040237786164}
   - component: {fileID: 4004701013344603965}
+  - component: {fileID: 5889956096437873798}
   m_Layer: 0
   m_Name: PP_Hyacinth_04.001
   m_TagString: Untagged
@@ -115,3 +116,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5889956096437873798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025593537612699122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c38d119bfd3684098a4e4b01dac5a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lodDistance: 25

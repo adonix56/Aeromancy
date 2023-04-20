@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 5889347946013738286}
   - component: {fileID: 4450549772995756770}
   - component: {fileID: 3421495745033907836}
-  m_Layer: 0
+  - component: {fileID: 5636865957337582449}
+  m_Layer: 3
   m_Name: PP_Meadow_08.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2877879210193228265}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.58, y: 0, z: 0.59}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5636865957337582449
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2877879210193228265}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9214831082190649707, guid: b9eee52f90947b84d821b595c6744633, type: 3}
 --- !u!1 &5430272837708298590
 GameObject:
   m_ObjectHideFlags: 0

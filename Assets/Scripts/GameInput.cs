@@ -54,6 +54,18 @@ public class GameInput : MonoBehaviour
         return forward * raw.y + right * raw.x;
     }
 
+    public Vector2 GetAxis()
+    {
+        return inputSystemActions.Player.Look.ReadValue<Vector2>();
+    }
+
+    public Vector2 GetRawMovement()
+    {
+        Vector2 rawMovement = inputSystemActions.Player.Movement.ReadValue<Vector2>();
+        rawMovement.y = Mathf.Max(rawMovement.y, 0); // Forbid going backwards
+        return rawMovement;
+    }
+
     //For Holding Skills
     public bool isSkillPressed(int index) { // index 0 = skill 0, index 1 = skill 1
         if (index == 0)

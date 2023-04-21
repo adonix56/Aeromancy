@@ -62,6 +62,15 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""5f02826d-1f32-4d5b-8e04-ed985385f0ab"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -251,6 +260,17 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                     ""action"": ""Skill_1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8cc3751-73a6-4879-82e9-8124ebc9ff26"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -263,6 +283,7 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Skill_0 = m_Player.FindAction("Skill_0", throwIfNotFound: true);
         m_Player_Skill_1 = m_Player.FindAction("Skill_1", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +349,7 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Skill_0;
     private readonly InputAction m_Player_Skill_1;
+    private readonly InputAction m_Player_Look;
     public struct PlayerActions
     {
         private @InputSystemActions m_Wrapper;
@@ -336,6 +358,7 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Skill_0 => m_Wrapper.m_Player_Skill_0;
         public InputAction @Skill_1 => m_Wrapper.m_Player_Skill_1;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -357,6 +380,9 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
             @Skill_1.started += instance.OnSkill_1;
             @Skill_1.performed += instance.OnSkill_1;
             @Skill_1.canceled += instance.OnSkill_1;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -373,6 +399,9 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
             @Skill_1.started -= instance.OnSkill_1;
             @Skill_1.performed -= instance.OnSkill_1;
             @Skill_1.canceled -= instance.OnSkill_1;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -396,5 +425,6 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSkill_0(InputAction.CallbackContext context);
         void OnSkill_1(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
 }

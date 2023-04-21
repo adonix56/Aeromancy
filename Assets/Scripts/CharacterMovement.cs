@@ -26,6 +26,7 @@ public class CharacterMovement : MonoBehaviour
     private float currentPlayerSpeed;
     private float animatorSmooth = 0;
     private bool canTurn = true;
+    private Transform followTargetTransform;
 
     private void Start() {
         gameInput = GameInput.Instance;
@@ -33,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
         controller = CharacterManager.Instance.GetCharacterController();
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
         currentPlayerSpeed = walkSpeed;
+        followTargetTransform = GetComponentInChildren<RotateWithMouse>().transform;
     }
 
     private void GameInput_OnJumpAction(object sender, System.EventArgs e) {
@@ -44,6 +46,7 @@ public class CharacterMovement : MonoBehaviour
     private void Update() {
         if (CharacterManager.Instance.IsPlayable()) {
             HandleAnimation();
+            HandleRotation();
             HandleMovement();
             HandleJump();
             HandleSlope();
@@ -68,27 +71,66 @@ public class CharacterMovement : MonoBehaviour
         characterAnimation.Move(animatorSmooth);
     }
 
-    private void HandleMovement() {
-        Vector2 moveDirection = lastMoveDirection;
-        if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
-            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
-            lastMoveDirection = moveDirection;
-        } else if (isGrounded) {
-            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
-            lastMoveDirection = moveDirection;
+    private void HandleRotation()
+    {
+        if (!isGrounded) return;
+
+        Vector2 moveDirection = gameInput.GetRawMovement();
+        if (moveDirection.magnitude > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, followTargetTransform.transform.rotation.eulerAngles.y, 0);
+            followTargetTransform.localEulerAngles = new Vector3(followTargetTransform.transform.localEulerAngles.x, 0, 0);
         }
-        if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
-            //walking
-            if (currentPlayerSpeed == sprintSpeed) {
+    }
+
+    private void HandleMovement() {
+        Vector2 moveInput = gameInput.GetRawMovement();
+        Vector3 moveDirection = (transform.forward * moveInput.y * currentPlayerSpeed) + (transform.right * moveInput.x * currentPlayerSpeed);
+
+        if (!isGrounded)
+        {
+            // Cannot change direction if you are in air
+            moveDirection.x = lastMoveDirection.x;
+            moveDirection.z = lastMoveDirection.y;
+        }
+
+        else if (moveInput.magnitude > 0)
+        {
+            if (currentPlayerSpeed == sprintSpeed)
+            {
                 energyHandler.UseEnergy(0.15f);
             }
-        } else {
-            energyHandler.GiveEnergy(0.15f); 
         }
-        Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
-        controller.Move(playerMovement * Time.deltaTime);
-        if (canTurn && playerMovement != Vector3.zero)
-            transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
+        else
+        {
+            energyHandler.GiveEnergy(0.15f);
+        }
+        controller.Move(moveDirection / 3f * Time.deltaTime * currentPlayerSpeed); // it seems too fast without dividing by 3f
+
+        lastMoveDirection.x = moveDirection.x;
+        lastMoveDirection.y = moveDirection.z;
+
+
+        //Vector2 moveDirection = lastMoveDirection;
+        //if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
+        //    moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
+        //    lastMoveDirection = moveDirection;
+        //} else if (isGrounded) {
+        //    moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
+        //    lastMoveDirection = moveDirection;
+        //}
+        //if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
+        //    //walking
+        //    if (currentPlayerSpeed == sprintSpeed) {
+        //        energyHandler.UseEnergy(0.15f);
+        //    }
+        //} else {
+        //    energyHandler.GiveEnergy(0.15f); 
+        //}
+        //Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
+        //controller.Move(playerMovement * Time.deltaTime);
+        //if (canTurn && playerMovement != Vector3.zero)
+        //    transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
     }
 
     private void HandleJump() {

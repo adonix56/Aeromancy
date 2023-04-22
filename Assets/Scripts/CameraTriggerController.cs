@@ -21,8 +21,8 @@ public class CameraTriggerController : MonoBehaviour
     }
 
     public void TriggerEvent(CinemachineVirtualCamera camera) {
-        camera.Priority = 11;
-        currentCamera.Priority = 10;
+        camera.Priority = currentCamera.Priority + 1;
+        //currentCamera.Priority = 10;
         currentCamera = camera;
     }
 

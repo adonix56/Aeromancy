@@ -19,11 +19,17 @@ public class CharacterSpawn : MonoBehaviour
 
     private void CheckDeath() {
         if (controller.transform.position.y <= fallLimit) {
-            controller.enabled = false;
-            controller.transform.position = spawnManager.CurrentSpawnLocation();
-            controller.enabled = true;
-            GetComponent<CharacterBreathLevel>().RestoreEnergy();
-            transform.Rotate(0, 0, 0);
+            Respawn();
         }
+    }
+
+    public void Respawn()
+    {
+        controller.enabled = false;
+        controller.transform.position = spawnManager.CurrentSpawnLocation();
+        controller.enabled = true;
+        GetComponent<CharacterBreathLevel>().RestoreEnergy();
+        GetComponent<CharacterHealth>().Restore();
+        transform.Rotate(0, 0, 0);
     }
 }

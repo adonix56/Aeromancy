@@ -4827,8 +4827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97393115b427ac348876dc4f7dbebed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blowable: {fileID: 0}
   life: 0.5
+  blowable: {fileID: 0}
 --- !u!136 &5394591245441770790
 CapsuleCollider:
   m_ObjectHideFlags: 0

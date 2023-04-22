@@ -11,7 +11,6 @@ public class FogBlock : MonoBehaviour
         FogReaction fogReaction = other.gameObject.GetComponent<FogReaction>();
         if (fogReaction != null)
         {
-
             fogReaction.EnterFogBlock(this);
         }
     }

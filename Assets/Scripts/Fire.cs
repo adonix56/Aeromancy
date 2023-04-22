@@ -54,6 +54,7 @@ public class Fire : MonoBehaviour
 
     public void OnBlowedOut(Blowable blowable, bool isAbsorbed)
     {
+        GetComponent<CapsuleCollider>().enabled = false;
         GetComponent<ParticleSystem>().Stop();
         Destroy(gameObject, 1.5f);
     }

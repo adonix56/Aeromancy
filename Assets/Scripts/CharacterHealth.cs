@@ -44,6 +44,7 @@ public class CharacterHealth : MonoBehaviour
         if (!hitable) return;
         if (--currentLives == 0) {
             alive = false;
+            GetComponent<CharacterSpawn>().Respawn();
         }
         healthPanel.SetLives(currentLives);
         TriggerHitEffect();
@@ -63,5 +64,11 @@ public class CharacterHealth : MonoBehaviour
             () => {
                 hitable = true;
             });
+    }
+
+    public void Restore()
+    {
+        currentLives = maxLivesNumber;
+        healthPanel.SetLives(currentLives);
     }
 }

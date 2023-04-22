@@ -13,15 +13,14 @@ public class SnakeNaga : Enemy {
     [SerializeField] private SkillSO attack;
     [SerializeField] private SkillSO projectile;
     [SerializeField] private Transform fireballLocation;
-    [SerializeField, Range(0f, 10f)] private float pauseAfterAttack;
 
-    private float attackCooldown;
-    private float projectileCooldown;
-    private float pause;
+    //private float attackCooldown;
+    //private float projectileCooldown;
+    //private float pause;
     private string nextAttack;
     private bool isHit;
     private GameObject hitObject;
-    private CharacterHealth characterHealth;
+    //private CharacterHealth characterHealth;
     /*[SerializeField] private Transform playerTransform;
     [SerializeField] private Transform returnTransform;
 
@@ -31,14 +30,12 @@ public class SnakeNaga : Enemy {
     private bool inAttackRange;
     private bool inProjectileRange;*/
 
-    private void Start() {
-        playerTransform = CharacterManager.Instance.transform;
-        characterHealth = CharacterManager.Instance.GetCharacterHealth();
-        nav = GetComponent<NavMeshAgent>();
+    protected override void Start() {
+        base.Start();
         nextAttack = UnityEngine.Random.Range(0f, 1f) > 0.5f ? BITE : ATTACK;
     }
 
-    private void Update() {
+    protected override void Update() {
         if (!isHit) {
             animator.SetFloat(MOVE, nav.velocity.sqrMagnitude);
             if (inVisualRange) {
@@ -55,9 +52,7 @@ public class SnakeNaga : Enemy {
                 isHit = false;
             }
         }
-        attackCooldown -= Time.deltaTime;
-        projectileCooldown -= Time.deltaTime;
-        pause -= Time.deltaTime;
+        base.Update();
     }
 
     private void HandleAttacks() {

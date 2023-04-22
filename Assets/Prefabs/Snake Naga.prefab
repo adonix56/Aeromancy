@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7864018024843357933}
-  - component: {fileID: 6461214266926495012}
-  - component: {fileID: 1166215953503719969}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -38,33 +36,6 @@ Transform:
   m_Father: {fileID: 1222495333476881262}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!136 &6461214266926495012
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655499696029541711}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.3
-  m_Height: 5.05
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.83, z: 0}
---- !u!65 &1166215953503719969
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655499696029541711}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.58, y: 1.97, z: 2.02}
-  m_Center: {x: 0, y: 0.78, z: 2.31}
 --- !u!1 &1125978799365481063
 GameObject:
   m_ObjectHideFlags: 0

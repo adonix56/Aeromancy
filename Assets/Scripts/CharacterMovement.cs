@@ -10,11 +10,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float rotateSpeed = 7f;
     [SerializeField] private float slopeLimit = 30f;
     [SerializeField] private LayerMask layerMask;
-    public EnergyHandler energyHandler;
 
     private GameInput gameInput;
     private CharacterController controller;
     private CharacterAnimation characterAnimation;
+    private CharacterBreathLevel characterBreathLevel;
     private Vector2 lastMoveDirection;
     private Vector3 playerVerticalSpeed;
     private bool isGrounded = false;
@@ -32,6 +32,7 @@ public class CharacterMovement : MonoBehaviour
         gameInput.OnJumpAction += GameInput_OnJumpAction;
         controller = CharacterManager.Instance.GetCharacterController();
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
+        characterBreathLevel = GetComponent<CharacterBreathLevel>();
         currentPlayerSpeed = walkSpeed;
     }
 
@@ -80,10 +81,11 @@ public class CharacterMovement : MonoBehaviour
         if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
             //walking
             if (currentPlayerSpeed == sprintSpeed) {
-                energyHandler.UseEnergy(0.15f);
+                characterBreathLevel.UseEnergy(0.15f);
             }
-        } else {
-            energyHandler.GiveEnergy(0.15f); 
+        } else
+        {
+            characterBreathLevel.GiveEnergy(0.15f);
         }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);
@@ -96,7 +98,7 @@ public class CharacterMovement : MonoBehaviour
         if (jumpPressed) {
             playerVerticalSpeed.y += Mathf.Sqrt(jumpSpeed * -Physics.gravity.y);
             jumpPressed = false;
-            energyHandler.UseEnergy(7f);
+            characterBreathLevel.UseEnergy(0.7f);
         }
         playerVerticalSpeed.y += Physics.gravity.y * gravityMultiplier * Time.deltaTime; // Gravity
         controller.Move(playerVerticalSpeed * Time.deltaTime);

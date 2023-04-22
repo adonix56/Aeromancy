@@ -6,9 +6,9 @@ public class CharacterSkills : MonoBehaviour
 {
     [SerializeField] private SkillSO[] skill;
     [SerializeField] private SkillSO[] airSkill;
-    public EnergyHandler energyHandler;
 
     private CharacterController characterController;
+    private CharacterBreathLevel characterBreathLevel;
     private GameInput gameInput;
     private BaseSkill[] skillHeld;
     private BaseSkill[] airSkillHeld;
@@ -22,6 +22,7 @@ public class CharacterSkills : MonoBehaviour
     private void Start() {
         gameInput = GameInput.Instance;
         characterController = CharacterManager.Instance.GetCharacterController();
+        characterBreathLevel = GetComponent<CharacterBreathLevel>();
 
         gameInput.OnSkill0Action += GameInput_OnSkill0Action;
         gameInput.OnSkill1Action += GameInput_OnSkill1Action;
@@ -38,7 +39,7 @@ public class CharacterSkills : MonoBehaviour
     private void CheckSkill(int index) { 
         if (gameInput.isSkillPressed(index)) {
             if (characterController.isGrounded) {
-                energyHandler.UseEnergy(skill[index].energyCost);
+                characterBreathLevel.UseEnergy(skill[index].energyCost);
                 // Deactivate Holding Air Skill if applicable
                 if (airSkillHeld[index] != null) DeactivateAirSkill(index);
                 // Activate Holding Ground Skill
@@ -48,7 +49,7 @@ public class CharacterSkills : MonoBehaviour
                     skillHeld[index].Activate();
                 }
             } else {
-                energyHandler.UseEnergy(airSkill[index].energyCost);
+                characterBreathLevel.UseEnergy(airSkill[index].energyCost);
                 // Deactivate Holding Ground Skill if applicable
                 if (skillHeld[index] != null) DeactivateSkill(index);
                 // Activate Holding Air Skill
@@ -81,11 +82,12 @@ public class CharacterSkills : MonoBehaviour
             //TODO: Setup Skill Args to determine to activate skill on character or world space:
             //      i.e. AirDash in world space, shooting skill on character
             if (!characterController.isGrounded && !airSkill[0].holdingSkill) {
-                energyHandler.UseEnergy(airSkill[0].energyCost);
+                characterBreathLevel.UseEnergy(airSkill[0].energyCost);
                 Instantiate(airSkill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
             }
-            if (characterController.isGrounded && !skill[0].holdingSkill) {
-                energyHandler.UseEnergy(skill[0].energyCost);
+            if (characterController.isGrounded && !skill[0].holdingSkill)
+            {
+                characterBreathLevel.UseEnergy(skill[0].energyCost);
                 Instantiate(skill[0].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
             }
         }
@@ -93,12 +95,14 @@ public class CharacterSkills : MonoBehaviour
 
     private void GameInput_OnSkill1Action(object sender, System.EventArgs e) {
         if (CharacterManager.Instance.IsPlayable()) {
-            if (!characterController.isGrounded && !airSkill[1].holdingSkill) {
-                energyHandler.UseEnergy(airSkill[1].energyCost);
+            if (!characterController.isGrounded && !airSkill[1].holdingSkill)
+            {
+                characterBreathLevel.UseEnergy(airSkill[1].energyCost);
                 Instantiate(airSkill[1].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
             }
-            if (characterController.isGrounded && !skill[1].holdingSkill) {
-                energyHandler.UseEnergy(skill[1].energyCost);
+            if (characterController.isGrounded && !skill[1].holdingSkill)
+            {
+                characterBreathLevel.UseEnergy(skill[1].energyCost);
                 Instantiate(skill[1].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
             }
         }

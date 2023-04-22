@@ -2487,7 +2487,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880423367}
-  m_LocalRotation: {x: 0.37555227, y: 0.22650872, z: -0.09519028, w: 0.8936404}
+  m_LocalRotation: {x: 0.37555227, y: 0.22650868, z: -0.09519024, w: 0.8936404}
   m_LocalPosition: {x: -1.6776876, y: 3.6622791, z: -3.154564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4744,21 +4744,6 @@ PrefabInstance:
       objectReference: {fileID: 1885933580}
     - target: {fileID: 8096775906506111152, guid: 60cab394eb5a1054db7e67e759274448,
         type: 3}
-      propertyPath: darkestAlpha
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8096775906506111152, guid: 60cab394eb5a1054db7e67e759274448,
-        type: 3}
-      propertyPath: hitBufferTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8096775906506111152, guid: 60cab394eb5a1054db7e67e759274448,
-        type: 3}
-      propertyPath: maxLivesNumber
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8096775906506111152, guid: 60cab394eb5a1054db7e67e759274448,
-        type: 3}
       propertyPath: hitEffectOverlay
       value: 
       objectReference: {fileID: 2026822728}
@@ -5869,8 +5854,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698553977}
-  m_LocalRotation: {x: 0.37555227, y: 0.22650872, z: -0.09519028, w: 0.8936404}
-  m_LocalPosition: {x: -1.6776876, y: 3.6622791, z: -3.154564}
+  m_LocalRotation: {x: 1e-45, y: -0.67605394, z: 0, w: 0.7368521}
+  m_LocalPosition: {x: 4.031263, y: 2, z: 0.00000047683716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

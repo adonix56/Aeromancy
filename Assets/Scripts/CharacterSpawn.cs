@@ -6,7 +6,6 @@ public class CharacterSpawn : MonoBehaviour
 {
     private SpawnManager spawnManager;
     private CharacterController controller;
-    public EnergyHandler energyHandler;
     private int fallLimit = -20;
 
     private void Start() {
@@ -23,7 +22,7 @@ public class CharacterSpawn : MonoBehaviour
             controller.enabled = false;
             controller.transform.position = spawnManager.CurrentSpawnLocation();
             controller.enabled = true;
-            energyHandler.GiveEnergy(100f);
+            GetComponent<CharacterBreathLevel>().RestoreEnergy();
             transform.Rotate(0, 0, 0);
         }
     }

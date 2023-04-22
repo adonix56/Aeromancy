@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3840660844150899291}
   - component: {fileID: -8174291517691639060}
   - component: {fileID: 8096775906506111152}
+  - component: {fileID: 8233256676655042126}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -91,7 +92,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  energyHandler: {fileID: 0}
 --- !u!114 &1842488410428886138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +110,6 @@ MonoBehaviour:
   airSkill:
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
-  energyHandler: {fileID: 0}
 --- !u!114 &386485127144991585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4209d5aff1c04054599070bc48a1539b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyHandler: {fileID: 0}
 --- !u!54 &-8174291517691639060
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,10 +163,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf61904bcefeb848b286ec71ef2dd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxLivesNumber: 3
   healthPanel: {fileID: 0}
-  darkestRed: 0.7882353
-  secondsToRecover: 5
+  hitEffectOverlay: {fileID: 0}
+  darkestAlpha: 0.6
+  hitBufferTime: 2
+  testTriggerHit: 0
+--- !u!114 &8233256676655042126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318765745579626700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7256677c861ee4459e004b82edcc4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBreath: 100
+  energyBarController: {fileID: 0}
 --- !u!1 &6840935570169880739
 GameObject:
   m_ObjectHideFlags: 0

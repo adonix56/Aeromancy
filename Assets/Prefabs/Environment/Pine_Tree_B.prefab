@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6794796104546025522}
   - component: {fileID: 3665251946722146281}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pine_Tree_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 6662030152429487561}
   - component: {fileID: 7982066710487265391}
   - component: {fileID: 4485288450351877726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PP_Tree_10.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

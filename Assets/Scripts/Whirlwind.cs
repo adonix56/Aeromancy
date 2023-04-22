@@ -5,6 +5,8 @@ using UnityEngine.VFX;
 
 public class Whirlwind : BaseSkill
 {
+    private const string ENEMY_LAYER = "Enemy";
+
     public float duration = 1.0f;
     public float movementSpeed = 1.0f;
     public VisualEffect whirlwindEffect;
@@ -61,6 +63,16 @@ public class Whirlwind : BaseSkill
             }
         });
         
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.layer == LayerMask.NameToLayer(ENEMY_LAYER)) {
+            //Enemy -> Collider -> Body (holds collider component)
+            Enemy enemy = other.transform.parent.parent.gameObject.GetComponent<Enemy>();
+            if (enemy) {
+                enemy.ProjectileHit(gameObject);
+            }
+        }
     }
 
     public override void Activate() {

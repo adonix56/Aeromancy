@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6820341412861875524}
   - component: {fileID: 8072664459014187192}
   - component: {fileID: 5722524728825126617}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PP_Rock_Moss_Grown_09.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2991081510835683648}
   - component: {fileID: 3795142397201023094}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rock_Moss_Grown_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}

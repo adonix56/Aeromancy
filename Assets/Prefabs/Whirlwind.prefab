@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5039227400377704752}
   - component: {fileID: 8192456214492086976}
   - component: {fileID: 3789390540005072157}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Whirlwind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 6635079588348639334}
   - component: {fileID: 7000993682593106841}
   - component: {fileID: 6092323816498998000}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Whirlwind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,8 +172,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 10
   movementSpeed: 3
-  direction: {x: 0, y: 0, z: 1}
   whirlwindEffect: {fileID: 8192456214492086976}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
   isBurning: 0
   burnedCoreColor: {r: 5.278032, g: 0.5714673, b: 0, a: 1}
   burnedLayer1Color: {r: 21.361254, g: 12.039347, b: 0, a: 0}

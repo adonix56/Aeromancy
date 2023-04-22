@@ -10,5 +10,5 @@ public class SkillSO : ScriptableObject
     public bool holdingSkill;
     public bool skillSpawnOnParent;
     public float energyCost;
-    
+    public float cooldown;
 }

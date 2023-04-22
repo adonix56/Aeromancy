@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6354735846005970359}
   - component: {fileID: 2445245042985387105}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rock_Pile_Forest_Moss_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 3857432141699531793}
   - component: {fileID: 5375837270787037048}
   - component: {fileID: 7733383470708009822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PP_Rock_Pile_Forest_Moss_05.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

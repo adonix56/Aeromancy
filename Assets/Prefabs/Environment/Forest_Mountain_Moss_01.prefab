@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7771071714288120958}
   - component: {fileID: 6994304647945410066}
   - component: {fileID: 5157915130116526132}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PP_Forest_Mountain_Moss_01.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3121037567317950723}
   - component: {fileID: 1024105466518148367}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Forest_Mountain_Moss_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

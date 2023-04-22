@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458a7148f23eb0949ac6cc2e1c1da80c, type: 3}
+  m_Name: Snake Naga Fireball
+  m_EditorClassIdentifier: 
+  skillName: Fireball
+  skillPrefab: {fileID: 2516482837291899379, guid: 239c43da8ecb37d45a059581150387f6,
+    type: 3}
+  holdingSkill: 0
+  skillSpawnOnParent: 0
+  energyCost: 0
+  cooldown: 10

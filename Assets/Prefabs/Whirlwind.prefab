@@ -170,12 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26eb874838f3ad3498a4515f8131ef0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 10
-  movementSpeed: 3
+  duration: 3
+  movementSpeed: 4
   whirlwindEffect: {fileID: 8192456214492086976}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 512
   isBurning: 0
   burnedCoreColor: {r: 5.278032, g: 0.5714673, b: 0, a: 1}
   burnedLayer1Color: {r: 21.361254, g: 12.039347, b: 0, a: 0}

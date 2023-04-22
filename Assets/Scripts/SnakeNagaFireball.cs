@@ -10,13 +10,13 @@ public class SnakeNagaFireball : BaseSkill
     [SerializeField] private ParticleSystem trail;
     [SerializeField] private ParticleSystem explosion;
 
-    private CharacterManager character; // TODO: Probably change to Character Health
+    private CharacterHealth characterHealth;
     private Vector3 direction;
     private bool dying = false;
 
     private void Start() {
-        character = CharacterManager.Instance; // TODO: .GetCharacterHealth();
-        direction = character.transform.position;
+        characterHealth = CharacterManager.Instance.GetCharacterHealth();
+        direction = characterHealth.transform.position;
         direction.y += 1;
         transform.LookAt(direction);
     }
@@ -27,7 +27,7 @@ public class SnakeNagaFireball : BaseSkill
             trail.Stop();
             explosion.gameObject.SetActive(true);
             if (other.CompareTag(PLAYER)) {
-                Debug.Log("Ouch");
+                characterHealth.GetHit();
             }
         }
     }

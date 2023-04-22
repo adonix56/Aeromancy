@@ -21,6 +21,7 @@ public class SnakeNaga : Enemy {
     private string nextAttack;
     private bool isHit;
     private GameObject hitObject;
+    private CharacterHealth characterHealth;
     /*[SerializeField] private Transform playerTransform;
     [SerializeField] private Transform returnTransform;
 
@@ -32,6 +33,7 @@ public class SnakeNaga : Enemy {
 
     private void Start() {
         playerTransform = CharacterManager.Instance.transform;
+        characterHealth = CharacterManager.Instance.GetCharacterHealth();
         nav = GetComponent<NavMeshAgent>();
         nextAttack = UnityEngine.Random.Range(0f, 1f) > 0.5f ? BITE : ATTACK;
     }
@@ -50,7 +52,6 @@ public class SnakeNaga : Enemy {
             if (hitObject) {
                 transform.position = hitObject.transform.position;
             } else {
-                Debug.Log("end");
                 isHit = false;
             }
         }
@@ -82,7 +83,7 @@ public class SnakeNaga : Enemy {
 
     public override void TriggerAttack() {
         if (inDamageRange) {
-            Debug.Log("Ouch");
+            characterHealth.GetHit();
         }
     }
 

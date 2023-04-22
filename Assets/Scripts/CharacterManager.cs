@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour
     private CharacterSkills characterSkills;
     private CharacterAnimation characterAnimation;
     private CharacterSpawn characterSpawn;
+    private CharacterHealth characterHealth;
     private Rigidbody characterRigidbody;
     private bool isPlayable = true;
 
@@ -25,6 +26,7 @@ public class CharacterManager : MonoBehaviour
         characterSkills = GetComponent<CharacterSkills>();
         characterAnimation = GetComponent<CharacterAnimation>();
         characterSpawn = GetComponent<CharacterSpawn>();
+        characterHealth = GetComponent<CharacterHealth>();
         characterRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -37,5 +39,6 @@ public class CharacterManager : MonoBehaviour
     public CharacterSkills GetCharacterSkills() { return characterSkills; }
     public CharacterAnimation GetCharacterAnimation() { return characterAnimation; }
     public CharacterSpawn GetCharacterSpawn() { return characterSpawn; }
+    public CharacterHealth GetCharacterHealth() { return characterHealth; }
     public Rigidbody GetCharacterRigidbody() { return characterRigidbody; }
 }

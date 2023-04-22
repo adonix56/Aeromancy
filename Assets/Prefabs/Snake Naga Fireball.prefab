@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   travelSpeed: 10
   trail: {fileID: 7969308113599124355}
-  explosion: {fileID: 2347622711760033930}
+  impact: {fileID: 2347622711760033930}
 --- !u!135 &6481950856696578238
 SphereCollider:
   m_ObjectHideFlags: 0

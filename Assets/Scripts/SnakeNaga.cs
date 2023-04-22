@@ -73,7 +73,7 @@ public class SnakeNaga : Enemy {
     }
 
     public override void TriggerProjectile() {
-        Instantiate(projectile.skillPrefab, fireballLocation.position, Quaternion.identity).GetComponent<SnakeNagaFireball>();
+        Instantiate(projectile.skillPrefab, fireballLocation.position, Quaternion.identity).GetComponent<Projectile>();
     }
 
     public override void TriggerAttack() {

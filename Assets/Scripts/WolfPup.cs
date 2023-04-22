@@ -10,7 +10,6 @@ public class WolfPup : Enemy {
 
     protected override void Start() {
         base.Start();
-        Debug.Log(nav.name);
     }
 
     protected override void Update() {

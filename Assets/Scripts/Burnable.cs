@@ -13,7 +13,8 @@ public class Burnable : MonoBehaviour
     {
         if (other.GetComponent<Fire>() != null && OnBurnEnter != null)
         {
-            OnBurnEnter();
+            if (OnBurnEnter != null)
+                OnBurnEnter();
         }
     }
 
@@ -21,7 +22,8 @@ public class Burnable : MonoBehaviour
     {
         if (other.GetComponent<Fire>() != null && OnBurnEnter != null)
         {
-            OnBurnExit();
+            if (OnBurnExit != null)
+                OnBurnExit();
         }
     }
 }

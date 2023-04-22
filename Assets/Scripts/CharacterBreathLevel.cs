@@ -5,14 +5,25 @@ using UnityEngine;
 public class CharacterBreathLevel : MonoBehaviour
 {
     [SerializeField] private float maxBreathLevel = 100;
+    [SerializeField] private float holdBreathUseRate = 0.1f;
     [SerializeField] private EnergyHandler energyBarController;
 
+    private GameInput gameInput;
     private float currentBreathLevel;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameInput = GameInput.Instance;
         currentBreathLevel = maxBreathLevel;
+    }
+
+    private void Update()
+    {
+        if (gameInput.IsHoldBreathPressed())
+        {
+            UseEnergy(holdBreathUseRate);
+        }
     }
 
     public bool HasEnergy()
@@ -79,5 +90,10 @@ public class CharacterBreathLevel : MonoBehaviour
     {
         currentBreathLevel = maxBreathLevel;
         energyBarController.UpdateSlider(currentBreathLevel);
+    }
+
+    public bool IsHoldingBreath()
+    {
+        return gameInput.IsHoldBreathPressed();
     }
 }

@@ -6,49 +6,23 @@ public class FogBlock : MonoBehaviour
 {
     public bool isEdge = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        FogReaction fogReaction = other.gameObject.GetComponent<FogReaction>();
+        if (fogReaction != null)
         {
-            EnvironmentManager envManager = GameObject.Find("GameManager").GetComponent<EnvironmentManager>();
-            if(envManager)
-            {
-                if(isEdge)
-                {
-                    envManager.ChangeToDefaultEnvironment();
-                }
-                else
-                {
-                    envManager.ChangeToFogEnvironment();
-                }
-            }
+
+            fogReaction.EnterFogBlock(this);
         }
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        if (changesFogEnvironment)
-    //        {
-    //            EnvironmentManager envManager = GameObject.Find("GameManager").GetComponent<EnvironmentManager>();
-    //            if (envManager)
-    //            {
-    //                envManager.ChangeToDefaultEnvironment();
-    //            }
-    //        }
-    //    }
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        FogReaction fogReaction = other.gameObject.GetComponent<FogReaction>();
+        if (fogReaction != null)
+        {
+
+            fogReaction.ExitFogBlock(this);
+        }
+    }
 }

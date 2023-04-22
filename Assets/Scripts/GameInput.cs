@@ -9,6 +9,7 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance { get; private set; }
 
     public event EventHandler OnJumpAction;
+    public event EventHandler OnHoldBreathAction;
     public event EventHandler OnSkill0Action;
     public event EventHandler OnSkill1Action;
 
@@ -25,14 +26,22 @@ public class GameInput : MonoBehaviour
         inputSystemActions.Player.Enable();
 
         inputSystemActions.Player.Jump.performed += Jump_Performed;
+        inputSystemActions.Player.Jump.Disable(); // FOR THE MOMENT WE DONT WANT JUMPING BEHAVIOUR
+
         //For Non-Holding Skills
         inputSystemActions.Player.Skill_0.started += Skill_0_Performed;
         inputSystemActions.Player.Skill_1.performed += Skill_1_Performed;
     }
 
-    private void Jump_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context) {
+    private void Jump_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
         OnJumpAction?.Invoke(this, EventArgs.Empty);
     }
+
+    //private void Hold_Breath_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    //{
+    //    OnHoldBreathAction?.Invoke(this, EventArgs.Empty);
+    //}
 
     //For Non-Holding Skills
     private void Skill_0_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context) {
@@ -67,9 +76,14 @@ public class GameInput : MonoBehaviour
     }
 
     //For Holding Skills
-    public bool isSkillPressed(int index) { // index 0 = skill 0, index 1 = skill 1
+    public bool isSkillPressed(int index)
+    { // index 0 = skill 0, index 1 = skill 1
         if (index == 0)
             return inputSystemActions.Player.Skill_0.ReadValue<float>() == 1f;
         return inputSystemActions.Player.Skill_1.ReadValue<float>() == 1f;
+    }
+    public bool IsHoldBreathPressed()
+    {
+        return inputSystemActions.Player.HoldBreath.ReadValue<float>() == 1f;
     }
 }

@@ -15,21 +15,15 @@ public class CharacterHealth : MonoBehaviour
     private bool alive;
     private bool hitable;
 
-    public bool testTriggerHit;
+    // Interaction with fire
+    private Burnable burnable;
 
     private void Start() {
         alive = true;
         hitable = true;
         currentLives = maxLivesNumber;
-    }
-
-    private void Update()
-    {
-        if (testTriggerHit)
-        {
-            testTriggerHit = false;
-            GetHit();
-        }
+        burnable = GetComponent<Burnable>();
+        burnable.OnBurnEnter += GetHit;
     }
 
     //private void Update() {

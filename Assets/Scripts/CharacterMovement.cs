@@ -9,6 +9,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed = 7f;
     [SerializeField] private float rotateSpeed = 7f;
     [SerializeField] private float slopeLimit = 30f;
+    [SerializeField] private float restRegainBreathRate = 0.1f;
+    [SerializeField] private float sprintBreathConsumeRate = 0.1f;
     [SerializeField] private LayerMask layerMask;
 
     private GameInput gameInput;
@@ -80,12 +82,12 @@ public class CharacterMovement : MonoBehaviour
         }
         if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
             //walking
-            if (currentPlayerSpeed == sprintSpeed) {
-                characterBreathLevel.UseEnergy(0.15f);
-            }
+            if (currentPlayerSpeed == sprintSpeed)
+                characterBreathLevel.UseEnergy(sprintBreathConsumeRate);
         } else
         {
-            characterBreathLevel.GiveEnergy(0.15f);
+            if(!gameInput.IsHoldBreathPressed())
+                characterBreathLevel.GiveEnergy(restRegainBreathRate);
         }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);

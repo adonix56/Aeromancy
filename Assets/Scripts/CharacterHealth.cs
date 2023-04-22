@@ -5,39 +5,69 @@ using UnityEngine.UI;
 
 public class CharacterHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
-    [SerializeField] private Image healthPanel;
-    [SerializeField, Range(0f, 1f)] private float darkestRed;
-    [SerializeField, Range(0f, 10f)] private float secondsToRecover;
+    [SerializeField] private int maxLivesNumber;
+    [SerializeField] private HealthPanelController healthPanel;
+    [SerializeField] private Image hitEffectOverlay;
+    [SerializeField, Range(0f, 1f)] private float darkestAlpha;
+    [SerializeField] float hitBufferTime = 1.0f;
 
-    private float currentWait;
-    private float alphaFade;
-    private int currentHealth;
+    private int currentLives;
     private bool alive;
+    private bool hitable;
+
+    public bool testTriggerHit;
 
     private void Start() {
         alive = true;
-        currentHealth = maxHealth;
+        hitable = true;
+        currentLives = maxLivesNumber;
     }
 
-    private void Update() {
-        if (alive) {
-            if (currentWait > 0) {
-                currentWait -= Time.deltaTime;
-                alphaFade = darkestRed * (maxHealth - currentHealth) / (maxHealth - 1) * currentWait / secondsToRecover; //stupid equation but it works lol
-                Color panelColor = healthPanel.color;
-                panelColor.a = alphaFade;
-                healthPanel.color = panelColor;
-            } else {
-                currentHealth = maxHealth;
-            }
+    private void Update()
+    {
+        if (testTriggerHit)
+        {
+            testTriggerHit = false;
+            GetHit();
         }
     }
+
+    //private void Update() {
+    //    if (alive) {
+    //        if (currentWait > 0) {
+    //            currentWait -= Time.deltaTime;
+    //            alphaFade = darkestRed * (maxHealth - currentHealth) / (maxHealth - 1) * currentWait / secondsToRecover; //stupid equation but it works lol
+    //            Color panelColor = healthPanel.color;
+    //            panelColor.a = alphaFade;
+    //            healthPanel.color = panelColor;
+    //        } else {
+    //            currentHealth = maxHealth;
+    //        }
+    //    }
+    //}
 
     public void GetHit() {
-        if (--currentHealth == 0) {
+        if (!hitable) return;
+        if (--currentLives == 0) {
             alive = false;
         }
-        currentWait = secondsToRecover;
+        healthPanel.SetLives(currentLives);
+        TriggerHitEffect();
+        //currentWait = secondsToRecover;
+    }
+
+    public void TriggerHitEffect()
+    {
+        hitable = false;
+        Color currentColor = hitEffectOverlay.color;
+        currentColor.a = darkestAlpha;
+        LeanTween.value(darkestAlpha, 0, hitBufferTime).setOnUpdate(
+            (float value) => {
+                currentColor.a = value;
+                hitEffectOverlay.color = currentColor;
+            }).setOnComplete(
+            () => {
+                hitable = true;
+            });
     }
 }

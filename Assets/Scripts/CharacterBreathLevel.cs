@@ -5,34 +5,46 @@ using UnityEngine;
 public class CharacterBreathLevel : MonoBehaviour
 {
     [SerializeField] private float maxBreathLevel = 100;
-    [SerializeField] private float holdBreathUseRate = 0.1f;
+    //[SerializeField] private float holdBreathUseRate = 0.1f;
     [SerializeField] private EnergyHandler energyBarController;
+    [SerializeField] private float restRegainBreathRate = 0.1f;
 
     private GameInput gameInput;
     private float currentBreathLevel;
+    private CharacterMovement characterMovement;
+    private bool canRegen;
 
     // Start is called before the first frame update
     void Start()
     {
         gameInput = GameInput.Instance;
         currentBreathLevel = maxBreathLevel;
+        characterMovement = GetComponent<CharacterMovement>();
     }
 
     private void Update()
     {
-        if (gameInput.IsHoldBreathPressed())
-        {
-            UseEnergy(holdBreathUseRate);
+        if (!characterMovement.IsMoving() && canRegen) {
+            GiveEnergy(restRegainBreathRate);
         }
+        //if (gameInput.IsHoldBreathPressed())
+        //{
+        //    UseEnergy(holdBreathUseRate);
+        //}
     }
 
-    public bool HasEnergy()
+    public bool HasEnoughEnergy(float amt)
     {
-        return currentBreathLevel > 0;
+        return currentBreathLevel > amt;
+    }
+
+    public void LockRegen(bool lockRegen) {
+        canRegen = !lockRegen;
     }
 
     public void UseEnergy(float amt)
     {
+        Debug.Log($"Using {amt}");
         currentBreathLevel -= amt;
         if(currentBreathLevel < 0)
         {
@@ -64,8 +76,8 @@ public class CharacterBreathLevel : MonoBehaviour
         //}
     }
 
-    public void GiveEnergy(float amt)
-    {
+    public void GiveEnergy(float amt) {
+        Debug.Log($"Giving {amt}");
         currentBreathLevel += amt;
         if (currentBreathLevel > maxBreathLevel)
         {

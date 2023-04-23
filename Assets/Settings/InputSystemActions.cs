@@ -73,13 +73,31 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""HoldBreath"",
+                    ""name"": ""Skill_2"",
                     ""type"": ""Value"",
                     ""id"": ""9dcda0ca-c4ca-477d-a81c-8232c929d4a8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Skill_3"",
+                    ""type"": ""Value"",
+                    ""id"": ""364cd6d7-aa64-43b1-b49c-8bbe5147c120"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Skill_4"",
+                    ""type"": ""Button"",
+                    ""id"": ""acfda659-6c80-4c48-812c-4f5b6314b2ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -288,7 +306,7 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""HoldBreath"",
+                    ""action"": ""Skill_2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -299,7 +317,29 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""HoldBreath"",
+                    ""action"": ""Skill_2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84aced88-8c3f-4f29-9cb4-388bbad63aa4"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill_3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f63bdc5-b278-4869-9db2-42a56a2da75e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill_4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -315,7 +355,9 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
         m_Player_Skill_0 = m_Player.FindAction("Skill_0", throwIfNotFound: true);
         m_Player_Skill_1 = m_Player.FindAction("Skill_1", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_HoldBreath = m_Player.FindAction("HoldBreath", throwIfNotFound: true);
+        m_Player_Skill_2 = m_Player.FindAction("Skill_2", throwIfNotFound: true);
+        m_Player_Skill_3 = m_Player.FindAction("Skill_3", throwIfNotFound: true);
+        m_Player_Skill_4 = m_Player.FindAction("Skill_4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -382,7 +424,9 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Skill_0;
     private readonly InputAction m_Player_Skill_1;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_HoldBreath;
+    private readonly InputAction m_Player_Skill_2;
+    private readonly InputAction m_Player_Skill_3;
+    private readonly InputAction m_Player_Skill_4;
     public struct PlayerActions
     {
         private @InputSystemActions m_Wrapper;
@@ -392,7 +436,9 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
         public InputAction @Skill_0 => m_Wrapper.m_Player_Skill_0;
         public InputAction @Skill_1 => m_Wrapper.m_Player_Skill_1;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @HoldBreath => m_Wrapper.m_Player_HoldBreath;
+        public InputAction @Skill_2 => m_Wrapper.m_Player_Skill_2;
+        public InputAction @Skill_3 => m_Wrapper.m_Player_Skill_3;
+        public InputAction @Skill_4 => m_Wrapper.m_Player_Skill_4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -417,9 +463,15 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @HoldBreath.started += instance.OnHoldBreath;
-            @HoldBreath.performed += instance.OnHoldBreath;
-            @HoldBreath.canceled += instance.OnHoldBreath;
+            @Skill_2.started += instance.OnSkill_2;
+            @Skill_2.performed += instance.OnSkill_2;
+            @Skill_2.canceled += instance.OnSkill_2;
+            @Skill_3.started += instance.OnSkill_3;
+            @Skill_3.performed += instance.OnSkill_3;
+            @Skill_3.canceled += instance.OnSkill_3;
+            @Skill_4.started += instance.OnSkill_4;
+            @Skill_4.performed += instance.OnSkill_4;
+            @Skill_4.canceled += instance.OnSkill_4;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -439,9 +491,15 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @HoldBreath.started -= instance.OnHoldBreath;
-            @HoldBreath.performed -= instance.OnHoldBreath;
-            @HoldBreath.canceled -= instance.OnHoldBreath;
+            @Skill_2.started -= instance.OnSkill_2;
+            @Skill_2.performed -= instance.OnSkill_2;
+            @Skill_2.canceled -= instance.OnSkill_2;
+            @Skill_3.started -= instance.OnSkill_3;
+            @Skill_3.performed -= instance.OnSkill_3;
+            @Skill_3.canceled -= instance.OnSkill_3;
+            @Skill_4.started -= instance.OnSkill_4;
+            @Skill_4.performed -= instance.OnSkill_4;
+            @Skill_4.canceled -= instance.OnSkill_4;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -466,6 +524,8 @@ public partial class @InputSystemActions: IInputActionCollection2, IDisposable
         void OnSkill_0(InputAction.CallbackContext context);
         void OnSkill_1(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnHoldBreath(InputAction.CallbackContext context);
+        void OnSkill_2(InputAction.CallbackContext context);
+        void OnSkill_3(InputAction.CallbackContext context);
+        void OnSkill_4(InputAction.CallbackContext context);
     }
 }

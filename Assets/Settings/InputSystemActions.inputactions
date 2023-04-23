@@ -51,13 +51,31 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "HoldBreath",
+                    "name": "Skill_2",
                     "type": "Value",
                     "id": "9dcda0ca-c4ca-477d-a81c-8232c929d4a8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Skill_3",
+                    "type": "Value",
+                    "id": "364cd6d7-aa64-43b1-b49c-8bbe5147c120",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Skill_4",
+                    "type": "Button",
+                    "id": "acfda659-6c80-4c48-812c-4f5b6314b2ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -266,7 +284,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HoldBreath",
+                    "action": "Skill_2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -277,7 +295,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HoldBreath",
+                    "action": "Skill_2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84aced88-8c3f-4f29-9cb4-388bbad63aa4",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill_3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f63bdc5-b278-4869-9db2-42a56a2da75e",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill_4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

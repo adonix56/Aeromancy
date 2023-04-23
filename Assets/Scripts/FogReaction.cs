@@ -6,7 +6,7 @@ public class FogReaction : MonoBehaviour
 {
     public float timeForDamage = 2.0f;
 
-    private GameInput gameInput;
+    //private GameInput gameInput;
     private int currentFogAmount; // the number of fog blocks in which the character is currently inside
     private float timeForDamageTimer;
     private CharacterHealth characterHealth;
@@ -15,7 +15,7 @@ public class FogReaction : MonoBehaviour
     {
         currentFogAmount = 0;
         timeForDamageTimer = 0;
-        gameInput = GameInput.Instance;
+        //gameInput = GameInput.Instance;
         characterHealth = GetComponent<CharacterHealth>();
     }
 
@@ -28,7 +28,7 @@ public class FogReaction : MonoBehaviour
     {
         if (currentFogAmount > 0)
         {
-            if (gameInput.IsHoldBreathPressed())
+            if (HoldBreath.isHoldingBreath)
             {
                 timeForDamageTimer -= Time.deltaTime;
                 timeForDamageTimer = Mathf.Max(timeForDamageTimer, 0);
@@ -49,7 +49,8 @@ public class FogReaction : MonoBehaviour
     {
         currentFogAmount++;
 
-        EnvironmentManager envManager = GameObject.Find("GameManager").GetComponent<EnvironmentManager>();
+        //EnvironmentManager envManager = GameObject.Find("GameManager").GetComponent<EnvironmentManager>();
+        EnvironmentManager envManager = GameInput.Instance.GetComponent<EnvironmentManager>();
         if (envManager)
         {
             if (enteredFogBlock.isEdge)

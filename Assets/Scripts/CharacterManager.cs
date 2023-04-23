@@ -12,6 +12,7 @@ public class CharacterManager : MonoBehaviour
     private CharacterAnimation characterAnimation;
     private CharacterSpawn characterSpawn;
     private CharacterHealth characterHealth;
+    private CharacterBreathLevel characterBreathLevel;
     private Rigidbody characterRigidbody;
     private bool isPlayable = true;
 
@@ -27,6 +28,7 @@ public class CharacterManager : MonoBehaviour
         characterAnimation = GetComponent<CharacterAnimation>();
         characterSpawn = GetComponent<CharacterSpawn>();
         characterHealth = GetComponent<CharacterHealth>();
+        characterBreathLevel = GetComponent<CharacterBreathLevel>();
         characterRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -40,5 +42,6 @@ public class CharacterManager : MonoBehaviour
     public CharacterAnimation GetCharacterAnimation() { return characterAnimation; }
     public CharacterSpawn GetCharacterSpawn() { return characterSpawn; }
     public CharacterHealth GetCharacterHealth() { return characterHealth; }
+    public CharacterBreathLevel GetCharacterBreathLevel() { return characterBreathLevel; }
     public Rigidbody GetCharacterRigidbody() { return characterRigidbody; }
 }

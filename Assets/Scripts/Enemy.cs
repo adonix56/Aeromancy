@@ -9,13 +9,14 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private Transform _returnTransform;
     [SerializeField] private Animator _animator;
     [SerializeField, Range(0f, 10f)] private float _pauseAfterAttack;
+    [SerializeField, Range(1f, 10f)] private int _health;
 
     protected Transform playerTransform { get { return _playerTransform; } set { _playerTransform = value; } }
     protected Transform returnTransform { get { return _returnTransform; } set { _returnTransform = value; } }
     protected NavMeshAgent nav { get; set; }
     protected Animator animator { get { return _animator; } set { _animator = value; } }
     protected float pauseAfterAttack { get { return _pauseAfterAttack; } set { _pauseAfterAttack = value; } }
-    protected int health { get; set; }
+    protected int health { get { return _health; } set { _health = value; } }
     protected bool inVisualRange { get; set; }
     protected bool inAttackRange { get; set; }
     protected bool inProjectileRange { get; set; }
@@ -81,8 +82,13 @@ public abstract class Enemy : MonoBehaviour
         inDamageRange = enter;
     }
 
+    public void TriggerDeath() {
+        Destroy(gameObject);
+    }
+
     public abstract void TriggerAttack();
     public abstract void TriggerProjectile();
+    public abstract void TriggerDamage();
     public abstract void ProjectileHit(GameObject hit);
     public abstract void StartFollow();
 }

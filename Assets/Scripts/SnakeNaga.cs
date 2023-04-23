@@ -82,6 +82,10 @@ public class SnakeNaga : Enemy {
         }
     }
 
+    public override void TriggerDamage() {
+        //Trigger Damage
+    }
+
     public override void ProjectileHit(GameObject hit) {
         //Hit by whirlwind
         hitObject = hit;

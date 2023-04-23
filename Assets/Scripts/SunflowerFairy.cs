@@ -8,11 +8,16 @@ public class SunflowerFairy : Enemy
     private const string ATTACK = "Seed";
     private const string LOOK_AROUND = "Look Around";
     private const string SPIN = "Spin";
+    private const string DAMAGE = "Damage";
+    private const string DIE = "Die";
 
     [SerializeField] private SkillSO projectile;
     [SerializeField] private Transform seedLocation;
+    [SerializeField] private int damageTaken;
+    [SerializeField] private GameObject hitAnimation;
 
     private bool isHit;
+    private bool isBurning;
     private GameObject hitObject;
     private float waitToLookAround;
 
@@ -21,7 +26,14 @@ public class SunflowerFairy : Enemy
     }
 
     protected override void Update() {
-        if (!isHit) {
+        //Debug.Log(health);
+        if (health <= 0) {
+            isBurning = false;
+            isHit = false;
+            animator.SetBool(DAMAGE, isBurning);
+            nav.isStopped = true;
+            animator.SetTrigger(DIE);
+        } else if (!isHit) {
             animator.SetFloat(MOVE, nav.velocity.sqrMagnitude);
             if (inVisualRange) {
                 nav.SetDestination(playerTransform.position);
@@ -35,10 +47,14 @@ public class SunflowerFairy : Enemy
                 waitToLookAround = Random.Range(3f, 5f);
             }
             waitToLookAround -= Time.deltaTime;
-        } else { 
+        } else if (isBurning) { 
             if (hitObject) {
-                animator.SetTrigger(SPIN);
-                hitObject = null;
+                transform.position = hitObject.transform.position;
+            } else {
+                isBurning = false;
+                isHit = false;
+                animator.SetBool(DAMAGE, isBurning);
+                StartFollow();
             }
         }
         base.Update();
@@ -63,8 +79,20 @@ public class SunflowerFairy : Enemy
         Instantiate(projectile.skillPrefab, seedLocation.position, Quaternion.identity);
     }
 
+    public override void TriggerDamage() {
+        health -= damageTaken;
+        Instantiate(hitAnimation, transform);
+    }
+
     public override void ProjectileHit(GameObject hit) {
         //Hit by whirlwind
+        Whirlwind whirlwind = hit.GetComponent<Whirlwind>();
+        if (whirlwind) {
+            isBurning = whirlwind.isBurning;
+            animator.SetBool(DAMAGE, isBurning);
+            if (!isBurning)
+                animator.SetTrigger(SPIN);
+        }
         hitObject = hit;
         isHit = true;
     }

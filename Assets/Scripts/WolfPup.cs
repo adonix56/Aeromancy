@@ -43,6 +43,10 @@ public class WolfPup : Enemy {
         }
     }
 
+    public override void TriggerDamage() {
+        // One hit kills?
+    }
+
     public override void ProjectileHit(GameObject hit) {
         //Hit by whirlwind
         //hitObject = hit;

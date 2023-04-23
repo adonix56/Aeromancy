@@ -11,7 +11,7 @@ public class Burnable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Fire>() != null && OnBurnEnter != null)
+        if (other.GetComponent<Fire>() != null && OnBurnEnter != null) 
         {
             OnBurnEnter();
         }
@@ -19,7 +19,7 @@ public class Burnable : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<Fire>() != null && OnBurnEnter != null)
+        if (other.GetComponent<Fire>() != null && OnBurnExit != null)
         {
             OnBurnExit();
         }

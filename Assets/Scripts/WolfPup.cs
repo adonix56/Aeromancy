@@ -5,23 +5,32 @@ using UnityEngine;
 public class WolfPup : Enemy {
     private const string BITE = "Bite";
     private const string MOVE = "Move";
+    private const string DIE = "Die";
 
     [SerializeField] private SkillSO attack;
+
+    private VenusFlytrap venusFlytrap;
+    private bool alive = true;
 
     protected override void Start() {
         base.Start();
     }
 
     protected override void Update() {
-        animator.SetFloat(MOVE, nav.velocity.sqrMagnitude);
-        if (inVisualRange) {
-            nav.SetDestination(playerTransform.position);
-            if (!nav.isStopped)
-                HandleAttacks();
+        if (alive) {
+            animator.SetFloat(MOVE, nav.velocity.sqrMagnitude);
+            if (inVisualRange) {
+                nav.SetDestination(playerTransform.position);
+                if (!nav.isStopped)
+                    HandleAttacks();
+            } else {
+                nav.SetDestination(returnTransform.position);
+            }
+            base.Update();
         } else {
-            nav.SetDestination(returnTransform.position);
+            transform.position = transform.parent.position;
+            transform.rotation = transform.parent.rotation;
         }
-        base.Update();
     }
 
     private void HandleAttacks() {
@@ -33,14 +42,34 @@ public class WolfPup : Enemy {
         }
     }
 
+    public void SetVenusFlytrap(VenusFlytrap vft) {
+        venusFlytrap = vft;
+    }
+
     public override void TriggerProjectile() {
         //Instantiate(projectile.skillPrefab, fireballLocation.position, Quaternion.identity).GetComponent<SnakeNagaFireball>();
     }
 
     public override void TriggerAttack() {
-        if (inDamageRange) {
+        if (venusFlytrap && !venusFlytrap.HasEaten()) {
+            nav.isStopped = true;
+            animator.SetTrigger(DIE);
+            alive = false;
+            venusFlytrap.Eat(this, "Wolf Pup");
+        }
+        if (inDamageRange && CheckIfPlayerIsCloser()) {
             characterHealth.GetHit();
         }
+        //Weird at the end of the trigger... It says that the player 
+    }
+
+    private bool CheckIfPlayerIsCloser() {
+        if (venusFlytrap) {
+            float venusDistance = Vector3.Distance(venusFlytrap.transform.position, transform.position);
+            float playerDistance = Vector3.Distance(characterHealth.transform.position, transform.position);
+            return venusDistance > playerDistance;
+        }
+        return true;
     }
 
     public override void TriggerDamage() {

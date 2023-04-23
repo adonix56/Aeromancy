@@ -32,6 +32,8 @@ public class CharacterSpawn : MonoBehaviour
 
         GetComponent<CharacterBreathLevel>().RestoreEnergy();
         GetComponent<CharacterHealth>().Restore();
+        GetComponent<FogReaction>().RestartFogCount();
+        GameManager.Instance.GetComponent<EnvironmentManager>().ChangeToDefaultEnvironment();
         transform.Rotate(0, 0, 0);
     }
 }

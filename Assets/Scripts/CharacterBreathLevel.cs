@@ -8,11 +8,12 @@ public class CharacterBreathLevel : MonoBehaviour
     //[SerializeField] private float holdBreathUseRate = 0.1f;
     [SerializeField] private EnergyHandler energyBarController;
     [SerializeField] private float restRegainBreathRate = 0.1f;
+    [SerializeField] private float walkRegainBreathRate = 0.04f;
 
     private GameInput gameInput;
     private float currentBreathLevel;
     private CharacterMovement characterMovement;
-    private bool canRegen = true;
+    private int regenLockNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +25,17 @@ public class CharacterBreathLevel : MonoBehaviour
 
     private void Update()
     {
-        if (!characterMovement.IsMoving() && canRegen) {
-            GiveEnergy(restRegainBreathRate);
+        if(CanRegen())
+        {
+            if(!characterMovement.IsMoving())
+            {
+                GiveEnergy(restRegainBreathRate);
+            }
+            else if (!characterMovement.IsSprinting())
+            {
+                GiveEnergy(walkRegainBreathRate);
+            }
         }
-        //if (gameInput.IsHoldBreathPressed())
-        //{
-        //    UseEnergy(holdBreathUseRate);
-        //}
     }
 
     public bool HasEnoughEnergy(float amt)
@@ -38,8 +43,16 @@ public class CharacterBreathLevel : MonoBehaviour
         return currentBreathLevel > amt;
     }
 
+    public bool CanRegen()
+    {
+        return regenLockNumber <= 0;
+    }
+
     public void LockRegen(bool lockRegen) {
-        canRegen = !lockRegen;
+        if (lockRegen)
+            regenLockNumber++;
+        else
+            regenLockNumber--;
     }
 
     public void UseEnergy(float amt)

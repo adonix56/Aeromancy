@@ -6,6 +6,7 @@ using Cinemachine;
 public class CameraTriggerController : MonoBehaviour
 {
     public static CameraTriggerController Instance { get; private set; }
+    [SerializeField] private CinemachineVirtualCamera defaultCamera;
 
     private CinemachineVirtualCamera currentCamera;
 
@@ -17,7 +18,14 @@ public class CameraTriggerController : MonoBehaviour
     }
 
     private void Start() {
-        currentCamera = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+        if (Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera == null)
+        {
+            currentCamera = defaultCamera;
+        }
+        else
+        {
+            currentCamera = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+        }
     }
 
     public void TriggerEvent(CinemachineVirtualCamera camera) {

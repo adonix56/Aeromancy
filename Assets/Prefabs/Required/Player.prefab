@@ -109,7 +109,7 @@ MonoBehaviour:
   skill:
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
-  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+  - {fileID: 11400000, guid: 708780d74e3de66448055ec11ac5375d, type: 2}
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
 --- !u!114 &386485127144991585
@@ -184,7 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBreathLevel: 100
   energyBarController: {fileID: 0}
-  restRegainBreathRate: 0.1
+  restRegainBreathRate: 0.5
+  walkRegainBreathRate: 0.05
 --- !u!114 &8393299758126482753
 MonoBehaviour:
   m_ObjectHideFlags: 0

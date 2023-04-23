@@ -163,8 +163,14 @@ public class CharacterMovement : MonoBehaviour
         canTurn = turn;
     }
 
-    public void SetSprint(bool s) {
+    public void SetSprint(bool s)
+    {
         sprint = s;
+    }
+
+    public bool IsSprinting()
+    {
+        return sprint;
     }
 
     public bool IsMoving() {

@@ -8,6 +8,7 @@ public class CharacterBreathLevel : MonoBehaviour
     //[SerializeField] private float holdBreathUseRate = 0.1f;
     [SerializeField] private EnergyHandler energyBarController;
     [SerializeField] private float restRegainBreathRate = 0.1f;
+    [SerializeField] private float walkRegainBreathRate = 0.04f;
 
     private GameInput gameInput;
     private float currentBreathLevel;
@@ -24,6 +25,17 @@ public class CharacterBreathLevel : MonoBehaviour
 
     private void Update()
     {
+        if(canRegen)
+        {
+            if(!characterMovement.IsMoving())
+            {
+                GiveEnergy(restRegainBreathRate);
+            }
+            else if (!characterMovement.IsSprinting())
+            {
+                GiveEnergy(walkRegainBreathRate);
+            }
+        }
         if (!characterMovement.IsMoving() && canRegen) {
             GiveEnergy(restRegainBreathRate);
         }

@@ -19,7 +19,11 @@ public class SnakeNaga : Enemy {
     //private float pause;
     private string nextAttack;
     private bool isHit;
+    private bool isEaten;
     private GameObject hitObject;
+    private float waitToExplode;
+    private Vector3 previousPosition;
+    private Quaternion previousRotation;
     //private CharacterHealth characterHealth;
     /*[SerializeField] private Transform playerTransform;
     [SerializeField] private Transform returnTransform;
@@ -46,10 +50,15 @@ public class SnakeNaga : Enemy {
                 nav.SetDestination(returnTransform.position);
             }
         } else {
-            if (hitObject) {
-                transform.position = hitObject.transform.position;
+            if (!isEaten) {
+                if (hitObject) {
+                    transform.position = hitObject.transform.position;
+                } else {
+                    isHit = false;
+                }
             } else {
-                isHit = false;
+                transform.position = transform.parent.position;
+                transform.rotation = transform.parent.rotation;
             }
         }
         base.Update();
@@ -70,6 +79,16 @@ public class SnakeNaga : Enemy {
         if (isProjectile) projectileCooldown = skillSO.cooldown;
         else attackCooldown = skillSO.cooldown;
         animator.SetTrigger(trigger);
+    }
+
+    public bool IsInWhirlwind() {
+        return isHit;
+    }
+
+    public void GetEaten() {
+        previousPosition = transform.position;
+        previousRotation = transform.rotation;
+        isEaten = true;
     }
 
     public override void TriggerProjectile() {

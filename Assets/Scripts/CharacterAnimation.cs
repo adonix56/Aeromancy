@@ -11,6 +11,7 @@ public class CharacterAnimation : MonoBehaviour
 
     public void Move(float move) {
         animator.SetFloat(MOVING, move);
+        animator.transform.position = transform.position;
     }
 
     public void SetBlow(bool blow) {

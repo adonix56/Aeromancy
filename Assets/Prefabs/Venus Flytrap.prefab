@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1672180933049925516}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Null
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5764181101479027619}
   - component: {fileID: 9189055948278351694}
   - component: {fileID: 7186667530873373899}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lip_Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 2287131391613819049}
   - component: {fileID: 5164992627611315459}
   - component: {fileID: 5564019911071345650}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 3927132570980142248}
   - component: {fileID: 644199831825055987}
   - component: {fileID: 538171150280661196}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 8791883539838377504}
   - component: {fileID: 4963086942545268340}
   - component: {fileID: 4124090558101718225}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lip_Lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6758409394093497103}
   - component: {fileID: 6758409394093497102}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Venus Flytrap Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8313706287852914277}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -494,9 +494,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8313706288549724757}
-  m_Layer: 0
+  - component: {fileID: 8449804767423265541}
+  m_Layer: 11
   m_Name: Venus Flytrap
-  m_TagString: Untagged
+  m_TagString: Flytrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -517,3 +518,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8449804767423265541
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8313706288549724746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.88, y: 3.14, z: 1.24}
+  m_Center: {x: 0, y: 1.22, z: 0.24}

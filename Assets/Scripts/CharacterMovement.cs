@@ -9,8 +9,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpSpeed = 7f;
     [SerializeField] private float rotateSpeed = 7f;
     [SerializeField] private float slopeLimit = 30f;
-    [SerializeField] private float restRegainBreathRate = 0.1f;
-    [SerializeField] private float sprintBreathConsumeRate = 0.1f;
+    //[SerializeField] private float restRegainBreathRate = 0.1f;
+    //[SerializeField] private float sprintBreathConsumeRate = 0.1f;
     [SerializeField] private LayerMask layerMask;
 
     private GameInput gameInput;
@@ -20,14 +20,16 @@ public class CharacterMovement : MonoBehaviour
     private Vector2 lastMoveDirection;
     private Vector3 playerVerticalSpeed;
     private bool isGrounded = false;
+    private bool isMoving = false;
+    private bool sprint = false;
     private bool canSprint = true;
+    private bool canTurn = true;
     private RaycastHit lastHit;
     private float groundRayDistance = 0.1f;
     private float gravityMultiplier = 3f;
     private bool jumpPressed = false;
     private float currentPlayerSpeed;
     private float animatorSmooth = 0;
-    private bool canTurn = true;
 
     private void Start() {
         gameInput = GameInput.Instance;
@@ -52,7 +54,7 @@ public class CharacterMovement : MonoBehaviour
             HandleSlope();
             UpdateGroundCheck();
 
-            if (canSprint && Input.GetKey("left shift")) {
+            if (canSprint && sprint) {
                 currentPlayerSpeed = sprintSpeed;
             } else if (canSprint) {
                 currentPlayerSpeed = walkSpeed;
@@ -73,26 +75,29 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleMovement() {
         Vector2 moveDirection = lastMoveDirection;
-        if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
-            moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
-            lastMoveDirection = moveDirection;
-        } else if (isGrounded) {
+        //if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
+        //    moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
+        //    lastMoveDirection = moveDirection;
+        //} else 
+        if (isGrounded) {
             moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
             lastMoveDirection = moveDirection;
         }
-        if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
-            //walking
-            if (currentPlayerSpeed == sprintSpeed)
-                characterBreathLevel.UseEnergy(sprintBreathConsumeRate);
-        } else
-        {
-            if(!gameInput.IsHoldBreathPressed())
-                characterBreathLevel.GiveEnergy(restRegainBreathRate);
-        }
+        //if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
+        //    //walking
+        //    if (sprint)
+        //        characterBreathLevel.UseEnergy(sprintBreathConsumeRate);
+        //} else
+        //{
+        //    if(!gameInput.IsHoldBreathPressed())
+        //        characterBreathLevel.GiveEnergy(restRegainBreathRate);
+        //}
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);
-        if (canTurn && playerMovement != Vector3.zero)
+        isMoving = playerMovement != Vector3.zero;
+        if (canTurn && isMoving) {
             transform.forward = Vector3.Slerp(transform.forward, playerMovement, Time.deltaTime * rotateSpeed);
+        }
     }
 
     private void HandleJump() {
@@ -156,6 +161,20 @@ public class CharacterMovement : MonoBehaviour
 
     public void SetTurning(bool turn) {
         canTurn = turn;
+    }
+
+    public void SetSprint(bool s)
+    {
+        sprint = s;
+    }
+
+    public bool IsSprinting()
+    {
+        return sprint;
+    }
+
+    public bool IsMoving() {
+        return isMoving;
     }
 
     public void ResetPlayerSpeed() {

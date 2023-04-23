@@ -18,7 +18,8 @@ GameObject:
   - component: {fileID: -8174291517691639060}
   - component: {fileID: 8096775906506111152}
   - component: {fileID: 8233256676655042126}
-  - component: {fileID: 6585222212079504707}
+  - component: {fileID: 8393299758126482753}
+  - component: {fileID: 59820236078728041}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -90,8 +91,6 @@ MonoBehaviour:
   jumpSpeed: 15
   rotateSpeed: 7
   slopeLimit: 45
-  restRegainBreathRate: 0.1
-  sprintBreathConsumeRate: 0.1
   layerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -110,9 +109,7 @@ MonoBehaviour:
   skill:
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
-  airSkill:
-  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
-  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+  - {fileID: 11400000, guid: 708780d74e3de66448055ec11ac5375d, type: 2}
 --- !u!114 &386485127144991585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,9 +181,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBreathLevel: 100
-  holdBreathUseRate: 0.1
   energyBarController: {fileID: 0}
---- !u!114 &6585222212079504707
+  restRegainBreathRate: 0.2
+  walkRegainBreathRate: 0
+--- !u!114 &8393299758126482753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318765745579626700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1bc89f1c789be4ca186f737a0d6a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeForDamage: 2
+--- !u!114 &59820236078728041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c3aa522e85d3140a555097a72ee960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyListenToThisCollider: {fileID: 0}
+  onlyListenToThisCollider: {fileID: 2318765745579626702}
 --- !u!1 &6840935570169880739
 GameObject:
   m_ObjectHideFlags: 0

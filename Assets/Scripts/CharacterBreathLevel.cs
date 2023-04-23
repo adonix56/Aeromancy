@@ -13,7 +13,7 @@ public class CharacterBreathLevel : MonoBehaviour
     private GameInput gameInput;
     private float currentBreathLevel;
     private CharacterMovement characterMovement;
-    private bool canRegen;
+    private bool canRegen = true;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +56,6 @@ public class CharacterBreathLevel : MonoBehaviour
 
     public void UseEnergy(float amt)
     {
-        Debug.Log($"Using {amt}");
         currentBreathLevel -= amt;
         if(currentBreathLevel < 0)
         {
@@ -89,7 +88,6 @@ public class CharacterBreathLevel : MonoBehaviour
     }
 
     public void GiveEnergy(float amt) {
-        Debug.Log($"Giving {amt}");
         currentBreathLevel += amt;
         if (currentBreathLevel > maxBreathLevel)
         {

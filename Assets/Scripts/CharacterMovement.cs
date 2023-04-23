@@ -75,23 +75,26 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleMovement() {
         Vector2 moveDirection = lastMoveDirection;
-        //if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
+        // if ((gameInput.GetNormalizedMovement() * currentPlayerSpeed).x == 0.0f && (gameInput.GetNormalizedMovement() * currentPlayerSpeed).y == 0.0f){
         //    moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
         //    lastMoveDirection = moveDirection;
-        //} else 
+        // } else 
         if (isGrounded) {
             moveDirection = gameInput.GetNormalizedMovement() * currentPlayerSpeed; // Forward/Back/Left/Right
             lastMoveDirection = moveDirection;
         }
-        //if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
+        // if (Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0) {
         //    //walking
-        //    if (sprint)
-        //        characterBreathLevel.UseEnergy(sprintBreathConsumeRate);
-        //} else
-        //{
+        //    if (sprint){
+        //        characterBreathLevel.UseEnergy(sprintBreathConsumeRate);}
+        //     else{
+        //        characterBreathLevel.GiveEnergy(restRegainBreathRate/2);
+        //     }
+        // } else
+        // {
         //    if(!gameInput.IsHoldBreathPressed())
         //        characterBreathLevel.GiveEnergy(restRegainBreathRate);
-        //}
+        // }
         Vector3 playerMovement = new Vector3(moveDirection.x, 0, moveDirection.y);
         controller.Move(playerMovement * Time.deltaTime);
         isMoving = playerMovement != Vector3.zero;

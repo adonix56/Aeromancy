@@ -109,7 +109,13 @@ MonoBehaviour:
   skill:
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
   - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+<<<<<<< HEAD
   - {fileID: 11400000, guid: 708780d74e3de66448055ec11ac5375d, type: 2}
+=======
+  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+  - {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475, type: 2}
+>>>>>>> origin/mechanics-test
 --- !u!114 &386485127144991585
 MonoBehaviour:
   m_ObjectHideFlags: 0

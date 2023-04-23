@@ -857,7 +857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &178596391
 Transform:
   m_ObjectHideFlags: 0
@@ -4143,7 +4143,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713636981}
-  m_LocalRotation: {x: 0.011641051, y: 0.9817051, z: -0.063841194, w: 0.17900793}
+  m_LocalRotation: {x: 0.011641052, y: 0.9817051, z: -0.06384119, w: 0.17900795}
   m_LocalPosition: {x: -11.81, y: 4.382, z: 31.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6302,7 +6302,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960593821}
-  m_LocalRotation: {x: 0.002385238, y: 0.97370195, z: -0.010205036, w: 0.22758476}
+  m_LocalRotation: {x: 0.0023852407, y: 0.9737019, z: -0.010205049, w: 0.22758473}
   m_LocalPosition: {x: -32.53, y: 3.54, z: 65.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12594,7 +12594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1750751332
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -12986,6 +12986,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 459182649918768520, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459182649918768520, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459182649918768520, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459182649918768520, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 459182649918768520, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438918108239060444, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438918108239060444, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438918108239060444, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438918108239060444, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438918108239060444, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1890209143353687165, guid: a88a5eec39733cd4aab018465620a3af,
         type: 3}
       propertyPath: flickerPeriod
@@ -13110,6 +13160,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815885874452871548, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815885874452871548, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815885874452871548, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815885874452871548, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815885874452871548, guid: a88a5eec39733cd4aab018465620a3af,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5101218152328139628, guid: a88a5eec39733cd4aab018465620a3af,
         type: 3}
@@ -16303,6 +16378,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8269216675156990708, guid: 9118ce02263b696458af3e84dc5edf6d,
+        type: 3}
+      propertyPath: defaultCamera
+      value: 
+      objectReference: {fileID: 880423368}
     - target: {fileID: 8269216675156990709, guid: 9118ce02263b696458af3e84dc5edf6d,
         type: 3}
       propertyPath: m_RootOrder

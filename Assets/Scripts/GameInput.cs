@@ -9,6 +9,7 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance { get; private set; }
 
     public event EventHandler OnJumpAction;
+    public event EventHandler OnPauseAction;
     public event EventHandler OnHoldBreathAction;
     // Left Mouse Button
     public event EventHandler OnSkill0Action;
@@ -42,11 +43,17 @@ public class GameInput : MonoBehaviour
         inputSystemActions.Player.Skill_2.performed += Skill_2_Performed;
         inputSystemActions.Player.Skill_3.performed += Skill_3_Performed;
         inputSystemActions.Player.Skill_4.performed += Skill_4_Performed;
+        inputSystemActions.Player.Pause.performed += Pause_Performed;
     }
 
     private void Jump_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         OnJumpAction?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Pause_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        OnPauseAction?.Invoke(this, EventArgs.Empty);
     }
 
     //private void Hold_Breath_Performed(UnityEngine.InputSystem.InputAction.CallbackContext context)

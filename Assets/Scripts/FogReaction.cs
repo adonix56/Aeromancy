@@ -68,4 +68,9 @@ public class FogReaction : MonoBehaviour
     {
         currentFogAmount--;
     }
+
+    public void RestartFogCount()
+    {
+        currentFogAmount = 0;
+    }
 }

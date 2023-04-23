@@ -14,6 +14,14 @@ public class EnemyAnimatorEvents : MonoBehaviour
         enemy.TriggerProjectile();
     }
 
+    public void TriggerDamage() {
+        enemy.TriggerDamage();
+    }
+
+    public void TriggerDeath() {
+        enemy.TriggerDeath();
+    }
+
     public void StartFollow() {
         enemy.StartFollow();
     }

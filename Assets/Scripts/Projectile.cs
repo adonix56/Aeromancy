@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeNagaFireball : BaseSkill
+public class Projectile : BaseSkill
 {
     private const string PLAYER = "Player";
     //private Vector3 direction;
     [SerializeField] private float travelSpeed;
     [SerializeField] private ParticleSystem trail;
-    [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private ParticleSystem impact;
+    [SerializeField] private GameObject visualObject;
 
     private CharacterHealth characterHealth;
     private Vector3 direction;
     private bool dying = false;
+    private float impactTime;
+
+    private void Awake() {
+        impactTime = impact.main.duration;
+    }
 
     private void Start() {
         characterHealth = CharacterManager.Instance.GetCharacterHealth();
@@ -25,7 +31,10 @@ public class SnakeNagaFireball : BaseSkill
         if (!dying) {
             dying = true;
             trail.Stop();
-            explosion.gameObject.SetActive(true);
+            impact.gameObject.SetActive(true);
+            if (visualObject) {
+                visualObject.SetActive(false);
+            }
             if (other.CompareTag(PLAYER)) {
                 characterHealth.GetHit();
             }
@@ -34,9 +43,10 @@ public class SnakeNagaFireball : BaseSkill
 
     private void Update() {
         if (dying) {
-            if (explosion == null) {
+            if (impactTime < 0) {
                 Deactivate();
             }
+            impactTime -= Time.deltaTime;
         } else {
             transform.position += transform.forward * Time.deltaTime * travelSpeed;
         }
@@ -47,6 +57,6 @@ public class SnakeNagaFireball : BaseSkill
     }
 
     public override void Deactivate() {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

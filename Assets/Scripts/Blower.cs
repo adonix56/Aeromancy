@@ -11,6 +11,7 @@ public class Blower : BaseSkill
 
     private CharacterAnimation characterAnimation;
     private CharacterMovement characterMovement;
+    private CharacterBreathLevel characterBreathLevel;
 
     private void Start() {
 
@@ -37,13 +38,16 @@ public class Blower : BaseSkill
     public override void Activate() {
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
         characterMovement = CharacterManager.Instance.GetCharacterMovement();
+        characterBreathLevel = CharacterManager.Instance.GetCharacterBreathLevel();
         characterAnimation.SetBlow(true);
+        characterBreathLevel.LockRegen(true);
         characterMovement.SetPlayerSpeed(blowSpeed, true);
         characterMovement.SetTurning(false);
     }
 
     public override void Deactivate() {
         characterAnimation.SetBlow(false);
+        characterBreathLevel.LockRegen(false);
         characterMovement.ResetPlayerSpeed();
         characterMovement.SetTurning(true);
         foreach (Blowable blowable in GameObject.FindObjectsOfType<Blowable>()) {

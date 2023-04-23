@@ -15,6 +15,7 @@ public class Projectile : BaseSkill
     private Vector3 direction;
     private bool dying = false;
     private float impactTime;
+    private float waitToHit = 0.2f;
 
     private void Awake() {
         impactTime = impact.main.duration;
@@ -28,7 +29,7 @@ public class Projectile : BaseSkill
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (!dying) {
+        if (VerifyHit(other)) {
             dying = true;
             trail.Stop();
             impact.gameObject.SetActive(true);
@@ -41,6 +42,15 @@ public class Projectile : BaseSkill
         }
     }
 
+    private bool VerifyHit(Collider other) {
+        bool verify = false;
+        if (dying) return false;
+        if (waitToHit < 0) verify = true;
+        if (other.CompareTag(PLAYER)) verify = true;
+        if (GetComponent<Whirlwind>()) verify = true;
+        return verify;
+    }
+
     private void Update() {
         if (dying) {
             if (impactTime < 0) {
@@ -50,6 +60,7 @@ public class Projectile : BaseSkill
         } else {
             transform.position += transform.forward * Time.deltaTime * travelSpeed;
         }
+        waitToHit -= Time.deltaTime;
     }
 
     public override void Activate() {

@@ -348,10 +348,11 @@ MonoBehaviour:
   _playerTransform: {fileID: 0}
   _returnTransform: {fileID: 0}
   _animator: {fileID: 8984879674688481507}
+  _pauseAfterAttack: 0
+  _health: 0
   attack: {fileID: 11400000, guid: 93c480de0cb24aa4ca8d056d5762a92d, type: 2}
   projectile: {fileID: 11400000, guid: fff1793b9513d02408893305f5597f28, type: 2}
   fireballLocation: {fileID: 8984879674697565929}
-  pauseAfterAttack: 1.5
 --- !u!1 &8032704268707250960
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7763456120344770557}
   - component: {fileID: 2093502477862296692}
+  - component: {fileID: 7923871096747133253}
   m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
@@ -398,6 +400,19 @@ CapsuleCollider:
   m_Height: 5.05
   m_Direction: 1
   m_Center: {x: 0, y: 0.83, z: 0}
+--- !u!114 &7923871096747133253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032704268707250960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f59a3ba2c417d439196c8eceb3db0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snakeNagaParent: {fileID: 4742698424483222441}
 --- !u!1 &8984879674697865729
 GameObject:
   m_ObjectHideFlags: 0

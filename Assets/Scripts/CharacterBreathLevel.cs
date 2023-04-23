@@ -13,7 +13,7 @@ public class CharacterBreathLevel : MonoBehaviour
     private GameInput gameInput;
     private float currentBreathLevel;
     private CharacterMovement characterMovement;
-    private bool canRegen;
+    private int regenLockNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class CharacterBreathLevel : MonoBehaviour
 
     private void Update()
     {
-        if(canRegen)
+        if(CanRegen())
         {
             if(!characterMovement.IsMoving())
             {
@@ -36,13 +36,6 @@ public class CharacterBreathLevel : MonoBehaviour
                 GiveEnergy(walkRegainBreathRate);
             }
         }
-        if (!characterMovement.IsMoving() && canRegen) {
-            GiveEnergy(restRegainBreathRate);
-        }
-        //if (gameInput.IsHoldBreathPressed())
-        //{
-        //    UseEnergy(holdBreathUseRate);
-        //}
     }
 
     public bool HasEnoughEnergy(float amt)
@@ -50,13 +43,20 @@ public class CharacterBreathLevel : MonoBehaviour
         return currentBreathLevel > amt;
     }
 
+    public bool CanRegen()
+    {
+        return regenLockNumber <= 0;
+    }
+
     public void LockRegen(bool lockRegen) {
-        canRegen = !lockRegen;
+        if (lockRegen)
+            regenLockNumber++;
+        else
+            regenLockNumber--;
     }
 
     public void UseEnergy(float amt)
     {
-        Debug.Log($"Using {amt}");
         currentBreathLevel -= amt;
         if(currentBreathLevel < 0)
         {
@@ -89,7 +89,6 @@ public class CharacterBreathLevel : MonoBehaviour
     }
 
     public void GiveEnergy(float amt) {
-        Debug.Log($"Giving {amt}");
         currentBreathLevel += amt;
         if (currentBreathLevel > maxBreathLevel)
         {

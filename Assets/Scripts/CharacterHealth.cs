@@ -51,6 +51,10 @@ public class CharacterHealth : MonoBehaviour
         //currentWait = secondsToRecover;
     }
 
+    /*public int GetCurrentLives() {
+        return currentLives;
+    }*/
+
     public void TriggerHitEffect()
     {
         hitable = false;

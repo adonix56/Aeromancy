@@ -28,8 +28,12 @@ public class CharacterSpawn : MonoBehaviour
         controller.enabled = false;
         controller.transform.position = spawnManager.CurrentSpawnLocation();
         controller.enabled = true;
+        //Physics.SyncTransforms();
+
         GetComponent<CharacterBreathLevel>().RestoreEnergy();
         GetComponent<CharacterHealth>().Restore();
+        GetComponent<FogReaction>().RestartFogCount();
+        GameManager.Instance.GetComponent<EnvironmentManager>().ChangeToDefaultEnvironment();
         transform.Rotate(0, 0, 0);
     }
 }

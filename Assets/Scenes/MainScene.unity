@@ -4143,7 +4143,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713636981}
-  m_LocalRotation: {x: 0.011641052, y: 0.9817051, z: -0.06384119, w: 0.17900795}
+  m_LocalRotation: {x: 0.011641051, y: 0.9817051, z: -0.063841194, w: 0.17900793}
   m_LocalPosition: {x: -11.81, y: 4.382, z: 31.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5719,7 +5719,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880423367}
-  m_LocalRotation: {x: 0.37555227, y: 0.22650868, z: -0.09519024, w: 0.8936404}
+  m_LocalRotation: {x: 0.37555227, y: 0.22650872, z: -0.09519028, w: 0.8936404}
   m_LocalPosition: {x: -1.6776876, y: 3.6622791, z: -3.154564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6302,7 +6302,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960593821}
-  m_LocalRotation: {x: 0.0023852412, y: 0.9737019, z: -0.010205053, w: 0.2275847}
+  m_LocalRotation: {x: 0.002385238, y: 0.97370195, z: -0.010205036, w: 0.22758476}
   m_LocalPosition: {x: -32.53, y: 3.54, z: 65.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9597,23 +9597,6 @@ PrefabInstance:
       propertyPath: energyHandler
       value: 
       objectReference: {fileID: 610321464}
-    - target: {fileID: 1842488410428886138, guid: 60cab394eb5a1054db7e67e759274448,
-        type: 3}
-      propertyPath: skill.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1842488410428886138, guid: 60cab394eb5a1054db7e67e759274448,
-        type: 3}
-      propertyPath: skill.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475,
-        type: 2}
-    - target: {fileID: 1842488410428886138, guid: 60cab394eb5a1054db7e67e759274448,
-        type: 3}
-      propertyPath: skill.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 708780d74e3de66448055ec11ac5375d,
-        type: 2}
     - target: {fileID: 2274210902932546296, guid: 60cab394eb5a1054db7e67e759274448,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10269,16 +10252,6 @@ PrefabInstance:
       propertyPath: energyBarController
       value: 
       objectReference: {fileID: 610321464}
-    - target: {fileID: 8233256676655042126, guid: 60cab394eb5a1054db7e67e759274448,
-        type: 3}
-      propertyPath: restRegainBreathRate
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8233256676655042126, guid: 60cab394eb5a1054db7e67e759274448,
-        type: 3}
-      propertyPath: walkRegainBreathRate
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8693258713752856910, guid: 60cab394eb5a1054db7e67e759274448,
         type: 3}
       propertyPath: m_LocalPosition.y

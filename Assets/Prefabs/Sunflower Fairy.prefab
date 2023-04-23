@@ -305,8 +305,12 @@ MonoBehaviour:
   _returnTransform: {fileID: 0}
   _animator: {fileID: 8245315748998016341}
   _pauseAfterAttack: 1.2
+  _health: 5
   projectile: {fileID: 11400000, guid: b6df17ed64ca79b4397ccb58ee01204e, type: 2}
-  seedLocation: {fileID: 8245315748988388065}
+  seedLocation: {fileID: 1010085712479134480}
+  damageTaken: 1
+  hitAnimation: {fileID: 3306853022672922260, guid: e90f0ad1d85557c4c9f68602caba1d40,
+    type: 3}
 --- !u!1 &8245315748988493461
 GameObject:
   m_ObjectHideFlags: 0

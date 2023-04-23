@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458a7148f23eb0949ac6cc2e1c1da80c, type: 3}
-  m_Name: Seed
+  m_Name: Sunflower Fairy Seed
   m_EditorClassIdentifier: 
   skillName: Seed
   skillPrefab: {fileID: 4446431687888057331, guid: 5a7dc231a2320214986c1f0f1db1f0a3,

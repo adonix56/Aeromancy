@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -8174291517691639060}
   - component: {fileID: 8096775906506111152}
   - component: {fileID: 8233256676655042126}
+  - component: {fileID: 6585222212079504707}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -89,6 +90,8 @@ MonoBehaviour:
   jumpSpeed: 15
   rotateSpeed: 7
   slopeLimit: 45
+  restRegainBreathRate: 0.1
+  sprintBreathConsumeRate: 0.1
   layerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -168,7 +171,6 @@ MonoBehaviour:
   hitEffectOverlay: {fileID: 0}
   darkestAlpha: 0.6
   hitBufferTime: 2
-  testTriggerHit: 0
 --- !u!114 &8233256676655042126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,8 +183,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7256677c861ee4459e004b82edcc4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBreath: 100
+  maxBreathLevel: 100
+  holdBreathUseRate: 0.1
   energyBarController: {fileID: 0}
+--- !u!114 &6585222212079504707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318765745579626700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c3aa522e85d3140a555097a72ee960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onlyListenToThisCollider: {fileID: 0}
 --- !u!1 &6840935570169880739
 GameObject:
   m_ObjectHideFlags: 0

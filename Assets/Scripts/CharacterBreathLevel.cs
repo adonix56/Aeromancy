@@ -19,6 +19,7 @@ public class CharacterBreathLevel : MonoBehaviour
     void Start()
     {
         gameInput = GameInput.Instance;
+        energyBarController.SetMaxValue(maxBreathLevel);
         currentBreathLevel = maxBreathLevel;
         characterMovement = GetComponent<CharacterMovement>();
     }

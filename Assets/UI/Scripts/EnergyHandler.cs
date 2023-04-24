@@ -10,11 +10,6 @@ public class EnergyHandler : MonoBehaviour
 	public Slider slider;
 	//public TMP_Text percentage;
 
-	private void Start() {
-		slider.value = 100.0f;
-        //percentage.text = slider.value.ToString()+"% Breath";
-	}
-
     public void SetMaxValue(float maxValue)
     {
         slider.maxValue = maxValue;

@@ -16101,7 +16101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &610236676
 Transform:
   m_ObjectHideFlags: 0
@@ -20036,7 +20036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &876081729
 Transform:
   m_ObjectHideFlags: 0
@@ -20170,7 +20170,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880423367}
-  m_LocalRotation: {x: 0.37555227, y: 0.22650868, z: -0.09519024, w: 0.8936404}
+  m_LocalRotation: {x: 0.37555227, y: 0.22650872, z: -0.09519028, w: 0.8936404}
   m_LocalPosition: {x: -1.6776876, y: 3.6622791, z: -3.154564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28251,6 +28251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8233256676655042126, guid: 60cab394eb5a1054db7e67e759274448,
         type: 3}
+      propertyPath: maxBreathLevel
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233256676655042126, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
       propertyPath: energyBarController
       value: 
       objectReference: {fileID: 610321464}
@@ -29079,7 +29084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1637553041
 Transform:
   m_ObjectHideFlags: 0
@@ -31109,7 +31114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1750751332
 PlayableDirector:
   m_ObjectHideFlags: 0

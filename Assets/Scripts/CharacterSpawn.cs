@@ -28,6 +28,7 @@ public class CharacterSpawn : MonoBehaviour
         controller.enabled = false;
         ResetAllEnemiesTriggerStates();
         controller.transform.position = spawnManager.CurrentSpawnLocation();
+        CameraTriggerController.Instance.TriggerEvent(spawnManager.CurrentSpawnCamera());
         controller.enabled = true;
         //Physics.SyncTransforms();
 

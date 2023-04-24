@@ -35,6 +35,7 @@ public class SnakeNaga : Enemy {
     private Quaternion previousRotation;
     private VenusFlytrap flytrap;
     private bool isMad;
+    private bool alive = true;
     //private CharacterHealth characterHealth;
     /*[SerializeField] private Transform playerTransform;
     [SerializeField] private Transform returnTransform;
@@ -55,6 +56,7 @@ public class SnakeNaga : Enemy {
             isMad = false;
             isHit = false;
             isEaten = false;
+            alive = false;
             nav.isStopped = true;
             animator.SetBool(DAMAGE, false);
             animator.SetTrigger(DIE);
@@ -79,7 +81,6 @@ public class SnakeNaga : Enemy {
                 waitToExplode = 2;
                 health--;
                 if (--venusFlytrapAttacks <= 0) {
-                    Debug.Log("Get Mad!");
                     isMad = true;
                 }
             } else if (!isEaten) {
@@ -104,10 +105,13 @@ public class SnakeNaga : Enemy {
 
     private void CalculateDistances() {
         float distance = Vector3.Distance(CharacterManager.Instance.transform.position, transform.position);
-        Debug.Log(distance);
         inVisualRange = distance < visualDistance;
         inProjectileRange = distance < projectileDistance;
         inAttackRange = distance < attackDistance;
+    }
+
+    public bool IsAlive() {
+        return alive;
     }
 
     private void HandleAttacks() {

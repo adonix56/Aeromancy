@@ -47,8 +47,9 @@ public class DialogPanel : MonoBehaviour
 
     void Close()
     {
-        if (blockInput)
+        if (blockInput && !CharacterManager.Instance.InCutscene()) {
             CharacterManager.Instance.SetPlayable(true);
+        }
         transform.LeanScale(Vector3.zero, openTime).setEaseInBounce().setOnComplete(() => {
             Destroy(gameObject);
             if(OnCloseEvent != null)

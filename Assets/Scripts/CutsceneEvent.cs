@@ -14,19 +14,24 @@ public class CutsceneEvent : MonoBehaviour
     [SerializeField] private Image fadeBlack;
     [SerializeField] private CinemachineVirtualCamera outsideCamera;
     [SerializeField] private Animator characterAnimator;
-    [SerializeField] private GameObject cutsceneWizard;
-    [SerializeField] private GameObject playerWizard;
+    //[SerializeField] private GameObject cutsceneWizard;
+    //[SerializeField] private GameObject playerWizard;
 
     private void OnEnable() {
         if (eventCounter == 0) {
-            // Event 1
+            // Event 1 - Opening Cutscene
             GameManager.Instance.gameUI.SetActive(false);
             CharacterManager.Instance.SetPlayable(false);
+            CharacterManager.Instance.SetInCutscene(true);
             characterAnimator.SetTrigger(WAITING);
         } else if (eventCounter == 1) {
-            // Event 3
+            // Event 3 - Opening Cutscene
             meditationParticle.Stop(true);
-        } 
+        } else if (eventCounter == 2) {
+            // Event 5
+            CharacterManager.Instance.SetPlayable(false);
+            CharacterManager.Instance.SetInCutscene(true);
+        }
     }
 
     private void OnDisable() {
@@ -37,6 +42,7 @@ public class CutsceneEvent : MonoBehaviour
             // Event 4
             GameManager.Instance.gameUI.SetActive(true);
             CharacterManager.Instance.SetPlayable(true);
+            CharacterManager.Instance.SetInCutscene(false);
 
             string[] texts = new string[] { "Something is off... Breathing feels... Powerful!"};
             DialogPanel panel = GameManager.Instance.gameUI.GetComponent<DialogController>().OpenBaseDialogPanel(texts, true);
@@ -44,7 +50,11 @@ public class CutsceneEvent : MonoBehaviour
                 string[] texts = new string[] { "Use W/A/S/D to move." };
                 GameManager.Instance.gameUI.GetComponent<DialogController>().OpenThinUpRightPanel(texts, false);
             };
-        } 
+        } else if (eventCounter == 2) {
+            // Event 6
+            CharacterManager.Instance.SetPlayable(true);
+            CharacterManager.Instance.SetInCutscene(false);
+        }
         eventCounter++;
     }
 }

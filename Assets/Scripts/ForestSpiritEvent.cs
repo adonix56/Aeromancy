@@ -9,12 +9,16 @@ public class ForestSpiritEvent : MonoBehaviour
     [SerializeField] private GameObject forestSpirit;
 
     private CinemachineVirtualCamera lastCamera;
+    private bool play;
 
     public void Play()
     {
-        lastCamera = CameraTriggerController.Instance.getCurrentCamera();
-        CameraTriggerController.Instance.TriggerEvent(changeToCamera);
-        forestSpirit.SetActive(true);
+        if (!play) { // Sometimes, Play() gets called twice, making the camera not come back
+            lastCamera = CameraTriggerController.Instance.getCurrentCamera();
+            CameraTriggerController.Instance.TriggerEvent(changeToCamera);
+            forestSpirit.SetActive(true);
+            play = true;
+        }
     }
 
     public void Finish()

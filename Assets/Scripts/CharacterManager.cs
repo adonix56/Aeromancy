@@ -15,6 +15,7 @@ public class CharacterManager : MonoBehaviour
     private CharacterBreathLevel characterBreathLevel;
     private Rigidbody characterRigidbody;
     private bool isPlayable = true;
+    private bool inCutscene = true;
 
     private void Awake() {
         if (Instance != null) {
@@ -33,9 +34,9 @@ public class CharacterManager : MonoBehaviour
     }
 
     public bool IsPlayable() { return isPlayable; }
-
     public void SetPlayable(bool playable) { isPlayable = playable; }
-
+    public bool InCutscene() { return inCutscene; }
+    public void SetInCutscene(bool cutscene) { inCutscene = cutscene; }
     public CharacterController GetCharacterController() { return characterController; }
     public CharacterMovement GetCharacterMovement() { return characterMovement; }
     public CharacterSkills GetCharacterSkills() { return characterSkills; }

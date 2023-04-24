@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5453392745327227388
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 723043979389746996, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496896, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_Name
+      value: IntroDialogPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496897, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496899, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: texts.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496899, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: texts.Array.data[0]
+      value: My name is Windell, and I live a quiet life in this hut, nestled deep
+        within the heart of these ancient woods. Long ago, I studied the arcane arts
+        at the prestigious Aeromancy School, learning to harness the power of the
+        wind and control the very air that surrounds us.
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496899, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: texts.Array.data[1]
+      value: Each day, I rise with the sun, accompanied by the gentle rustle of leaves
+        and the songs of countless birds. I spend my days practicing my craft, communing
+        with the spirits of the forest, and seeking to understand the delicate balance
+        that holds our world together through the air we breathe.
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043979729496899, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: texts.Array.data[2]
+      value: But today... today was different. As I awoke to the soft glow of dawn,
+        I couldn't shake the feeling that something was amiss. The air felt heavier,
+        and the songs of the birds were tainted with a note of unease. Little did
+        I know that when I opened my eyes that morning, the fate of our world was
+        hanging in the balance, and the survival of the environment was in great
+        peril.
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043980493536832, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 723043980493536832, guid: bad206e03e276294c988992f16067c2a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 365
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bad206e03e276294c988992f16067c2a, type: 3}

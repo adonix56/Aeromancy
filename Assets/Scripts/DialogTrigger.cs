@@ -20,6 +20,8 @@ public class DialogTrigger : MonoBehaviour
     public bool destroyOnTrigger = true;
     [SerializeField] private DialogController dialogController;
     public UnityEvent OnClose;
+    [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private AudioSource audioSource;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -44,6 +46,7 @@ public class DialogTrigger : MonoBehaviour
         }
         if (OnClose != null && newPanel != null) {
             newPanel.OnCloseEvent += OnClose.Invoke;
+            newPanel.SetAudioClips(audioClips, audioSource);
         }
         if (destroyOnTrigger)
             Destroy(gameObject);

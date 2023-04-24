@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3225712, g: 0.20074007, b: 0.21991643, a: 1}
+  m_IndirectSpecularColor: {r: 0.32257244, g: 0.20073985, b: 0.2199158, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4141,6 +4141,8 @@ MonoBehaviour:
   OnClose:
     m_PersistentCalls:
       m_Calls: []
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!65 &178596393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5211,6 +5213,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!1 &304539653
 GameObject:
   m_ObjectHideFlags: 0
@@ -5720,6 +5724,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!4 &363033370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5299555868388266046, guid: 5ed37c2bee0169745a1fcc1be110f289,
@@ -8252,6 +8258,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!65 &410542028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8607,6 +8615,8 @@ MonoBehaviour:
   OnClose:
     m_PersistentCalls:
       m_Calls: []
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!65 &452909193
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15071,6 +15081,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!1 &604355288
 GameObject:
   m_ObjectHideFlags: 0
@@ -18141,6 +18153,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!114 &889824898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19242,6 +19256,8 @@ MonoBehaviour:
   OnClose:
     m_PersistentCalls:
       m_Calls: []
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!65 &1016798078
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19548,6 +19564,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips:
+  - {fileID: 8300000, guid: 5d513202732ef5347a19d550d86deeb4, type: 3}
+  - {fileID: 8300000, guid: 935c0237ae6fc4948b997c0d96a51f80, type: 3}
+  - {fileID: 8300000, guid: 7eef15267710c3a4f91552b0beda135a, type: 3}
+  - {fileID: 8300000, guid: 28b84771dc8874d47abd3443c21ae84f, type: 3}
+  - {fileID: 8300000, guid: a1bf0c59b44a7d6428e4c55bd022ef0f, type: 3}
+  - {fileID: 8300000, guid: 407d198a56e8213408c9a8f931ab284d, type: 3}
+  - {fileID: 8300000, guid: 30f3fd7edf23b63479f15d00251d1ed7, type: 3}
+  - {fileID: 8300000, guid: 5aa4a1389a0be24418e51229f0e6bea7, type: 3}
+  audioSource: {fileID: 2082209698}
 --- !u!65 &1046740223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22014,6 +22040,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!65 &1225488101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22355,6 +22383,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!65 &1260000347
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25400,6 +25430,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!4 &1562991956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1163809715740844882, guid: 81dfb0b2707204f4fb8cd3062f9f1c6c,
@@ -32224,6 +32256,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  audioClips: []
+  audioSource: {fileID: 0}
 --- !u!4 &1974702555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1163809715740844882, guid: 81dfb0b2707204f4fb8cd3062f9f1c6c,
@@ -32961,6 +32995,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeForDamage: 2
+--- !u!82 &2082209698 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6415677758149810552, guid: 60cab394eb5a1054db7e67e759274448,
+    type: 3}
+  m_PrefabInstance: {fileID: 1531664104}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2100250358
 PrefabInstance:
   m_ObjectHideFlags: 0

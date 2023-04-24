@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject gameUI;
-
     static GameManager instance;
     public static GameManager Instance
     {
@@ -26,9 +24,7 @@ public class GameManager : MonoBehaviour
         }
         else if (instance != this)
         {
-            Destroy(instance.gameObject);
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

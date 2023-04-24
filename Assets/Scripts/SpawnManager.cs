@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class SpawnManager : MonoBehaviour
 
     public Vector3 CurrentSpawnLocation() {
         return spawnLocations.Peek().transform.position;
+    }
+
+    public CinemachineVirtualCamera CurrentSpawnCamera() {
+        return spawnLocations.Peek().spawnCamera;
     }
 
     public Spawn DequeueNextSpawnLocation() {

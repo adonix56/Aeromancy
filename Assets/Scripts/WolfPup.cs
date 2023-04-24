@@ -24,7 +24,7 @@ public class WolfPup : Enemy {
                 if (!nav.isStopped)
                     HandleAttacks();
             } else {
-                nav.SetDestination(returnTransform.position);
+                //nav.SetDestination(returnTransform.position);
             }
             base.Update();
         } else {
@@ -96,5 +96,11 @@ public class WolfPup : Enemy {
     private IEnumerator PauseBeforeMove() {
         yield return new WaitWhile(() => pause > 0);
         nav.isStopped = false;
+    }
+    public override void ResetTriggerStates() {
+        inAttackRange = false;
+        inProjectileRange = false;
+        inVisualRange = false;
+        inDamageRange = false;
     }
 }

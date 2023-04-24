@@ -16,6 +16,7 @@ public class SunflowerFairy : Enemy
     [SerializeField] private int damageTaken;
     [SerializeField] private GameObject hitAnimation;
 
+    private bool alive = true;
     private bool isHit;
     private bool isBurning;
     private GameObject hitObject;
@@ -28,6 +29,7 @@ public class SunflowerFairy : Enemy
     protected override void Update() {
         //Debug.Log(health);
         if (health <= 0) {
+            alive = false;
             isBurning = false;
             isHit = false;
             animator.SetBool(DAMAGE, isBurning);
@@ -40,7 +42,7 @@ public class SunflowerFairy : Enemy
                 if (!nav.isStopped)
                     HandleAttacks();
             } else {
-                nav.SetDestination(returnTransform.position);
+                //nav.SetDestination(returnTransform.position);
             }
             if (waitToLookAround < 0) {
                 animator.SetTrigger(LOOK_AROUND);
@@ -58,6 +60,10 @@ public class SunflowerFairy : Enemy
             }
         }
         base.Update();
+    }
+
+    public bool IsAlive() {
+        return alive;
     }
 
     private void HandleAttacks() {
@@ -106,5 +112,11 @@ public class SunflowerFairy : Enemy
     private IEnumerator PauseBeforeMove() {
         yield return new WaitWhile(() => pause > 0);
         nav.isStopped = false;
+    }
+    public override void ResetTriggerStates() {
+        inAttackRange = false;
+        inProjectileRange = false;
+        inVisualRange = false;
+        inDamageRange = false;
     }
 }

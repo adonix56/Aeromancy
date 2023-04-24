@@ -171,4 +171,10 @@ public class SnakeNaga : Enemy {
         yield return new WaitWhile(() => pause > 0);
         nav.isStopped = false;
     }
+    public override void ResetTriggerStates() {
+        inAttackRange = false;
+        inProjectileRange = false;
+        inVisualRange = false;
+        inDamageRange = false;
+    }
 }

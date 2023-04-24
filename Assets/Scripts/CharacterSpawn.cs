@@ -26,6 +26,7 @@ public class CharacterSpawn : MonoBehaviour
     public void Respawn()
     {
         controller.enabled = false;
+        ResetAllEnemiesTriggerStates();
         controller.transform.position = spawnManager.CurrentSpawnLocation();
         controller.enabled = true;
         //Physics.SyncTransforms();
@@ -35,5 +36,12 @@ public class CharacterSpawn : MonoBehaviour
         GetComponent<FogReaction>().RestartFogCount();
         GameManager.Instance.GetComponent<EnvironmentManager>().ChangeToDefaultEnvironment();
         transform.Rotate(0, 0, 0);
+    }
+
+    private void ResetAllEnemiesTriggerStates() {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        foreach (Enemy enemy in enemies) {
+            enemy.ResetTriggerStates();
+        }
     }
 }

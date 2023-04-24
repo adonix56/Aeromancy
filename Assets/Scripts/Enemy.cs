@@ -91,4 +91,5 @@ public abstract class Enemy : MonoBehaviour
     public abstract void TriggerDamage();
     public abstract void ProjectileHit(GameObject hit);
     public abstract void StartFollow();
+    public abstract void ResetTriggerStates();
 }

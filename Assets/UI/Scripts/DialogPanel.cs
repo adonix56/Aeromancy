@@ -29,6 +29,13 @@ public class DialogPanel : MonoBehaviour
 
     void Open()
     {
+        DialogPanel[] oldPanels = transform.parent.GetComponentsInChildren<DialogPanel>();
+        foreach(DialogPanel panel in oldPanels)
+        {
+            if(panel != this)
+                panel.Close();
+        }
+
         currentLine = 0;
         textComponent.text = "";
         Vector3 targetScale = transform.localScale;

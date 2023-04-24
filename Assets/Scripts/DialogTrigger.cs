@@ -42,7 +42,8 @@ public class DialogTrigger : MonoBehaviour
             {
                 newPanel.OnCloseEvent += OnClose.Invoke;
             }
-            Destroy(gameObject);
+            if (destroyOnTrigger)
+                Destroy(gameObject);
         }
     }
 }

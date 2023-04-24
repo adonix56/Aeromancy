@@ -18,6 +18,9 @@ public class DialogPanel : MonoBehaviour
     public delegate void CloseEvent();
     public event CloseEvent OnCloseEvent;
 
+    private AudioClip[] audioClips;
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,12 @@ public class DialogPanel : MonoBehaviour
         Open();
         if (blockInput)
             CharacterManager.Instance.SetPlayable(false);
+    }
+
+    public void SetAudioClips(AudioClip[] audioClips, AudioSource audioSource)
+    {
+        this.audioClips = audioClips;
+        this.audioSource = audioSource;
     }
 
     void Open()
@@ -63,6 +72,13 @@ public class DialogPanel : MonoBehaviour
     {
         if (!typing)
         {
+            // Play the corresponding audio clip
+            if (audioSource != null && audioClips != null && currentLine < audioClips.Length)
+            {
+                audioSource.clip = audioClips[currentLine];
+                audioSource.Play();
+            }
+
             if (currentLine < texts.Length)
             {
                 StartCoroutine(TypeLine());

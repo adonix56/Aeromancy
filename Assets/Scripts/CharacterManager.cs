@@ -13,6 +13,7 @@ public class CharacterManager : MonoBehaviour
     private CharacterSpawn characterSpawn;
     private CharacterHealth characterHealth;
     private CharacterBreathLevel characterBreathLevel;
+    private AudioSource characterAudioSource;
     private Rigidbody characterRigidbody;
     private bool isPlayable = true;
     private bool inCutscene = false;
@@ -31,6 +32,7 @@ public class CharacterManager : MonoBehaviour
         characterHealth = GetComponent<CharacterHealth>();
         characterBreathLevel = GetComponent<CharacterBreathLevel>();
         characterRigidbody = GetComponent<Rigidbody>();
+        characterAudioSource = GetComponent<AudioSource>();
     }
 
     public bool IsPlayable() { return isPlayable; }
@@ -44,5 +46,6 @@ public class CharacterManager : MonoBehaviour
     public CharacterSpawn GetCharacterSpawn() { return characterSpawn; }
     public CharacterHealth GetCharacterHealth() { return characterHealth; }
     public CharacterBreathLevel GetCharacterBreathLevel() { return characterBreathLevel; }
+    public AudioSource GetCharacterAudioSource() { return characterAudioSource; }
     public Rigidbody GetCharacterRigidbody() { return characterRigidbody; }
 }

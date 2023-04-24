@@ -8,10 +8,12 @@ public class Blower : BaseSkill
     public Collider blowCollider;
 
     [SerializeField] private float blowSpeed;
+    [SerializeField] private AudioClip blowingAudio;
 
     private CharacterAnimation characterAnimation;
     private CharacterMovement characterMovement;
     private CharacterBreathLevel characterBreathLevel;
+    private AudioSource playerAudioSource;
 
     private void Start() {
 
@@ -39,10 +41,15 @@ public class Blower : BaseSkill
         characterAnimation = CharacterManager.Instance.GetCharacterAnimation();
         characterMovement = CharacterManager.Instance.GetCharacterMovement();
         characterBreathLevel = CharacterManager.Instance.GetCharacterBreathLevel();
+        playerAudioSource = CharacterManager.Instance.GetCharacterAudioSource();
         characterAnimation.SetBlow(true);
         characterBreathLevel.LockRegen(true);
         characterMovement.SetPlayerSpeed(blowSpeed, true);
         characterMovement.SetTurning(false);
+
+        playerAudioSource.clip = blowingAudio;
+        playerAudioSource.volume = 0.3f;
+        playerAudioSource.Play();
     }
 
     public override void Deactivate() {
@@ -50,6 +57,8 @@ public class Blower : BaseSkill
         characterBreathLevel.LockRegen(false);
         characterMovement.ResetPlayerSpeed();
         characterMovement.SetTurning(true);
+        playerAudioSource.volume = 1;
+        playerAudioSource.Stop();
         foreach (Blowable blowable in GameObject.FindObjectsOfType<Blowable>()) {
             blowable.TriggerBlowExit();
         }

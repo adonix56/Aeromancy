@@ -52,7 +52,7 @@ public class CutsceneEvent : MonoBehaviour
                 string[] texts = new string[] { "Use W/A/S/D to move." };
                 gameUI.GetComponent<DialogController>().OpenThinUpRightPanel(texts, false);
             };
-            GameManager.Instance.GetComponent<BackgroundMusicManager>().PlayMusic(mainTheme);
+            // GameManager.Instance.GetComponent<BackgroundMusicManager>().PlayMusic(mainTheme);
         } else if (eventCounter == 2) {
             // Event 6
             CharacterManager.Instance.SetPlayable(true);

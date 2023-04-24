@@ -55,7 +55,7 @@ public class CharacterSkills : MonoBehaviour
                 // Deactivate Holding Air Skill if applicable
                 //if (airSkillHeld[index] != null) DeactivateAirSkill(index);
                 // Activate Holding Ground Skill
-                if (skill[index].holdingSkill && skillHeld[index] == null) {
+                if (skill[index].holdingSkill && skillHeld[index] == null && characterBreathLevel.HasEnoughEnergy(skill[index].energyCost)) {
                     Transform parent = skill[index].skillSpawnOnParent ? transform : null;
                     skillHeld[index] = Instantiate(skill[index].skillPrefab, parent).GetComponent<BaseSkill>();
                     skillHeld[index].Activate();
@@ -106,7 +106,7 @@ public class CharacterSkills : MonoBehaviour
             //    characterBreathLevel.UseEnergy(airSkill[1].energyCost);
             //    Instantiate(airSkill[1].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
             //}
-            if (characterController.isGrounded && !skill[index].holdingSkill) {
+            if (characterController.isGrounded && !skill[index].holdingSkill && characterBreathLevel.HasEnoughEnergy(skill[index].energyCost)) {
                 characterBreathLevel.UseEnergy(skill[index].energyCost);
                 Instantiate(skill[1].skillPrefab, transform.position, Quaternion.identity).GetComponent<BaseSkill>().Activate();
             }

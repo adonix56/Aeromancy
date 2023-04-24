@@ -35,7 +35,7 @@ public class EnemyRangeCheck : MonoBehaviour {
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.CompareTag(PLAYER) || other.CompareTag(FLYTRAP)) {
+        if (other.CompareTag(PLAYER)) {
             if (rangeType == RangeType.Visual) {
                 enemy.InVisualRange(false);
             } else if (rangeType == RangeType.Attack) {

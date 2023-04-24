@@ -10,10 +10,12 @@ public class Projectile : BaseSkill
     [SerializeField] private ParticleSystem trail;
     [SerializeField] private ParticleSystem impact;
     [SerializeField] private GameObject visualObject;
+    [SerializeField] private GameObject spawnOnDeathPrefab;
 
     private CharacterHealth characterHealth;
     private Vector3 direction;
     private bool dying = false;
+    private bool spawnOnDeath = false;
     private float impactTime;
     private float waitToHit = 0.2f;
 
@@ -38,8 +40,14 @@ public class Projectile : BaseSkill
             }
             if (other.CompareTag(PLAYER)) {
                 characterHealth.GetHit();
+            } else if (spawnOnDeath) {
+                Instantiate(spawnOnDeathPrefab, transform.position, Quaternion.identity).GetComponent<Fire>();
             }
         }
+    }
+
+    public void SetSpawnOnDeath() {
+        spawnOnDeath = true;
     }
 
     private bool VerifyHit(Collider other) {

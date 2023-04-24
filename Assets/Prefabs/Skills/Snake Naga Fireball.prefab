@@ -51,6 +51,9 @@ MonoBehaviour:
   travelSpeed: 10
   trail: {fileID: 7969308113599124355}
   impact: {fileID: 2347622711760033930}
+  visualObject: {fileID: 0}
+  spawnOnDeathPrefab: {fileID: 7769638313601444807, guid: 91f0e1edd7894244f980cc452294d4e8,
+    type: 3}
 --- !u!135 &6481950856696578238
 SphereCollider:
   m_ObjectHideFlags: 0

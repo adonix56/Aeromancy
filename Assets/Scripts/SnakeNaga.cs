@@ -9,10 +9,19 @@ public class SnakeNaga : Enemy {
     private const string PROJECTILE = "Projectile";
     private const string ATTACK = "Attack";
     private const string BITE = "Bite";
+    private const string DAMAGE = "Damage";
+    private const string DIE = "Die";
 
     [SerializeField] private SkillSO attack;
     [SerializeField] private SkillSO projectile;
     [SerializeField] private Transform fireballLocation;
+    [SerializeField] private int damageTaken;
+    [SerializeField] private Transform damageLocation;
+    [SerializeField] private GameObject hitAnimation;
+    [SerializeField, Range(0, 3)] private int venusFlytrapAttacks;
+    [SerializeField, Range(0f, 40f)] private float visualDistance;
+    [SerializeField, Range(0f, 40f)] private float projectileDistance;
+    [SerializeField, Range(0f, 40f)] private float attackDistance;
 
     //private float attackCooldown;
     //private float projectileCooldown;
@@ -20,10 +29,12 @@ public class SnakeNaga : Enemy {
     private string nextAttack;
     private bool isHit;
     private bool isEaten;
-    private GameObject hitObject;
-    private float waitToExplode;
+    private Whirlwind whirlwindObject;
+    private float waitToExplode = 2f;
     private Vector3 previousPosition;
     private Quaternion previousRotation;
+    private VenusFlytrap flytrap;
+    private bool isMad;
     //private CharacterHealth characterHealth;
     /*[SerializeField] private Transform playerTransform;
     [SerializeField] private Transform returnTransform;
@@ -40,7 +51,14 @@ public class SnakeNaga : Enemy {
     }
 
     protected override void Update() {
-        if (!isHit) {
+        if (health <= 0) {
+            isMad = false;
+            isHit = false;
+            isEaten = false;
+            nav.isStopped = true;
+            animator.SetBool(DAMAGE, false);
+            animator.SetTrigger(DIE);
+        } else if (!isHit) {
             animator.SetFloat(MOVE, nav.velocity.sqrMagnitude);
             if (inVisualRange) {
                 nav.SetDestination(playerTransform.position);
@@ -50,18 +68,46 @@ public class SnakeNaga : Enemy {
                 nav.SetDestination(returnTransform.position);
             }
         } else {
-            if (!isEaten) {
-                if (hitObject) {
-                    transform.position = hitObject.transform.position;
+            if (waitToExplode < 0) {
+                flytrap.Explode();
+                flytrap = null;
+                transform.parent = null;
+                transform.position = previousPosition;
+                transform.rotation = previousRotation;
+                isHit = false;
+                isEaten = false;
+                waitToExplode = 2;
+                health--;
+                if (--venusFlytrapAttacks <= 0) {
+                    Debug.Log("Get Mad!");
+                    isMad = true;
+                }
+            } else if (!isEaten) {
+                if (whirlwindObject) {
+                    transform.position = whirlwindObject.transform.position;
+                    if (whirlwindObject.isBurning && isMad) {
+                        animator.SetBool(DAMAGE, true);
+                    }
                 } else {
                     isHit = false;
+                    animator.SetBool(DAMAGE, false);
                 }
             } else {
+                waitToExplode -= Time.deltaTime;
                 transform.position = transform.parent.position;
                 transform.rotation = transform.parent.rotation;
             }
         }
+        CalculateDistances();
         base.Update();
+    }
+
+    private void CalculateDistances() {
+        float distance = Vector3.Distance(CharacterManager.Instance.transform.position, transform.position);
+        Debug.Log(distance);
+        inVisualRange = distance < visualDistance;
+        inProjectileRange = distance < projectileDistance;
+        inAttackRange = distance < attackDistance;
     }
 
     private void HandleAttacks() {
@@ -85,14 +131,16 @@ public class SnakeNaga : Enemy {
         return isHit;
     }
 
-    public void GetEaten() {
+    public void GetEaten(VenusFlytrap venusFlytrap) {
         previousPosition = transform.position;
         previousRotation = transform.rotation;
+        flytrap = venusFlytrap;
         isEaten = true;
     }
 
     public override void TriggerProjectile() {
-        Instantiate(projectile.skillPrefab, fireballLocation.position, Quaternion.identity).GetComponent<Projectile>();
+        Projectile fireball = Instantiate(projectile.skillPrefab, fireballLocation.position, Quaternion.identity).GetComponent<Projectile>();
+        if (isMad) fireball.SetSpawnOnDeath();
     }
 
     public override void TriggerAttack() {
@@ -103,11 +151,13 @@ public class SnakeNaga : Enemy {
 
     public override void TriggerDamage() {
         //Trigger Damage
+        health -= damageTaken;
+        Instantiate(hitAnimation, damageLocation);
     }
 
     public override void ProjectileHit(GameObject hit) {
         //Hit by whirlwind
-        hitObject = hit;
+        whirlwindObject = hit.GetComponent<Whirlwind>();
         isHit = true;
     }
 

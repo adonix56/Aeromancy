@@ -23,6 +23,7 @@ public class HoldBreath : BaseSkill
         characterBreathLevel = CharacterManager.Instance.GetCharacterBreathLevel();
         characterBreathLevel.LockRegen(true);
         characterMovement.SetPlayerSpeed(moveSpeed, true);
+        characterAnimation.SetHold(true);
         isHoldingBreath = true;
     }
 
@@ -30,6 +31,7 @@ public class HoldBreath : BaseSkill
         isHoldingBreath = false;
         characterMovement.ResetPlayerSpeed();
         characterBreathLevel.LockRegen(false);
+        characterAnimation.SetHold(false);
         Destroy(gameObject);
     }
 }

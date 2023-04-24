@@ -18,3 +18,4 @@ MonoBehaviour:
   holdingSkill: 0
   skillSpawnOnParent: 0
   energyCost: 0
+  cooldown: 2

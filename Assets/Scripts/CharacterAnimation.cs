@@ -6,6 +6,7 @@ public class CharacterAnimation : MonoBehaviour
 {
     public const string MOVING = "Moving";
     public const string BLOWING = "Blowing";
+    public const string HOLDING = "Holding";
 
     [SerializeField] private Animator animator;
 
@@ -16,5 +17,9 @@ public class CharacterAnimation : MonoBehaviour
 
     public void SetBlow(bool blow) {
         animator.SetBool(BLOWING, blow);
+    }
+
+    public void SetHold(bool hold) {
+        animator.SetBool(HOLDING, hold);
     }
 }

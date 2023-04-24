@@ -33,6 +33,10 @@ public class WolfPup : Enemy {
         }
     }
 
+    public bool IsAlive() {
+        return alive;
+    }
+
     private void HandleAttacks() {
         if (inAttackRange && attackCooldown < 0) {
             transform.LookAt(playerTransform);

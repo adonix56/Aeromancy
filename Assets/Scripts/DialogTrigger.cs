@@ -25,25 +25,27 @@ public class DialogTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag(PLAYER_TAG))
         {
-            DialogPanel newPanel = null;
-            switch(panelType)
-            {
-                case PanelType.BigDialogPanel:
-                    newPanel = dialogController.OpenBaseDialogPanel(texts, panelBlocksInput);
-                    break;
-                case PanelType.MediumUpRightPanel:
-                    newPanel = dialogController.OpenMediumUpRightPanel(texts, panelBlocksInput);
-                    break;
-                case PanelType.ThinUpRightPanel:
-                    newPanel = dialogController.OpenThinUpRightPanel(texts, panelBlocksInput);
-                    break;
-            }
-            if (OnClose != null && newPanel != null)
-            {
-                newPanel.OnCloseEvent += OnClose.Invoke;
-            }
-            if (destroyOnTrigger)
-                Destroy(gameObject);
+            StartDialogue();
         }
+    }
+
+    public void StartDialogue() {
+        DialogPanel newPanel = null;
+        switch (panelType) {
+            case PanelType.BigDialogPanel:
+                newPanel = dialogController.OpenBaseDialogPanel(texts, panelBlocksInput);
+                break;
+            case PanelType.MediumUpRightPanel:
+                newPanel = dialogController.OpenMediumUpRightPanel(texts, panelBlocksInput);
+                break;
+            case PanelType.ThinUpRightPanel:
+                newPanel = dialogController.OpenThinUpRightPanel(texts, panelBlocksInput);
+                break;
+        }
+        if (OnClose != null && newPanel != null) {
+            newPanel.OnCloseEvent += OnClose.Invoke;
+        }
+        if (destroyOnTrigger)
+            Destroy(gameObject);
     }
 }

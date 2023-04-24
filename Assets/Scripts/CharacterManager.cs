@@ -15,7 +15,7 @@ public class CharacterManager : MonoBehaviour
     private CharacterBreathLevel characterBreathLevel;
     private Rigidbody characterRigidbody;
     private bool isPlayable = true;
-    private bool inCutscene = true;
+    private bool inCutscene = false;
 
     private void Awake() {
         if (Instance != null) {

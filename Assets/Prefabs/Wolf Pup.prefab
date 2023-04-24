@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 6.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &222078860
 MonoBehaviour:
@@ -334,6 +334,7 @@ MonoBehaviour:
   _returnTransform: {fileID: 0}
   _animator: {fileID: 6285280120294970315}
   _pauseAfterAttack: 1
+  _health: 0
   attack: {fileID: 11400000, guid: 6856fad84bb67e24bb2c1e12b2453e24, type: 2}
 --- !u!1 &6285280120304361477
 GameObject:

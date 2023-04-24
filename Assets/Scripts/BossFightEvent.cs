@@ -63,7 +63,7 @@ public class BossFightEvent : MonoBehaviour
 
     public void GoBackToPlay() {
         thisCollider.enabled = false;
-        spirit.SetActive(false);
+        spirit.GetComponent<ForestSpirit>().Disappear();
         CameraTriggerController.Instance.TriggerEvent(cameras[1]);
     }
 

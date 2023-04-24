@@ -24,7 +24,7 @@ public class ForestSpiritEvent : MonoBehaviour
     public void Finish()
     {
         CameraTriggerController.Instance.TriggerEvent(lastCamera);
-        forestSpirit.SetActive(false);
+        forestSpirit.GetComponent<ForestSpirit>().Disappear();
         Destroy(gameObject);
     }
 }

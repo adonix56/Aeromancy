@@ -1939,6 +1939,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1373074257}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &123297208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4562862754105394972, guid: a88a5eec39733cd4aab018465620a3af,
+    type: 3}
+  m_PrefabInstance: {fileID: 1826679958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &130202162 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1128645582463839851, guid: a88a5eec39733cd4aab018465620a3af,
@@ -8218,6 +8224,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2082209705}
+        m_TargetAssemblyTypeName: CharacterAnimation, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &410542027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8600,7 +8618,7 @@ MonoBehaviour:
   panelType: 2
   texts:
   - Press LMB to exhale and extinguish the small fire.
-  - You may not be able to blow away bigger fires.
+  - Bigger fires CANNOT be blown away.
   panelBlocksInput: 1
   destroyOnTrigger: 1
   dialogController: {fileID: 1826679959}
@@ -14505,7 +14523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &518451624
 Transform:
   m_ObjectHideFlags: 0
@@ -15295,7 +15313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &610236676
 Transform:
   m_ObjectHideFlags: 0
@@ -16890,6 +16908,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3827792263292216239, guid: 38cc6b53e5998d64fac481e6b7b670fa,
+        type: 3}
+      propertyPath: disparitionTime
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4036627296661310609, guid: 38cc6b53e5998d64fac481e6b7b670fa,
         type: 3}
       propertyPath: m_RootOrder
@@ -16903,7 +16926,7 @@ PrefabInstance:
     - target: {fileID: 4036627296661310609, guid: 38cc6b53e5998d64fac481e6b7b670fa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.187
+      value: 1.964
       objectReference: {fileID: 0}
     - target: {fileID: 4036627296661310609, guid: 38cc6b53e5998d64fac481e6b7b670fa,
         type: 3}
@@ -17865,7 +17888,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880423367}
-  m_LocalRotation: {x: 0.37555227, y: 0.22650868, z: -0.09519024, w: 0.8936404}
+  m_LocalRotation: {x: 0.37555227, y: 0.22650872, z: -0.09519028, w: 0.8936404}
   m_LocalPosition: {x: -1.6776876, y: 3.6622791, z: -3.154564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19719,7 +19742,7 @@ MonoBehaviour:
   fadeBlack: {fileID: 604355290}
   outsideCamera: {fileID: 1652862173}
   characterAnimator: {fileID: 1564798416}
-  gameUI: {fileID: 1319050407}
+  gameUI: {fileID: 123297208}
   mainTheme: {fileID: 0}
 --- !u!4 &1059911501 stripped
 Transform:
@@ -22643,7 +22666,7 @@ PrefabInstance:
     - target: {fileID: 1901288723439787142, guid: baea2942c8246e94da3147085109cee6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.98
+      value: -14.91
       objectReference: {fileID: 0}
     - target: {fileID: 1901288723439787142, guid: baea2942c8246e94da3147085109cee6,
         type: 3}
@@ -22999,12 +23022,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7769638313601444804, guid: 91f0e1edd7894244f980cc452294d4e8,
     type: 3}
   m_PrefabInstance: {fileID: 1068799290}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1319050407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4562862754105394972, guid: a88a5eec39733cd4aab018465620a3af,
-    type: 3}
-  m_PrefabInstance: {fileID: 1826679958}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1332515424 stripped
 Transform:
@@ -24531,6 +24548,12 @@ PrefabInstance:
       propertyPath: energyHandler
       value: 
       objectReference: {fileID: 610321464}
+    - target: {fileID: 1842488410428886138, guid: 60cab394eb5a1054db7e67e759274448,
+        type: 3}
+      propertyPath: skill.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b6fa014fe7ec1e6438d69d013e201475,
+        type: 2}
     - target: {fileID: 2274210902932546296, guid: 60cab394eb5a1054db7e67e759274448,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27806,7 +27829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1750751332
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -28298,7 +28321,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1826679958}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319050407}
+  m_GameObject: {fileID: 123297208}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3229e9d257478ec47be97f5665863d12, type: 3}
@@ -32206,6 +32229,7 @@ MonoBehaviour:
   texts:
   - He must be the one causing all of the fire in the forest! Be careful! It looks
     like there are some Venus Flytraps here, too!
+  - When they get mad, their fireballs can leave fire, use it to your advantage!
   panelBlocksInput: 1
   destroyOnTrigger: 1
   dialogController: {fileID: 1826679959}
@@ -32961,6 +32985,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeForDamage: 2
+--- !u!114 &2082209705 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 386485127144991585, guid: 60cab394eb5a1054db7e67e759274448,
+    type: 3}
+  m_PrefabInstance: {fileID: 1531664104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082209686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ed9821476aacd4e8f036aa9cb52435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2100250358
 PrefabInstance:
   m_ObjectHideFlags: 0

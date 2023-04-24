@@ -35,6 +35,15 @@ public class SecondFightEvent : MonoBehaviour {
         return verify == fairies.Length;
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player")) {
+            CharacterManager.Instance.GetCharacterAnimation().Move(0);
+            activateBlock.SetActive(true);
+            deactivateBlock.SetActive(false);
+            //lastCamera = CameraTriggerController.Instance.getCurrentCamera();
+        }
+    }
+
 
     public void ActivateDialogue(int index) {
         activateBlock.SetActive(true);

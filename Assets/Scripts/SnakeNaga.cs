@@ -67,7 +67,7 @@ public class SnakeNaga : Enemy {
                 if (!nav.isStopped)
                     HandleAttacks();
             } else {
-                nav.SetDestination(returnTransform.position);
+                //nav.SetDestination(returnTransform.position);
             }
         } else {
             if (waitToExplode < 0) {
